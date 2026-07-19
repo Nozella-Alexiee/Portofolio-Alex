@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Alex — Portofolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Work+Sans:wght@400;500;600&family=Courier+Prime:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#F0EBDD;
+    --card:#E8E1CC;
+    --line:#D2C8AC;
+    --ink:#262B3D;
+    --ink-soft:#726B58;
+    --red:#B3423A;
+    --gold:#A2762E;
+    --green:#3E6B52;
+    --font-display:'Space Grotesk', sans-serif;
+    --font-body:'Work Sans', sans-serif;
+    --font-mono:'Courier Prime', monospace;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--paper);
+    background-image:
+      linear-gradient(var(--line) 1px, transparent 1px);
+    background-size:100% 34px;
+    color:var(--ink);
+    font-family:var(--font-body);
+    line-height:1.6;
+  }
+  a{color:inherit;}
+  :focus-visible{outline:2px solid var(--red); outline-offset:3px;}
+
+  .margin-rule{
+    position:fixed; top:0; bottom:0; left:56px; width:2px;
+    background:rgba(179,66,58,0.35); z-index:1; pointer-events:none;
+  }
+  @media (max-width:780px){ .margin-rule{left:26px;} }
+
+  .page{max-width:760px; margin:0 auto; padding:0 32px 0 88px; position:relative; z-index:2;}
+  @media (max-width:780px){ .page{padding:0 20px 0 46px;} }
+
+  /* ---------- SIDE TAB NAV ---------- */
+  .side-tabs{
+    position:fixed; top:120px; right:0; z-index:40;
+    display:flex; flex-direction:column; gap:10px;
+  }
+  .side-tabs a{
+    writing-mode:vertical-rl;
+    text-orientation:mixed;
+    font-family:var(--font-mono); font-weight:700; font-size:11.5px;
+    letter-spacing:0.08em;
+    padding:14px 8px;
+    border-radius:6px 0 0 6px;
+    text-decoration:none;
+    box-shadow:-2px 3px 6px rgba(0,0,0,0.15);
+    transform:translateX(0);
+    transition:transform .18s ease;
+    color:var(--paper);
+  }
+  .side-tabs a:hover{transform:translateX(-6px);}
+  .side-tabs a:nth-child(1){background:var(--ink);}
+  .side-tabs a:nth-child(2){background:var(--green);}
+  .side-tabs a:nth-child(3){background:var(--gold);}
+  .side-tabs a:nth-child(4){background:var(--red);}
+  .side-tabs a:nth-child(5){background:var(--ink-soft);}
+  @media (max-width:780px){
+    .side-tabs{
+      position:sticky; top:0; flex-direction:row; right:auto; left:0;
+      overflow-x:auto; background:var(--paper); padding:10px 14px;
+      border-bottom:1px solid var(--line); gap:8px;
+    }
+    .side-tabs a{writing-mode:horizontal-tb; border-radius:16px; padding:7px 13px; box-shadow:none; white-space:nowrap;}
+    .side-tabs a:hover{transform:none;}
+  }
+
+  section{padding:56px 0;}
+  .tab-label{
+    display:inline-block; font-family:var(--font-mono); font-size:11px; font-weight:700;
+    letter-spacing:0.1em; text-transform:uppercase; color:var(--paper);
+    background:var(--ink); padding:4px 10px; border-radius:3px; margin-bottom:14px;
+  }
+  h2{font-family:var(--font-display); font-weight:700; font-size:clamp(21px,3vw,27px); margin-bottom:22px;}
+
+  /* ---------- HERO: KARTU PELAJAR ---------- */
+  .hero{padding-top:52px;}
+  .id-card{
+    background:linear-gradient(160deg, #fbf8ef, #efe8d3);
+    border:1px solid var(--line);
+    border-radius:14px;
+    padding:22px 24px;
+    max-width:480px;
+    box-shadow:0 18px 34px -14px rgba(38,43,61,0.35);
+    transform:rotate(-1.4deg);
+    position:relative;
+  }
+  .id-card::before{
+    content:''; position:absolute; top:-9px; left:50%; transform:translateX(-50%);
+    width:64px; height:18px; background:rgba(38,43,61,0.08);
+    border-radius:0 0 10px 10px; border:1px solid var(--line); border-top:none;
+  }
+  .id-top{display:flex; gap:16px; align-items:flex-start;}
+  .id-photo{
+    width:78px; height:98px; border:1.5px dashed var(--ink-soft); border-radius:4px;
+    display:flex; align-items:center; justify-content:center; flex-shrink:0;
+    font-family:var(--font-mono); font-size:10px; color:var(--ink-soft); text-align:center;
+    background:rgba(38,43,61,0.03);
+  }
+  .id-fields{font-family:var(--font-mono); font-size:12px; flex:1;}
+  .id-school{font-family:var(--font-display); font-weight:700; font-size:13px; letter-spacing:0.03em; margin-bottom:8px; color:var(--red);}
+  .id-row{display:flex; gap:6px; margin-bottom:5px;}
+  .id-row .k{color:var(--ink-soft); width:64px; flex-shrink:0;}
+  .id-row .v{font-weight:700;}
+  .id-barcode{
+    margin-top:18px; height:34px; border-top:1px dashed var(--line); padding-top:10px;
+    background-image:repeating-linear-gradient(90deg, var(--ink) 0 2px, transparent 2px 5px, var(--ink) 5px 6px, transparent 6px 11px, var(--ink) 11px 14px, transparent 14px 17px);
+    background-size:100% 22px; background-repeat:no-repeat;
+  }
+  .hero-title{
+    font-family:var(--font-display); font-weight:700; letter-spacing:-0.01em;
+    font-size:clamp(26px,5vw,38px); margin:30px 0 6px;
+  }
+  .hero-sub{font-family:var(--font-mono); font-size:13px; color:var(--ink-soft);}
+
+  /* ---------- ABOUT: STICKY NOTE ---------- */
+  .sticky-note{
+    background:#F6E9A8;
+    border:1px solid #DFCB6E;
+    border-radius:2px;
+    padding:24px 26px;
+    max-width:560px;
+    box-shadow:0 10px 18px -10px rgba(38,43,61,0.3);
+    transform:rotate(0.8deg);
+    position:relative;
+    font-family:var(--font-mono); font-size:13.5px; line-height:1.85;
+  }
+  .sticky-note::before{
+    content:''; position:absolute; top:-10px; left:28px; width:20px; height:20px;
+    border-radius:50%; background:var(--red);
+    box-shadow:0 2px 3px rgba(0,0,0,0.25);
+  }
+  .sticky-note b{color:var(--red);}
+
+  /* ---------- SKILLS: BUKU BESAR (LEDGER) ---------- */
+  .ledger{
+    background:var(--card); border:1px solid var(--line); border-radius:8px;
+    overflow:hidden;
+  }
+  .ledger-title{
+    font-family:var(--font-display); font-weight:700; font-size:13.5px;
+    padding:12px 18px; border-bottom:2px solid var(--ink); display:flex; justify-content:space-between;
+    text-transform:uppercase; letter-spacing:0.04em;
+  }
+  table{width:100%; border-collapse:collapse; font-family:var(--font-mono); font-size:12.5px;}
+  thead th{
+    text-align:left; padding:9px 18px; color:var(--ink-soft); font-weight:700;
+    border-bottom:1px dashed var(--line); font-size:10.5px; letter-spacing:0.06em; text-transform:uppercase;
+  }
+  tbody td{padding:9px 18px; border-bottom:1px dashed var(--line);}
+  tbody tr:last-child td{border-bottom:none;}
+  .dots{letter-spacing:3px;}
+  .dots .on{color:var(--red);}
+  .dots .off{color:var(--line);}
+  .ledger + .ledger{margin-top:20px;}
+  .ledger.fin .ledger-title{background:rgba(162,118,46,0.12);}
+  .ledger.web .ledger-title{background:rgba(62,107,82,0.12);}
+
+  /* ---------- PROJECTS: LAMPIRAN ---------- */
+  .attach-card{
+    background:var(--card); border:1px solid var(--line); border-radius:6px;
+    padding:26px 24px 24px; position:relative; max-width:640px;
+  }
+  .paperclip{position:absolute; top:-14px; left:22px; width:26px; height:44px;}
+  .attach-head{display:flex; justify-content:space-between; align-items:center; margin-bottom:16px; flex-wrap:wrap; gap:8px;}
+  .attach-head .filename{font-family:var(--font-display); font-weight:700; font-size:15px;}
+  .attach-head .stamp{
+    font-family:var(--font-mono); font-size:10.5px; font-weight:700; color:var(--green);
+    border:1.5px solid var(--green); padding:2px 8px; border-radius:3px; transform:rotate(-4deg);
+    letter-spacing:0.05em;
+  }
+  .photo-row{display:flex; gap:22px; margin-bottom:18px; flex-wrap:wrap;}
+  .taped-photo{
+    background:#fbf8ef; border:1px solid var(--line); padding:8px 8px 22px;
+    width:180px; box-shadow:0 8px 16px -8px rgba(38,43,61,0.35); position:relative;
+  }
+  .taped-photo:nth-child(1){transform:rotate(-3deg);}
+  .taped-photo:nth-child(2){transform:rotate(2.5deg);}
+  .taped-photo .tape{
+    position:absolute; top:-10px; left:50%; transform:translateX(-50%) rotate(-2deg);
+    width:52px; height:20px; background:rgba(162,118,46,0.35);
+    border:1px solid rgba(162,118,46,0.4);
+  }
+  .taped-photo .frame{
+    aspect-ratio:4/3; border:1px dashed var(--ink-soft);
+    display:flex; align-items:center; justify-content:center; flex-direction:column; gap:4px;
+    color:var(--ink-soft); font-family:var(--font-mono); font-size:10px; text-align:center; padding:6px;
+  }
+  .taped-photo .caption{
+    font-family:var(--font-mono); font-size:10px; color:var(--ink-soft); text-align:center; margin-top:8px;
+  }
+  .attach-body p{color:var(--ink-soft); font-size:13.5px; margin-bottom:14px;}
+  .tech-tags{display:flex; gap:8px; flex-wrap:wrap; margin-bottom:16px;}
+  .tech-tag{
+    font-family:var(--font-mono); font-size:11px; font-weight:700; color:var(--ink);
+    background:transparent; border:1px solid var(--ink); padding:2px 9px; border-radius:3px;
+  }
+  .attach-links a{
+    font-family:var(--font-mono); font-size:12px; font-weight:700; color:var(--paper);
+    background:var(--ink); padding:9px 16px; border-radius:4px; text-decoration:none;
+    display:inline-flex; align-items:center; gap:7px;
+  }
+
+  /* ---------- CERTIFICATE: STRUK / NOTA ---------- */
+  .receipt-wrap{display:flex; justify-content:center;}
+  .receipt{
+    background:#fbf8ef;
+    width:100%; max-width:320px;
+    font-family:var(--font-mono); font-size:12px;
+    padding:26px 22px 20px;
+    box-shadow:0 14px 24px -12px rgba(38,43,61,0.4);
+    clip-path:polygon(
+      0% 8px, 3% 0%, 6% 8px, 9% 0%, 12% 8px, 15% 0%, 18% 8px, 21% 0%, 24% 8px, 27% 0%, 30% 8px, 33% 0%, 36% 8px, 39% 0%, 42% 8px, 45% 0%, 48% 8px, 51% 0%, 54% 8px, 57% 0%, 60% 8px, 63% 0%, 66% 8px, 69% 0%, 72% 8px, 75% 0%, 78% 8px, 81% 0%, 84% 8px, 87% 0%, 90% 8px, 93% 0%, 96% 8px, 99% 0%, 100% 8px,
+      100% calc(100% - 8px), 97% 100%, 94% calc(100% - 8px), 91% 100%, 88% calc(100% - 8px), 85% 100%, 82% calc(100% - 8px), 79% 100%, 76% calc(100% - 8px), 73% 100%, 70% calc(100% - 8px), 67% 100%, 64% calc(100% - 8px), 61% 100%, 58% calc(100% - 8px), 55% 100%, 52% calc(100% - 8px), 49% 100%, 46% calc(100% - 8px), 43% 100%, 40% calc(100% - 8px), 37% 100%, 34% calc(100% - 8px), 31% 100%, 28% calc(100% - 8px), 25% 100%, 22% calc(100% - 8px), 19% 100%, 16% calc(100% - 8px), 13% 100%, 10% calc(100% - 8px), 7% 100%, 4% calc(100% - 8px), 1% 100%, 0% calc(100% - 8px)
+    );
+  }
+  .receipt-title{text-align:center; font-weight:700; letter-spacing:0.08em; margin-bottom:2px;}
+  .receipt-sub{text-align:center; color:var(--ink-soft); font-size:10.5px; margin-bottom:14px;}
+  .receipt hr{border:none; border-top:1px dashed var(--ink-soft); margin:10px 0;}
+  .receipt-row{display:flex; justify-content:space-between; margin-bottom:5px;}
+  .receipt-row .lbl{color:var(--ink-soft);}
+  .receipt-status{
+    text-align:center; font-weight:700; color:var(--green); margin:12px 0 6px; letter-spacing:0.05em;
+  }
+  .receipt-note{font-size:10.5px; color:var(--ink-soft); text-align:center; margin-top:10px; line-height:1.6;}
+  .receipt-barcode{
+    margin-top:16px; height:30px;
+    background-image:repeating-linear-gradient(90deg, var(--ink) 0 2px, transparent 2px 4px, var(--ink) 4px 5px, transparent 5px 9px);
+  }
+
+  /* ---------- CONTACT: SURAT ---------- */
+  .envelope{
+    background:var(--card); border:1px solid var(--line); border-radius:8px;
+    padding:30px 28px; max-width:560px; position:relative; text-align:left;
+  }
+  .stamp-box{
+    position:absolute; top:20px; right:22px; width:56px; height:66px;
+    border:2px dotted var(--ink-soft); display:flex; align-items:center; justify-content:center;
+    font-family:var(--font-mono); font-size:9px; color:var(--ink-soft); text-align:center; transform:rotate(3deg);
+  }
+  .envelope h2{margin-bottom:8px;}
+  .envelope p{color:var(--ink-soft); font-size:13.5px; margin-bottom:20px; max-width:380px;}
+  .btn-row{display:flex; gap:10px; flex-wrap:wrap;}
+  .btn{
+    font-family:var(--font-mono); font-weight:700; font-size:12.5px; padding:11px 18px;
+    border-radius:4px; text-decoration:none; letter-spacing:0.02em;
+  }
+  .btn.primary{background:var(--red); color:#fbf8ef;}
+  .btn.ghost{border:1.5px solid var(--ink); color:var(--ink);}
+
+  footer{
+    padding:34px 0 46px; font-family:var(--font-mono); font-size:11px; color:var(--ink-soft); letter-spacing:0.02em;
+  }
+</style>
+</head>
+<body>
+
+<div class="margin-rule"></div>
+<nav class="side-tabs">
+  <a href="#about">Profil</a>
+  <a href="#skills">Keahlian</a>
+  <a href="#projects">Proyek</a>
+  <a href="#cert">Sertifikat</a>
+  <a href="#contact">Kontak</a>
+</nav>
+
+<div class="page">
+
+  <section class="hero" id="top">
+    <div class="id-card">
+      <div class="id-top">
+        <div class="id-photo"><img src="images/foto-profil.jpg" alt="Foto Alex" style="width:100%;height:100%;object-fit:cover;border-radius:2px;"></div>
+        <div class="id-fields">
+          <div class="id-school">SMK SIG — KARTU PELAJAR</div>
+          <div class="id-row"><span class="k">Nama</span><span class="v">Ahmad Zulfikri A. D.</span></div>
+          <div class="id-row"><span class="k">Panggilan</span><span class="v">Alex</span></div>
+          <div class="id-row"><span class="k">Kelas</span><span class="v">XII RPL 1</span></div>
+          <div class="id-row"><span class="k">Minat</span><span class="v">Web Dev &amp; Finance</span></div>
+        </div>
+      </div>
+      <div class="id-barcode"></div>
+    </div>
+    <div class="hero-title">Ahmad Zulfikri Alexander Disyin</div>
+    <div class="hero-sub">Siswa RPL yang belajar membangun web sekaligus membaca laporan keuangan.</div>
+  </section>
+
+  <section id="about">
+    <span class="tab-label">Profil</span>
+    <h2>Tentang saya</h2>
+    <div class="sticky-note">
+      Halo, saya <b>Alex</b> — sekarang kelas XII RPL 1 di SMK SIG.<br><br>
+      Di sekolah saya belajar membangun aplikasi web dari nol, tapi di luar itu
+      saya juga senang mengulik dunia <b>pasar modal</b> dan keuangan.
+      Dua minat ini kelihatannya beda arah, tapi buat saya nyambung: keduanya
+      soal membaca pola dan menyusun sesuatu yang rapi dari data.
+    </div>
+  </section>
+
+  <section id="skills">
+    <span class="tab-label">Keahlian</span>
+    <h2>Buku besar keahlian</h2>
+
+    <div class="ledger web">
+      <div class="ledger-title"><span>Web Development</span><span>Kredit skill</span></div>
+      <table>
+        <thead><tr><th>No</th><th>Uraian</th><th style="text-align:right">Tingkat</th></tr></thead>
+        <tbody>
+          <tr><td>01</td><td>HTML &amp; CSS</td><td style="text-align:right"><span class="dots"><span class="on">●●●●</span><span class="off">○</span></span></td></tr>
+          <tr><td>02</td><td>JavaScript</td><td style="text-align:right"><span class="dots"><span class="on">●●●</span><span class="off">○○</span></span></td></tr>
+          <tr><td>03</td><td>PHP &amp; MySQL</td><td style="text-align:right"><span class="dots"><span class="on">●●●●</span><span class="off">○</span></span></td></tr>
+          <tr><td>04</td><td>Desain Responsif</td><td style="text-align:right"><span class="dots"><span class="on">●●●</span><span class="off">○○</span></span></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="ledger fin">
+      <div class="ledger-title"><span>Finance</span><span>Kredit skill</span></div>
+      <table>
+        <thead><tr><th>No</th><th>Uraian</th><th style="text-align:right">Tingkat</th></tr></thead>
+        <tbody>
+          <tr><td>01</td><td>Dasar Pasar Modal</td><td style="text-align:right"><span class="dots"><span class="on">●●●●</span><span class="off">○</span></span></td></tr>
+          <tr><td>02</td><td>Analisis Keuangan Dasar</td><td style="text-align:right"><span class="dots"><span class="on">●●●</span><span class="off">○○</span></span></td></tr>
+          <tr><td>03</td><td>Investasi &amp; Saham</td><td style="text-align:right"><span class="dots"><span class="on">●●●</span><span class="off">○○</span></span></td></tr>
+          <tr><td>04</td><td>Pencatatan Keuangan</td><td style="text-align:right"><span class="dots"><span class="on">●●●●</span><span class="off">○</span></span></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section id="projects">
+    <span class="tab-label">Proyek</span>
+    <h2>Lampiran karya</h2>
+    <div class="attach-card">
+      <svg class="paperclip" viewBox="0 0 26 44" fill="none" stroke="#726B58" stroke-width="2.5"><path d="M6 12v20a7 7 0 0 0 14 0V9a4.5 4.5 0 0 0-9 0v20a2 2 0 0 0 4 0V13"/></svg>
+      <div class="attach-head">
+        <span class="filename">Sistem Absensi Siswa</span>
+        <span class="stamp">SELESAI</span>
+      </div>
+      <div class="photo-row">
+        <div class="taped-photo">
+          <div class="tape"></div>
+          <div class="frame" style="border-style:solid; padding:0;"><img src="images/tampilan-1.jpg" alt="Dashboard SiAbsen" style="width:100%;height:100%;object-fit:cover;"></div>
+          <div class="caption">dashboard.jpg</div>
+        </div>
+        <div class="taped-photo">
+          <div class="tape"></div>
+          <div class="frame" style="border-style:solid; padding:0;"><img src="images/tampilan-2.jpg" alt="Halaman login SiAbsen" style="width:100%;height:100%;object-fit:cover;"></div>
+          <div class="caption">login.jpg</div>
+        </div>
+      </div>
+      <div class="attach-body">
+        <p>Aplikasi absensi &amp; manajemen data siswa berbasis website, dengan sistem role admin, user, dan karyawan yang masing-masing punya hak akses berbeda — misalnya role karyawan hanya bisa mengisi form izin/sakit dan melihat riwayat absensinya sendiri.</p>
+        <div class="tech-tags">
+          <span class="tech-tag">PHP</span>
+          <span class="tech-tag">MySQL</span>
+          <span class="tech-tag">CRUD</span>
+          <span class="tech-tag">Role-based Access</span>
+        </div>
+        <div class="attach-links">
+          <a href="#">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5C5.37.5 0 5.87 0 12.5c0 5.3 3.44 9.8 8.2 11.4.6.1.82-.26.82-.58v-2.02c-3.34.73-4.04-1.6-4.04-1.6-.55-1.4-1.34-1.76-1.34-1.76-1.1-.75.08-.74.08-.74 1.2.09 1.84 1.24 1.84 1.24 1.08 1.84 2.83 1.31 3.52 1 .1-.78.42-1.31.76-1.62-2.67-.3-5.47-1.33-5.47-5.93 0-1.31.47-2.38 1.24-3.22-.13-.3-.54-1.52.12-3.18 0 0 1-.32 3.3 1.23a11.5 11.5 0 0 1 6 0c2.3-1.55 3.3-1.23 3.3-1.23.66 1.66.25 2.88.12 3.18.77.84 1.24 1.91 1.24 3.22 0 4.61-2.8 5.63-5.48 5.92.43.37.81 1.1.81 2.22v3.29c0 .32.22.69.83.58A12 12 0 0 0 24 12.5C24 5.87 18.63.5 12 .5Z"/></svg>
+            Lihat di GitHub
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="cert">
+    <span class="tab-label">Sertifikat</span>
+    <h2>Struk sertifikasi</h2>
+    <div class="receipt-wrap">
+      <div class="receipt">
+        <div class="receipt-title">STRUK SERTIFIKAT</div>
+        <div class="receipt-sub">Sekolah Pasar Modal</div>
+        <hr>
+        <div class="receipt-row"><span class="lbl">Pemilik</span><span>Ahmad Z. A. D.</span></div>
+        <div class="receipt-row"><span class="lbl">Program</span><span>Sekolah Pasar Modal</span></div>
+        <div class="receipt-row"><span class="lbl">Kategori</span><span>Finance</span></div>
+        <hr>
+        <div class="receipt-status">✓ LULUS / TERVERIFIKASI</div>
+        <img src="images/sertifikat-pasar-modal.jpg" alt="Sertifikat Sekolah Pasar Modal" style="width:100%;border:1px solid var(--line); margin:4px 0 2px;">
+        <div class="receipt-barcode"></div>
+        <div class="receipt-note">Diselenggarakan oleh PT Bursa Efek Indonesia — 18 Mei 2026, Surabaya.</div>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact">
+    <span class="tab-label">Kontak</span>
+    <div class="envelope">
+      <div class="stamp-box">SIG<br>2026</div>
+      <h2>Mari terhubung</h2>
+      <p>Terbuka untuk kolaborasi project web maupun diskusi seputar finance.</p>
+      <div class="btn-row">
+        <a class="btn primary" href="mailto:alex@example.com">Kirim Email</a>
+        <a class="btn ghost" href="#top">Kembali ke atas</a>
+      </div>
+    </div>
+  </section>
+
+  <footer>© 2026 Ahmad Zulfikri Alexander Disyin — XII RPL 1, SMK SIG</footer>
+</div>
+
+</body>
+</html>
