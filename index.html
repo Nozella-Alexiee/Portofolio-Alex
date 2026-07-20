@@ -325,6 +325,24 @@
   .night-card .card-sub{font-family:var(--font-mono); font-size:10.5px; color:rgba(255,212,71,0.65); margin-bottom:10px;}
   .night-card p{font-size:12.5px; line-height:1.75; color:rgba(255,212,71,0.9);}
 
+  .photo-card{
+    background:#fff; border:2px solid var(--peach); border-radius:16px;
+    padding:20px 22px; max-width:250px; position:relative;
+    box-shadow:0 10px 18px -10px rgba(44,39,64,0.25); transform:rotate(-1.2deg);
+  }
+  .photo-card .polaroid-row{display:flex; gap:10px; margin-bottom:14px;}
+  .photo-card .polaroid{
+    background:#fff; border:1px solid var(--ring); padding:5px 5px 13px; width:76px;
+    box-shadow:0 4px 8px -4px rgba(44,39,64,0.3);
+  }
+  .photo-card .polaroid:nth-child(1){transform:rotate(-5deg);}
+  .photo-card .polaroid:nth-child(2){transform:rotate(4deg);}
+  .photo-card .polaroid img{width:100%; aspect-ratio:1; object-fit:cover; display:block;}
+  .photo-card .card-title{font-family:var(--font-hand); font-weight:400; font-size:17px; margin-bottom:2px;}
+  .photo-card .card-sub{font-family:var(--font-mono); font-size:10.5px; color:var(--ink-soft); margin-bottom:10px;}
+  .photo-card p{font-size:12.5px; line-height:1.75; color:var(--ink-soft);}
+  .photo-card .cam-doodle{position:absolute; top:-14px; right:14px; width:30px; height:30px; color:var(--peach);}
+
   /* ---------- KONTAK: SURAT LIPAT ---------- */
   .envelope{
     background:#fff; border:2px dashed var(--ring); border-radius:14px;
@@ -605,6 +623,18 @@
         <div class="card-title">Melihat Bintang</div>
         <div class="card-sub">Ritual Malam Favorit</div>
         <p>Salah satu momen favoritku itu duduk sebentar sambil lihat langit malam — kelihatan bintang-bintang di antara kesibukan sekolah &amp; ngoding.</p>
+      </div>
+      <div class="photo-card">
+        <svg class="cam-doodle" viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M6 14 L11 14 L13 10 L23 10 L25 14 L34 14 L34 30 L6 30 Z"/>
+          <circle cx="19" cy="21" r="6"/>
+        </svg>
+        <div class="polaroid-row">
+          <div class="polaroid"><img src="images/hobi-foto-1.jpg" alt="Hasil jepretan 1"></div>
+          <div class="polaroid"><img src="images/hobi-foto-2.jpg" alt="Hasil jepretan 2"></div>
+        </div>
+        <div class="card-title">Aku gemar memotret</div>
+        <div class="card-sub">Aku suka memotret hal random</div>
       </div>
     </div>
   </section>
