@@ -3,6 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="light">
 <title>Alex — Portofolio</title>
 <link rel="icon" type="image/png" href="images/logo-smksig.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -28,7 +29,7 @@
     --font-mono:'Space Mono', monospace;
   }
   *{box-sizing:border-box; margin:0; padding:0;}
-  html{scroll-behavior:smooth;}
+  html{scroll-behavior:smooth; background:#FBF7FF; color-scheme:light;}
   body{
     background:var(--paper);
     background-image:linear-gradient(var(--rule) 1px, transparent 1px);
@@ -36,6 +37,7 @@
     color:var(--ink);
     font-family:var(--font-body); font-weight:500;
     line-height:1.65;
+    min-height:100vh;
   }
   a{color:inherit;}
   :focus-visible{outline:2px solid var(--rose); outline-offset:3px;}
@@ -655,10 +657,10 @@
       </div>
       <div class="sing-card">
         <svg class="mic-doodle" viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-          <rect x="15" y="4" width="10" height="18" rx="5"/>
-          <path d="M9 18 a11 11 0 0 0 22 0"/>
-          <path d="M20 29 L20 35"/>
-          <path d="M14 35 L26 35"/>
+          <ellipse cx="19" cy="12" rx="9" ry="10"/>
+          <path d="M12 8 L26 8 M11.5 12 L26.5 12 M12 16 L26 16" opacity="0.6"/>
+          <path d="M19 22 L19 30" stroke-width="2.4"/>
+          <path d="M13 34 L25 36" stroke-width="2"/>
         </svg>
         <div class="card-title">Aku suka bernyanyi</div>
         <div class="card-sub">Andalan di Nada Tinggi</div>
