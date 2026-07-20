@@ -234,7 +234,7 @@
     background:#fff; border:1px solid var(--ring); border-radius:12px;
     padding:28px 24px 24px; position:relative; max-width:640px;
   }
-  .paperclip{position:absolute; top:-16px; left:24px; width:26px; height:46px;}
+  .paperclip{position:absolute; top:-16px; left:24px; width:26px; height:46px; transition:transform .12s ease-out; will-change:transform;}
   .attach-head{display:flex; justify-content:space-between; align-items:center; margin-bottom:16px; flex-wrap:wrap; gap:8px;}
   .attach-head .filename{font-family:var(--font-hand); font-weight:400; font-size:19px;}
   .attach-head .stamp{
@@ -319,20 +319,22 @@
     position:relative; overflow:hidden;
     box-shadow:0 10px 18px -10px rgba(44,39,64,0.35);
     transform:rotate(1deg);
-    background-image:
-      radial-gradient(1.4px 1.4px at 15% 20%, var(--yellow), transparent 60%),
-      radial-gradient(1.2px 1.2px at 32% 62%, var(--yellow), transparent 60%),
-      radial-gradient(1.6px 1.6px at 55% 15%, var(--yellow), transparent 60%),
-      radial-gradient(1.2px 1.2px at 70% 50%, var(--yellow), transparent 60%),
-      radial-gradient(1.4px 1.4px at 85% 28%, var(--yellow), transparent 60%),
-      radial-gradient(1.2px 1.2px at 90% 75%, var(--yellow), transparent 60%),
-      radial-gradient(1.3px 1.3px at 10% 80%, var(--yellow), transparent 60%);
   }
-  .night-card .moon{width:34px; height:34px; margin-bottom:10px;}
+  .night-card .sky-stars{position:absolute; inset:0; pointer-events:none;}
+  .night-card .sky-stars span{
+    position:absolute; width:2px; height:2px; border-radius:50%;
+    background:var(--yellow);
+    animation:twinkle 3.2s ease-in-out infinite;
+  }
+  @keyframes twinkle{
+    0%, 100%{opacity:0.25; transform:scale(0.8);}
+    50%{opacity:1; transform:scale(1.5);}
+  }
+  .night-card .moon{width:34px; height:34px; margin-bottom:10px; position:relative; z-index:1;}
   .night-card .moon path{fill:var(--yellow);}
-  .night-card .card-title{font-family:var(--font-hand); font-weight:400; font-size:17px; margin-bottom:2px;}
-  .night-card .card-sub{font-family:var(--font-mono); font-size:10.5px; color:rgba(255,212,71,0.65); margin-bottom:10px;}
-  .night-card p{font-size:12.5px; line-height:1.75; color:rgba(255,212,71,0.9);}
+  .night-card .card-title{font-family:var(--font-hand); font-weight:400; font-size:17px; margin-bottom:2px; position:relative; z-index:1;}
+  .night-card .card-sub{font-family:var(--font-mono); font-size:10.5px; color:rgba(255,212,71,0.65); margin-bottom:10px; position:relative; z-index:1;}
+  .night-card p{font-size:12.5px; line-height:1.75; color:rgba(255,212,71,0.9); position:relative; z-index:1;}
 
   .photo-card{
     background:#fff; border:2px solid var(--peach); border-radius:16px;
@@ -343,9 +345,12 @@
   .photo-card .polaroid{
     background:#fff; border:1px solid var(--ring); padding:5px 5px 13px; width:76px;
     box-shadow:0 4px 8px -4px rgba(44,39,64,0.3);
+    transition:transform .25s ease, box-shadow .25s ease;
   }
   .photo-card .polaroid:nth-child(1){transform:rotate(-5deg);}
   .photo-card .polaroid:nth-child(2){transform:rotate(4deg);}
+  .photo-card .polaroid:nth-child(1):hover{transform:rotate(-8deg) scale(1.08) translateY(-3px); box-shadow:0 10px 18px -6px rgba(44,39,64,0.4); z-index:2;}
+  .photo-card .polaroid:nth-child(2):hover{transform:rotate(7deg) scale(1.08) translateY(-3px); box-shadow:0 10px 18px -6px rgba(44,39,64,0.4); z-index:2;}
   .photo-card .polaroid img{width:100%; aspect-ratio:1; object-fit:cover; display:block;}
   .photo-card .card-title{font-family:var(--font-hand); font-weight:400; font-size:17px; margin-bottom:2px;}
   .photo-card .card-sub{font-family:var(--font-mono); font-size:10.5px; color:var(--ink-soft); margin-bottom:10px;}
@@ -409,9 +414,25 @@
     animation:tw-blink .6s steps(1) infinite;
   }
   @keyframes tw-blink{50%{opacity:0;}}
+
+  /* ---------- SIDE TABS: ACTIVE STATE (scroll-linked) ---------- */
+  .side-tabs a{ opacity:0.72; }
+  .side-tabs a.active{
+    opacity:1; transform:translateX(-10px) scale(1.05);
+    box-shadow:-5px 4px 0 rgba(44,39,64,0.22);
+  }
+  .side-tabs a.active::after{background:rgba(255,255,255,0.6);}
+  @media (max-width:780px){
+    .side-tabs a.active{transform:translateY(-2px) scale(1.05);}
+  }
+
   @media (prefers-reduced-motion: reduce){
     .tw-char{opacity:1 !important; clip-path:none !important; transform:none !important; transition:none !important;}
     .tw-cursor{display:none !important;}
+    .night-card .sky-stars span{animation:none !important; opacity:0.85 !important;}
+    .photo-card .polaroid{transition:none !important;}
+    .paperclip{transition:none !important;}
+    .side-tabs a{transition:none !important;}
   }
 </style>
 </head>
@@ -571,8 +592,8 @@
     <span class="tab-label">Proyek</span>
     <div class="doodle doodle-star" style="top:6px; left:-30px; width:19px; height:19px; color:var(--lilac); transform:rotate(-11deg);" aria-hidden="true"><svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M20 4 L24 15 L36 14 L26 22 L30 34 L20 26 L10 34 L14 22 L4 14 L16 15 Z"/><path d="M19 5 L23 16 L35 15" opacity="0.55"/></svg></div>
     <h2>Lampiran karya</h2>
-    <div class="attach-card">
-      <svg class="paperclip" viewBox="0 0 26 44" fill="none" stroke="#736C8A" stroke-width="2.5"><path d="M6 12v20a7 7 0 0 0 14 0V9a4.5 4.5 0 0 0-9 0v20a2 2 0 0 0 4 0V13"/></svg>
+    <div class="attach-card" id="attachCard">
+      <svg class="paperclip" id="paperclip" viewBox="0 0 26 44" fill="none" stroke="#736C8A" stroke-width="2.5"><path d="M6 12v20a7 7 0 0 0 14 0V9a4.5 4.5 0 0 0-9 0v20a2 2 0 0 0 4 0V13"/></svg>
       <div class="attach-head">
         <span class="filename">Sistem Absensi</span>
         <span class="stamp">SELESAI</span>
@@ -638,6 +659,7 @@
         <a class="btn blue" href="https://music.apple.com/id/playlist/musik-in/pl.u-38oWXBgTY0YdybE?l=id" target="_blank" rel="noopener">Dengar di Apple Music</a>
       </div>
       <div class="night-card">
+        <div class="sky-stars" id="skyStars" aria-hidden="true"></div>
         <svg class="moon" viewBox="0 0 24 24" fill="none"><path d="M20 14.5a8.5 8.5 0 1 1-9.5-9.4 7 7 0 0 0 9.5 9.4Z"/></svg>
         <div class="card-title">Melihat Bintang</div>
         <div class="card-sub">Ritual Malam Favorit</div>
@@ -804,5 +826,124 @@
 })();
 </script>
 
-</body>
+<script>
+// ===== 1) Bintang di kartu langit malam berkedip pelan (dibuat acak) =====
+(function(){
+  var container = document.getElementById('skyStars');
+  if(!container) return;
+  var count = 22;
+  for(var i = 0; i < count; i++){
+    var s = document.createElement('span');
+    s.style.left = (Math.random() * 96 + 2).toFixed(1) + '%';
+    s.style.top = (Math.random() * 88 + 4).toFixed(1) + '%';
+    var size = (Math.random() * 1.4 + 1).toFixed(1);
+    s.style.width = size + 'px';
+    s.style.height = size + 'px';
+    s.style.animationDuration = (Math.random() * 2.5 + 2.2).toFixed(2) + 's';
+    s.style.animationDelay = (Math.random() * 3).toFixed(2) + 's';
+    container.appendChild(s);
+  }
+})();
+</script>
+
+<script>
+// ===== 3) Paperclip "lebih niat": mengikuti gerakan mouse (magnetic parallax) =====
+(function(){
+  var card = document.getElementById('attachCard');
+  var clip = document.getElementById('paperclip');
+  if(!card || !clip) return;
+
+  var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if(reduce) return;
+
+  var maxOffset = 10;      // pergeseran maksimum (px)
+  var maxRotate = 14;      // rotasi maksimum (deg)
+  var maxDist = 260;       // jarak (px) di mana efek mulai memudar habis
+  var target = {x:0, y:0, r:0};
+  var current = {x:0, y:0, r:0};
+  var ticking = false;
+
+  function updateFromEvent(e){
+    var rect = clip.getBoundingClientRect();
+    var cx = rect.left + rect.width / 2;
+    var cy = rect.top + rect.height / 2;
+    var dx = e.clientX - cx;
+    var dy = e.clientY - cy;
+    var dist = Math.sqrt(dx*dx + dy*dy);
+
+    if(dist > maxDist){
+      target.x = 0; target.y = 0; target.r = 0;
+      return;
+    }
+    var strength = 1 - (dist / maxDist); // 1 = dekat sekali, 0 = jauh
+    var norm = dist === 0 ? {x:0, y:0} : {x: dx/dist, y: dy/dist};
+
+    target.x = norm.x * maxOffset * strength;
+    target.y = norm.y * maxOffset * strength * 0.6;
+    target.r = (dx / maxDist) * maxRotate * strength;
+  }
+
+  function loop(){
+    current.x += (target.x - current.x) * 0.14;
+    current.y += (target.y - current.y) * 0.14;
+    current.r += (target.r - current.r) * 0.14;
+    clip.style.transform = 'translate(' + current.x.toFixed(2) + 'px,' + current.y.toFixed(2) + 'px) rotate(' + current.r.toFixed(2) + 'deg)';
+    requestAnimationFrame(loop);
+  }
+
+  var listenTarget = document.body;
+  listenTarget.addEventListener('mousemove', function(e){
+    if(!ticking){
+      ticking = true;
+      requestAnimationFrame(function(){
+        updateFromEvent(e);
+        ticking = false;
+      });
+    }
+  });
+  card.addEventListener('mouseleave', function(){
+    target.x = 0; target.y = 0; target.r = 0;
+  });
+
+  requestAnimationFrame(loop);
+})();
+</script>
+
+<script>
+// ===== 4) Tab samping mengikuti section aktif saat scroll =====
+(function(){
+  var sections = Array.prototype.slice.call(document.querySelectorAll('section[id]'));
+  var links = Array.prototype.slice.call(document.querySelectorAll('.side-tabs a'));
+  if(!sections.length || !links.length) return;
+
+  var linkMap = {};
+  links.forEach(function(a){
+    var id = a.getAttribute('href').replace('#', '');
+    linkMap[id] = a;
+  });
+
+  function setActive(id){
+    links.forEach(function(a){ a.classList.remove('active'); });
+    if(linkMap[id]){ linkMap[id].classList.add('active'); }
+  }
+
+  if('IntersectionObserver' in window){
+    var current = null;
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(entry){
+        if(entry.isIntersecting){
+          current = entry.target.id;
+          setActive(current);
+        }
+      });
+    }, {
+      rootMargin: '-40% 0px -50% 0px',
+      threshold: 0
+    });
+    sections.forEach(function(s){ io.observe(s); });
+  }
+})();
+</script>
+
+</body></html>
 </html>
