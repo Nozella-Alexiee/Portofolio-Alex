@@ -42,14 +42,23 @@
   a{color:inherit;}
   :focus-visible{outline:2px solid var(--rose); outline-offset:3px;}
 
-  /* ---------- INTRO: KLIK UNTUK BUKA NOTEBOOK ---------- */
+  /* ---------- INTRO: MEJA KAYU + NOTEBOOK KULIT (ilustrasi flat) ---------- */
   .intro-overlay{
     position:fixed; inset:0; z-index:9999;
-    background:#F3EAD9;
+    background:#C69C6D;
     display:flex; flex-direction:column; align-items:center; justify-content:center; gap:16px;
+    overflow:hidden;
+  }
+  .intro-desk-bg{position:absolute; inset:0; z-index:0; width:100%; height:100%; pointer-events:none;}
+  .intro-pencil, .intro-mug, .intro-paper{position:absolute; z-index:1; pointer-events:none;}
+  .intro-pencil{width:min(28vw,150px); left:7%; bottom:13%; transform:rotate(-14deg);}
+  .intro-mug{width:min(13vw,68px); right:9%; bottom:11%; transform:rotate(6deg);}
+  .intro-paper{width:min(15vw,78px); right:13%; top:15%; transform:rotate(7deg);}
+  @media (max-width:480px){
+    .intro-pencil, .intro-mug, .intro-paper{display:none;}
   }
   .intro-stage{
-    position:relative; width:min(70vw,300px); aspect-ratio:3/4;
+    position:relative; z-index:2; width:min(70vw,300px); aspect-ratio:3/4;
     cursor:pointer; opacity:0; border:none; background:none; padding:0;
     animation:intro-fade-in .4s ease forwards;
     transition:transform .15s ease;
@@ -58,7 +67,8 @@
   .intro-stage:focus-visible{outline:2px solid var(--rose); outline-offset:8px; border-radius:8px;}
   .intro-stage.lifted{transform:translateY(-10px) scale(1.02);}
   .intro-hint{
-    font-family:var(--font-mono); font-size:11px; color:var(--ink-soft); letter-spacing:0.04em;
+    position:relative; z-index:2;
+    font-family:var(--font-mono); font-size:11px; color:#4A2F20; letter-spacing:0.04em;
     opacity:0; animation:intro-fade-in .4s ease forwards; animation-delay:.15s;
   }
   .intro-hint .mobile-text{display:none;}
@@ -74,17 +84,21 @@
     box-shadow:0 18px 36px -18px rgba(44,39,64,0.35);
   }
   .intro-cover{
-    position:absolute; inset:0; z-index:2; border-radius:6px;
-    background:#F3EAD9;
-    background-image:repeating-linear-gradient(118deg, rgba(44,39,64,0.02) 0 2px, transparent 2px 6px);
-    box-shadow:0 18px 36px -18px rgba(44,39,64,0.4);
-    border:1px solid rgba(44,39,64,0.08);
+    position:absolute; inset:0; z-index:2;
+    background:#6B4636;
+    clip-path:polygon(2% 3%,30% 0%,55% 2%,78% 0%,98% 4%,100% 22%,98% 55%,100% 80%,97% 100%,70% 98%,45% 100%,20% 97%,2% 100%,0% 70%,3% 40%,0% 15%);
+    box-shadow:0 18px 36px -18px rgba(30,20,12,0.5);
     display:flex; align-items:center; justify-content:center;
     transform-origin:left center;
   }
   .intro-cover-title{
     font-family:var(--font-hand); font-weight:400;
-    font-size:clamp(22px,5.5vw,28px); color:var(--ink);
+    font-size:clamp(22px,5.5vw,28px); color:#5A3A28;
+    text-shadow:1px 1px 0 rgba(0,0,0,0.35), -1px -1px 0 rgba(255,220,180,0.18);
+  }
+  .intro-star{
+    position:absolute; opacity:0.4;
+    filter:drop-shadow(0.5px 0.5px 0 rgba(255,220,180,0.25)) drop-shadow(-0.5px -0.5px 0 rgba(0,0,0,0.25));
   }
   .intro-overlay.opening .intro-cover{
     animation:intro-cover-open .7s cubic-bezier(.4,.1,.2,1) forwards;
@@ -576,12 +590,51 @@
 <body>
 
 <div class="intro-overlay" id="introOverlay">
+  <svg class="intro-desk-bg" viewBox="0 0 1000 700" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+    <rect width="1000" height="700" fill="#C69C6D"/>
+    <path d="M0,90 Q250,80 500,95 T1000,85" stroke="#A87C4F" stroke-width="2" fill="none" opacity="0.3"/>
+    <path d="M0,180 Q260,168 520,182 T1000,172" stroke="#A87C4F" stroke-width="2" fill="none" opacity="0.25"/>
+    <path d="M0,260 Q240,252 500,262 T1000,250" stroke="#A87C4F" stroke-width="1.5" fill="none" opacity="0.22"/>
+    <path d="M0,400 Q260,392 520,405 T1000,395" stroke="#A87C4F" stroke-width="2" fill="none" opacity="0.28"/>
+    <path d="M0,480 Q250,470 500,483 T1000,472" stroke="#A87C4F" stroke-width="1.5" fill="none" opacity="0.22"/>
+    <path d="M0,570 Q260,560 520,574 T1000,562" stroke="#A87C4F" stroke-width="2" fill="none" opacity="0.26"/>
+    <path d="M0,640 Q240,632 500,644 T1000,634" stroke="#A87C4F" stroke-width="1.5" fill="none" opacity="0.2"/>
+    <ellipse cx="180" cy="480" rx="14" ry="9" fill="#8B5E34" opacity="0.22"/>
+    <ellipse cx="860" cy="220" rx="10" ry="7" fill="#8B5E34" opacity="0.18"/>
+  </svg>
+
+  <svg class="intro-paper" viewBox="0 0 80 100" aria-hidden="true">
+    <rect x="2" y="2" width="76" height="96" fill="#F7F1E4" stroke="#DCD0B8" stroke-width="1"/>
+    <line x1="14" y1="22" x2="66" y2="22" stroke="#C9BBA0" stroke-width="1.5"/>
+    <line x1="14" y1="34" x2="66" y2="34" stroke="#C9BBA0" stroke-width="1.5"/>
+    <line x1="14" y1="46" x2="52" y2="46" stroke="#C9BBA0" stroke-width="1.5"/>
+  </svg>
+
   <div class="intro-stage" id="introStage" role="button" tabindex="0" aria-label="Buka notebook untuk masuk ke portofolio">
     <div class="intro-page" id="introPage"></div>
     <div class="intro-cover" id="introCover">
+      <svg class="intro-star" style="top:13%; left:16%; width:14px; height:14px; transform:rotate(-10deg);" viewBox="0 0 24 24" fill="none" stroke="#3E2818" stroke-width="1.3" aria-hidden="true"><path d="M12 2l2.4 6.6L21 10l-5 4.6L17.4 21 12 17.3 6.6 21 8 14.6 3 10l6.6-1.4z"/></svg>
+      <svg class="intro-star" style="top:70%; left:78%; width:11px; height:11px; transform:rotate(14deg);" viewBox="0 0 24 24" fill="none" stroke="#3E2818" stroke-width="1.3" aria-hidden="true"><path d="M12 2l2.4 6.6L21 10l-5 4.6L17.4 21 12 17.3 6.6 21 8 14.6 3 10l6.6-1.4z"/></svg>
+      <svg class="intro-star" style="top:58%; left:10%; width:10px; height:10px; transform:rotate(6deg);" viewBox="0 0 24 24" fill="none" stroke="#3E2818" stroke-width="1.3" aria-hidden="true"><path d="M12 2l2.4 6.6L21 10l-5 4.6L17.4 21 12 17.3 6.6 21 8 14.6 3 10l6.6-1.4z"/></svg>
+      <svg class="intro-star" style="top:20%; left:82%; width:9px; height:9px; transform:rotate(-16deg);" viewBox="0 0 24 24" fill="none" stroke="#3E2818" stroke-width="1.3" aria-hidden="true"><path d="M12 2l2.4 6.6L21 10l-5 4.6L17.4 21 12 17.3 6.6 21 8 14.6 3 10l6.6-1.4z"/></svg>
       <span class="intro-cover-title">Notebook</span>
     </div>
   </div>
+
+  <svg class="intro-pencil" viewBox="0 0 140 22" aria-hidden="true">
+    <rect x="0" y="7" width="100" height="8" rx="2" fill="#B9B9B0"/>
+    <rect x="0" y="7" width="18" height="8" fill="#8A6248"/>
+    <circle cx="6" cy="11" r="4" fill="#8A6248"/>
+    <polygon points="100,7 120,11 100,15" fill="#D9D2C4"/>
+    <rect x="120" y="10" width="14" height="2" fill="#333"/>
+  </svg>
+
+  <svg class="intro-mug" viewBox="0 0 60 60" aria-hidden="true">
+    <rect x="10" y="18" width="34" height="30" rx="6" fill="#EDE3D3" stroke="#C9B393" stroke-width="1.5"/>
+    <path d="M44,24 q14,0 14,12 q0,12 -14,12" fill="none" stroke="#C9B393" stroke-width="3"/>
+    <ellipse cx="27" cy="18" rx="17" ry="4" fill="#E4D7C1" stroke="#C9B393" stroke-width="1.5"/>
+  </svg>
+
   <div class="intro-hint">
     <span class="desktop-text">Click to open</span>
     <span class="mobile-text">Tap to open</span>
@@ -670,7 +723,7 @@
           <div class="id-row"><span class="k">Nama</span><span class="v">Ahmad Zulfikri Alexander D.</span></div>
           <div class="id-row"><span class="k">Panggilan</span><span class="v">Alex</span></div>
           <div class="id-row"><span class="k">Kelas</span><span class="v">XI RPL 1</span></div>
-          <div class="id-row"><span class="k">Minat</span><span class="v">Web Development &amp; Finance</span></div>
+          <div class="id-row"><span class="k">Minat</span><span class="v">Web Dev &amp; Finance</span></div>
         </div>
       </div>
     </div>
@@ -803,7 +856,7 @@
         </div>
       </div>
       <div class="attach-body">
-        <p>Sistem absensi berbasis web, dipakai buat pencatatan kehadiran harian lengkap sama rekap laporan buat staff. Sekarang dipakai sama PT Cipta Nirmala (RS SEMEN GRESIK) lho!</p>
+        <p>Sistem absensi berbasis web, dipakai buat pencatatan kehadiran harian lengkap sama rekap laporan buat staff. Sekarang dipakai sama PT Cipta Nirmala(RS SEMEN GRESIK) lho!</p>
       </div>
       <div class="tech-tags">
         <span class="tech-tag">PHP</span>
