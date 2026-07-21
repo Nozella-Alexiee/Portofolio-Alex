@@ -498,6 +498,53 @@
     .side-tabs a.active{transform:translateY(-2px) scale(1.05);}
   }
 
+  /* ---------- LANGUAGE SWITCHER (Notebook Sticky Note) ---------- */
+  .lang-switch{
+    position:fixed; top:16px; right:20px; z-index:50;
+    background:#FBF8F1;
+    background-image:repeating-linear-gradient(to bottom, transparent 0 22px, rgba(46,127,199,0.12) 22px 23px);
+    border:2px dashed var(--ring);
+    border-radius:10px;
+    padding:22px 16px 12px;
+    transform:rotate(-2deg);
+    box-shadow:0 8px 16px -8px rgba(44,39,64,0.3);
+    display:flex;
+    flex-direction:column;
+    gap:8px;
+    font-family:var(--font-mono);
+  }
+  .lang-switch .lang-washi{
+    position:absolute; top:-10px; left:12px; width:62px; height:20px;
+    background:rgba(46,127,199,0.4); border:1px solid rgba(46,127,199,0.5);
+    transform:rotate(-3deg); pointer-events:none;
+  }
+  .lang-label{
+    font-family:var(--font-hand); font-weight:400; font-size:13px; color:var(--ink);
+    margin-bottom:2px; display:block; transform:rotate(-0.5deg);
+  }
+  .lang-option{
+    display:flex; align-items:center; gap:7px; cursor:pointer;
+    font-size:13px; color:var(--ink); position:relative;
+  }
+  .lang-option input{ position:absolute; opacity:0; pointer-events:none; }
+  .lang-check{
+    width:20px; height:20px; border:2px dashed var(--ink-soft); border-radius:5px;
+    background:#fff; display:flex; align-items:center; justify-content:center;
+    transition:all 0.15s ease;
+  }
+  .lang-option input:checked + .lang-check{
+    border-color:var(--mint); background:var(--mint);
+  }
+  .lang-option input:checked + .lang-check::after{
+    content:'✓'; font-family:var(--font-hand); font-size:15px; color:#fff; line-height:1;
+    transform:rotate(-4deg);
+  }
+  .lang-text{ font-weight:700; }
+  @media (max-width:780px){
+    .lang-switch{ top:6px; right:6px; padding:16px 12px 10px; gap:4px; }
+    .lang-switch .lang-washi{ width:44px; height:16px; top:-8px; left:10px; }
+  }
+
   @media (prefers-reduced-motion: reduce){
     .tw-char{opacity:1 !important; clip-path:none !important; transform:none !important; transition:none !important;}
     .tw-cursor{display:none !important;}
@@ -509,6 +556,22 @@
 </style>
 </head>
 <body>
+
+<!-- Language switcher: tempelan notebook di pojok kanan atas -->
+<div class="lang-switch" id="langSwitch">
+  <div class="lang-washi" aria-hidden="true"></div>
+  <span class="lang-label">Language</span>
+  <label class="lang-option">
+    <input type="radio" name="lang" value="id" checked>
+    <span class="lang-check"></span>
+    <span class="lang-text">ID</span>
+  </label>
+  <label class="lang-option">
+    <input type="radio" name="lang" value="en">
+    <span class="lang-check"></span>
+    <span class="lang-text">EN</span>
+  </label>
+</div>
 
 <div class="ring-col"></div>
 <div class="margin-rule"></div>
@@ -1068,5 +1131,239 @@
 })();
 </script>
 
+<!-- ===== LANGUAGE SWITCHER SCRIPT ===== -->
+<script>
+// ===== TRANSLATION DICTIONARY =====
+const translations = {
+  id: {
+    tab1: 'Profil', tab2: 'Perjalanan', tab3: 'Keahlian', tab4: 'Proyek', tab5: 'Sertifikat', tab6: 'Hobi', tab7: 'Kontak',
+    aboutHeading: 'Tentang saya',
+    aboutText: 'Halo, aku <b>Alex</b> — sekarang kelas XI RPL 1 di SMK SIG.<br><br>Ketertarikanku ke dunia <b>finance</b> sebenarnya udah mulai sejak SMP, pengen paham cara mengelola keuangan sendiri biar ke depannya nggak asal-asalan urus uang. Pas awal masuk SMK ambil jurusan RPL, jujur aja ngga seberapa niat. Tapi semakin berjalannya waktu, aku mulai kenalan lebih jauh sama dunia <b>coding</b> dan <b>software engineering</b> — dan ternyata malah keterusan sampai sekarang. Dua minat ini kelihatannya beda arah, tapi buatku nyambung: keduanya soal membaca pola dan menyusun sesuatu yang rapi dari data.',
+    journeyHeading: 'Jurnal perjalanan',
+    check1: 'Mulai penasaran sama pengelolaan keuangan & pasar modal.',
+    check2: 'Ambil jurusan RPL, tapi jujur belum seberapa niat.',
+    check3: 'Mulai kenalan & jatuh cinta sama dunia coding / software engineering.',
+    check4: 'Ikut Sekolah Pasar Modal dari PT Bursa Efek Indonesia, Surabaya.',
+    check5: 'Kelas XI RPL 1, fokus mendalami lewat project Sistem Absensi Siswa.',
+    skillsHeading: 'Rak keahlian',
+    skillWeb: 'Web Development',
+    skillFin: 'Finance',
+    calcTitle: 'Kalkulator Bunga Majemuk',
+    calcSub: 'Ketik angkanya, hasilnya kehitung otomatis',
+    calcModal: 'Modal Awal (Rp)',
+    calcSetoran: 'Setoran / Bulan (Rp)',
+    calcBunga: 'Bunga / Tahun (%)',
+    calcTahun: 'Jangka Waktu (Tahun)',
+    calcOutSetoran: 'Total Setoran',
+    calcOutBunga: 'Estimasi Bunga',
+    calcOutAkhir: 'Estimasi Akhir',
+    calcNote: '*Simulasi sederhana pakai bunga majemuk bulanan, cuma buat ilustrasi belajar',
+    projectHeading: 'Lampiran karya',
+    projectDesc: 'Sistem absensi berbasis web, dipakai buat pencatatan kehadiran harian lengkap sama rekap laporan buat staff. Sekarang dipakai sama PT Cipta Nirmala(RS SEMEN GRESIK) lho!',
+    certHeading: 'Sertifikat ditempel',
+    certOwner: 'Pemilik',
+    certProgram: 'Program',
+    certCategory: 'Kategori',
+    certNote: 'Diselenggarakan oleh PT Bursa Efek Indonesia — 18 Mei 2026, Surabaya.',
+    hobbyHeading: 'Yang diputer pas nugas',
+    nbTitle: 'Playlist Notes',
+    nbSub: 'Lagu-lagu yang nemenin aku ngoding, belajar, dan lihat langit malam.',
+    nbMeta: '137 lagu • 8 jam 42 menit',
+    nbBtn: '🎧 Buka Playlist Apple Music',
+    revealQuestion: 'Mau tau band favoritku nggak?...',
+    revealHint: '(ketuk buat lihat)',
+    revealBand: 'Westlife',
+    revealSong: 'Lagu favorit: If I Let You Go',
+    revealClose: '✕ tutup',
+    nightTitle: 'Melihat Bintang',
+    nightSub: 'Ritual Malam Favorit',
+    nightDesc: 'Salah satu momen favoritku itu duduk sebentar sambil lihat langit malam — kelihatan bintang-bintang di antara kesibukan sekolah & ngoding.',
+    photoTitle: 'Aku gemar memotret',
+    photoSub: 'Aku suka memotret hal random',
+    singTitle: 'Aku suka bernyanyi',
+    singSub: 'Andalan di Nada Tinggi',
+    singDesc: 'Aku juga suka bernyanyi, dan unggul di nada tinggi lho!',
+    contactHeading: 'Mari terhubung',
+    contactDesc: 'Terbuka untuk kolaborasi project web maupun diskusi seputar finance.',
+    emailBtn: 'Kirim Email',
+    githubBtn: 'Lihat GitHub',
+    igBtn: 'Instagram',
+    linkedinBtn: 'LinkedIn',
+    backBtn: 'Kembali ke atas',
+    footer: '© 2026 Ahmad Zulfikri Alexander Disyin — XI RPL 1'
+  },
+  en: {
+    tab1: 'Profile', tab2: 'Journey', tab3: 'Skills', tab4: 'Projects', tab5: 'Certificate', tab6: 'Hobbies', tab7: 'Contact',
+    aboutHeading: 'About me',
+    aboutText: 'Hi, I’m <b>Alex</b> — currently in 11th grade of Software Engineering at SMK SIG.<br><br>My interest in <b>finance</b> started back in middle school, wanting to understand how to manage money so I wouldn’t just spend it carelessly later in life. When I entered vocational school I chose software engineering, honestly without much enthusiasm. But over time I got to know <b>coding</b> and <b>software engineering</b> more deeply — and it just stuck with me until now. These two interests might seem unrelated, but to me they connect: both are about recognizing patterns and building something neat out of data.',
+    journeyHeading: 'Journey journal',
+    check1: 'Started being curious about financial management & capital markets.',
+    check2: 'Chose Software Engineering major, but honestly wasn’t that motivated yet.',
+    check3: 'Got to know and fell in love with coding / software engineering.',
+    check4: 'Attended Capital Market School by Indonesia Stock Exchange, Surabaya.',
+    check5: 'Grade XI RPL 1, currently diving deeper through the Student Attendance System project.',
+    skillsHeading: 'Skills shelf',
+    skillWeb: 'Web Development',
+    skillFin: 'Finance',
+    calcTitle: 'Compound Interest Calculator',
+    calcSub: 'Type in the numbers, the result calculates automatically',
+    calcModal: 'Initial Capital (Rp)',
+    calcSetoran: 'Monthly Deposit (Rp)',
+    calcBunga: 'Annual Interest (%)',
+    calcTahun: 'Time Period (Years)',
+    calcOutSetoran: 'Total Deposits',
+    calcOutBunga: 'Estimated Interest',
+    calcOutAkhir: 'Estimated Final',
+    calcNote: '*Simple simulation using monthly compound interest, for educational illustration only',
+    projectHeading: 'Project attachments',
+    projectDesc: 'A web-based attendance system, used for daily attendance recording along with summary reports for staff. It is currently used by PT Cipta Nirmala (RS SEMEN GRESIK)!',
+    certHeading: 'Certificate attached',
+    certOwner: 'Owner',
+    certProgram: 'Program',
+    certCategory: 'Category',
+    certNote: 'Organized by Indonesia Stock Exchange — May 18, 2026, Surabaya.',
+    hobbyHeading: 'What’s playing while I work',
+    nbTitle: 'Playlist Notes',
+    nbSub: 'Songs that accompany me coding, studying, and looking at the night sky.',
+    nbMeta: '137 songs • 8 hours 42 minutes',
+    nbBtn: '🎧 Open Apple Music Playlist',
+    revealQuestion: 'Wanna know my favorite band?...',
+    revealHint: '(tap to see)',
+    revealBand: 'Westlife',
+    revealSong: 'Favorite song: If I Let You Go',
+    revealClose: '✕ close',
+    nightTitle: 'Stargazing',
+    nightSub: 'Favorite Night Ritual',
+    nightDesc: 'One of my favorite moments is sitting for a while and looking at the night sky — spotting stars between schoolwork and coding.',
+    photoTitle: 'I enjoy taking photos',
+    photoSub: 'I like capturing random things',
+    singTitle: 'I love singing',
+    singSub: 'Excels at High Notes',
+    singDesc: 'I also love singing, and I excel at high notes!',
+    contactHeading: 'Let’s connect',
+    contactDesc: 'Open to web project collaborations or discussions about finance.',
+    emailBtn: 'Send Email',
+    githubBtn: 'View GitHub',
+    igBtn: 'Instagram',
+    linkedinBtn: 'LinkedIn',
+    backBtn: 'Back to top',
+    footer: '© 2026 Ahmad Zulfikri Alexander Disyin — XI RPL 1'
+  }
+};
+
+function switchLang(lang) {
+  const t = translations[lang];
+  document.querySelectorAll('.side-tabs a')[0].textContent = t.tab1;
+  document.querySelectorAll('.side-tabs a')[1].textContent = t.tab2;
+  document.querySelectorAll('.side-tabs a')[2].textContent = t.tab3;
+  document.querySelectorAll('.side-tabs a')[3].textContent = t.tab4;
+  document.querySelectorAll('.side-tabs a')[4].textContent = t.tab5;
+  document.querySelectorAll('.side-tabs a')[5].textContent = t.tab6;
+  document.querySelectorAll('.side-tabs a')[6].textContent = t.tab7;
+
+  document.querySelector('#about h2').textContent = t.aboutHeading;
+  document.querySelector('#about .diary-note').innerHTML = t.aboutText;
+
+  document.querySelector('#perjalanan h2').textContent = t.journeyHeading;
+  const checks = document.querySelectorAll('#perjalanan .check-text .desc');
+  checks[0].textContent = t.check1;
+  checks[1].textContent = t.check2;
+  checks[2].textContent = t.check3;
+  checks[3].textContent = t.check4;
+  checks[4].textContent = t.check5;
+
+  document.querySelector('#skills h2').textContent = t.skillsHeading;
+  document.querySelector('.skill-block.web .skill-block-title').childNodes[0].textContent = t.skillWeb + ' ';
+  document.querySelector('.skill-block.fin .skill-block-title').childNodes[0].textContent = t.skillFin + ' ';
+  document.querySelector('.calc-title').childNodes[0].textContent = t.calcTitle + ' ';
+  document.querySelector('.calc-sub').textContent = t.calcSub;
+  document.querySelector('#calcModal').previousElementSibling.textContent = t.calcModal;
+  document.querySelector('#calcSetoran').previousElementSibling.textContent = t.calcSetoran;
+  document.querySelector('#calcBunga').previousElementSibling.textContent = t.calcBunga;
+  document.querySelector('#calcTahun').previousElementSibling.textContent = t.calcTahun;
+  document.querySelectorAll('.calc-row')[0].children[0].textContent = t.calcOutSetoran;
+  document.querySelectorAll('.calc-row')[1].children[0].textContent = t.calcOutBunga;
+  document.querySelector('.calc-final').children[0].textContent = t.calcOutAkhir;
+  document.querySelector('.calc-note').textContent = t.calcNote;
+
+  document.querySelector('#projects h2').textContent = t.projectHeading;
+  document.querySelector('.attach-body p').textContent = t.projectDesc;
+
+  document.querySelector('#cert h2').textContent = t.certHeading;
+  document.querySelectorAll('.cert-row')[0].children[0].textContent = t.certOwner;
+  document.querySelectorAll('.cert-row')[1].children[0].textContent = t.certProgram;
+  document.querySelectorAll('.cert-row')[2].children[0].textContent = t.certCategory;
+  document.querySelector('.cert-note').textContent = t.certNote;
+
+  document.querySelector('#hobi h2').textContent = t.hobbyHeading;
+  document.querySelector('.notebook-page .nb-title').textContent = t.nbTitle;
+  document.querySelector('.notebook-page .nb-sub').textContent = t.nbSub;
+  document.querySelector('.notebook-page .nb-meta').textContent = t.nbMeta;
+  document.querySelector('.nb-sticker-btn').textContent = t.nbBtn;
+  document.querySelector('.reveal-question').textContent = t.revealQuestion;
+  document.querySelector('.reveal-hint').textContent = t.revealHint;
+  document.querySelector('.reveal-band').textContent = t.revealBand;
+  document.querySelector('.reveal-song').textContent = t.revealSong;
+  document.querySelector('.reveal-close-text').textContent = t.revealClose;
+  document.querySelector('.night-card .card-title').textContent = t.nightTitle;
+  document.querySelector('.night-card .card-sub').textContent = t.nightSub;
+  document.querySelector('.night-card p').textContent = t.nightDesc;
+  document.querySelector('.photo-card .card-title').textContent = t.photoTitle;
+  document.querySelector('.photo-card .card-sub').textContent = t.photoSub;
+  document.querySelector('.sing-card .card-title').textContent = t.singTitle;
+  document.querySelector('.sing-card .card-sub').textContent = t.singSub;
+  document.querySelector('.sing-card p').textContent = t.singDesc;
+
+  document.querySelector('#contact h2').textContent = t.contactHeading;
+  document.querySelector('.envelope p').textContent = t.contactDesc;
+  const btns = document.querySelectorAll('.btn-row .btn');
+  btns[0].textContent = t.emailBtn;
+  btns[1].textContent = t.githubBtn;
+  btns[2].textContent = t.igBtn;
+  btns[3].textContent = t.linkedinBtn;
+  btns[4].textContent = t.backBtn;
+  document.querySelector('footer').textContent = t.footer;
+}
+
+// Flip animation
+const page = document.querySelector('.page');
+let flipping = false;
+
+function flipPage(callback) {
+  if (flipping) return;
+  flipping = true;
+  page.style.transition = 'transform 0.5s ease-in-out';
+  page.style.transform = 'rotateY(90deg)';
+
+  setTimeout(() => {
+    callback();
+    page.style.transform = 'rotateY(0deg)';
+  }, 250);
+
+  setTimeout(() => {
+    page.style.transition = '';
+    page.style.transform = '';
+    flipping = false;
+  }, 550);
+}
+
+// Language switch handler
+const langInputs = document.querySelectorAll('.lang-option input');
+langInputs.forEach(input => {
+  input.addEventListener('change', function() {
+    if (this.checked) {
+      const lang = this.value;
+      flipPage(() => switchLang(lang));
+      localStorage.setItem('lang', lang);
+    }
+  });
+});
+
+// Load saved language
+const savedLang = localStorage.getItem('lang') || 'id';
+document.querySelector(`.lang-option input[value="${savedLang}"]`).checked = true;
+switchLang(savedLang);
+</script>
+
 </body>
-</html>
+</html></html>
