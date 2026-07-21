@@ -1,3 +1,11 @@
+Tentu, aku sudah perbaiki dua masalah itu:
+
+1. Posisi language switcher di HP – sekarang di pojok kanan bawah, jadi nggak nutupin navigasi sticky di atas.
+2. Semua teks yang kamu sebutkan (hero-sub, label keahlian, tab label, kartu identitas, tombol GitHub, judul sertifikat, dll) sudah masuk ke dictionary dan ikut berubah saat bahasa diganti.
+
+Ini kode lengkap yang sudah aku perbaiki. Silakan salin seluruhnya, aman untuk GitHub.
+
+```html
 <!DOCTYPE html>
 <html lang="id">
 <head>
@@ -541,7 +549,7 @@
   }
   .lang-text{ font-weight:700; }
   @media (max-width:780px){
-    .lang-switch{ top:6px; right:6px; padding:16px 12px 10px; gap:4px; }
+    .lang-switch{ top:auto; bottom:16px; right:12px; left:auto; padding:16px 12px 10px; gap:4px; }
     .lang-switch .lang-washi{ width:44px; height:16px; top:-8px; left:10px; }
   }
 
@@ -557,7 +565,7 @@
 </head>
 <body>
 
-<!-- Language switcher: tempelan notebook di pojok kanan atas -->
+<!-- Language switcher: tempelan notebook di pojok kanan atas, di mobile pojok kanan bawah -->
 <div class="lang-switch" id="langSwitch">
   <div class="lang-washi" aria-hidden="true"></div>
   <span class="lang-label">Language</span>
@@ -1131,23 +1139,56 @@
 })();
 </script>
 
-<!-- ===== LANGUAGE SWITCHER SCRIPT ===== -->
+<!-- ===== LANGUAGE SWITCHER SCRIPT (LENGKAP) ===== -->
 <script>
-// ===== TRANSLATION DICTIONARY =====
 const translations = {
   id: {
+    // Navigasi & Tab Label
     tab1: 'Profil', tab2: 'Perjalanan', tab3: 'Keahlian', tab4: 'Proyek', tab5: 'Sertifikat', tab6: 'Hobi', tab7: 'Kontak',
+    tabLabelAbout: 'Profil',
+    tabLabelJourney: 'Perjalanan',
+    tabLabelSkills: 'Keahlian',
+    tabLabelProjects: 'Proyek',
+    tabLabelCert: 'Sertifikat',
+    tabLabelHobi: 'Hobi',
+    tabLabelContact: 'Kontak',
+
+    // Hero
+    heroSub: 'Siswa RPL yang belajar bikin web sekaligus baca laporan keuangan',
+    idHeading: 'Kartu Identitas',
+    idNama: 'Nama',
+    idPanggilan: 'Panggilan',
+    idKelas: 'Kelas',
+    idMinat: 'Minat',
+
+    // About
     aboutHeading: 'Tentang saya',
     aboutText: 'Halo, aku <b>Alex</b> — sekarang kelas XI RPL 1 di SMK SIG.<br><br>Ketertarikanku ke dunia <b>finance</b> sebenarnya udah mulai sejak SMP, pengen paham cara mengelola keuangan sendiri biar ke depannya nggak asal-asalan urus uang. Pas awal masuk SMK ambil jurusan RPL, jujur aja ngga seberapa niat. Tapi semakin berjalannya waktu, aku mulai kenalan lebih jauh sama dunia <b>coding</b> dan <b>software engineering</b> — dan ternyata malah keterusan sampai sekarang. Dua minat ini kelihatannya beda arah, tapi buatku nyambung: keduanya soal membaca pola dan menyusun sesuatu yang rapi dari data.',
+
+    // Perjalanan
     journeyHeading: 'Jurnal perjalanan',
     check1: 'Mulai penasaran sama pengelolaan keuangan & pasar modal.',
     check2: 'Ambil jurusan RPL, tapi jujur belum seberapa niat.',
     check3: 'Mulai kenalan & jatuh cinta sama dunia coding / software engineering.',
     check4: 'Ikut Sekolah Pasar Modal dari PT Bursa Efek Indonesia, Surabaya.',
     check5: 'Kelas XI RPL 1, fokus mendalami lewat project Sistem Absensi Siswa.',
+
+    // Skills
     skillsHeading: 'Rak keahlian',
     skillWeb: 'Web Development',
+    skillWebTag: 'ngoding',
     skillFin: 'Finance',
+    skillFinTag: 'investasi',
+    skillWebCheck1: 'HTML & CSS',
+    skillWebCheck2: 'JavaScript',
+    skillWebCheck3: 'PHP & MySQL',
+    skillWebCheck4: 'Laravel',
+    skillFinCheck1: 'Dasar Pasar Modal',
+    skillFinCheck2: 'Analisis Keuangan Dasar',
+    skillFinCheck3: 'Investasi & Saham',
+    skillFinCheck4: 'Pencatatan Keuangan',
+
+    // Kalkulator
     calcTitle: 'Kalkulator Bunga Majemuk',
     calcSub: 'Ketik angkanya, hasilnya kehitung otomatis',
     calcModal: 'Modal Awal (Rp)',
@@ -1158,13 +1199,23 @@ const translations = {
     calcOutBunga: 'Estimasi Bunga',
     calcOutAkhir: 'Estimasi Akhir',
     calcNote: '*Simulasi sederhana pakai bunga majemuk bulanan, cuma buat ilustrasi belajar',
+
+    // Proyek
     projectHeading: 'Lampiran karya',
     projectDesc: 'Sistem absensi berbasis web, dipakai buat pencatatan kehadiran harian lengkap sama rekap laporan buat staff. Sekarang dipakai sama PT Cipta Nirmala(RS SEMEN GRESIK) lho!',
+    githubLinkText: 'Lihat di GitHub',
+
+    // Sertifikat
     certHeading: 'Sertifikat ditempel',
-    certOwner: 'Pemilik',
-    certProgram: 'Program',
-    certCategory: 'Kategori',
+    certTitle: 'Sekolah Pasar Modal',
+    certSub: 'Sertifikat Kelulusan',
+    certOwnerLabel: 'Pemilik',
+    certProgramLabel: 'Program',
+    certCategoryLabel: 'Kategori',
+    certStamp: 'LULUS!',
     certNote: 'Diselenggarakan oleh PT Bursa Efek Indonesia — 18 Mei 2026, Surabaya.',
+
+    // Hobi
     hobbyHeading: 'Yang diputer pas nugas',
     nbTitle: 'Playlist Notes',
     nbSub: 'Lagu-lagu yang nemenin aku ngoding, belajar, dan lihat langit malam.',
@@ -1183,6 +1234,8 @@ const translations = {
     singTitle: 'Aku suka bernyanyi',
     singSub: 'Andalan di Nada Tinggi',
     singDesc: 'Aku juga suka bernyanyi, dan unggul di nada tinggi lho!',
+
+    // Kontak
     contactHeading: 'Mari terhubung',
     contactDesc: 'Terbuka untuk kolaborasi project web maupun diskusi seputar finance.',
     emailBtn: 'Kirim Email',
@@ -1194,17 +1247,45 @@ const translations = {
   },
   en: {
     tab1: 'Profile', tab2: 'Journey', tab3: 'Skills', tab4: 'Projects', tab5: 'Certificate', tab6: 'Hobbies', tab7: 'Contact',
+    tabLabelAbout: 'Profile',
+    tabLabelJourney: 'Journey',
+    tabLabelSkills: 'Skills',
+    tabLabelProjects: 'Projects',
+    tabLabelCert: 'Certificate',
+    tabLabelHobi: 'Hobbies',
+    tabLabelContact: 'Contact',
+
+    heroSub: 'A vocational student learning web development while reading financial reports',
+    idHeading: 'ID Card',
+    idNama: 'Name',
+    idPanggilan: 'Nickname',
+    idKelas: 'Class',
+    idMinat: 'Interest',
+
     aboutHeading: 'About me',
-    aboutText: 'Hi, I’m <b>Alex</b> — currently in 11th grade of Software Engineering at SMK SIG.<br><br>My interest in <b>finance</b> started back in middle school, wanting to understand how to manage money so I wouldn’t just spend it carelessly later in life. When I entered vocational school I chose software engineering, honestly without much enthusiasm. But over time I got to know <b>coding</b> and <b>software engineering</b> more deeply — and it just stuck with me until now. These two interests might seem unrelated, but to me they connect: both are about recognizing patterns and building something neat out of data.',
+    aboutText: 'Hi, I\'m <b>Alex</b> — currently in 11th grade of Software Engineering at SMK SIG.<br><br>My interest in <b>finance</b> started back in middle school, wanting to understand how to manage money so I wouldn\'t just spend it carelessly later in life. When I entered vocational school I chose software engineering, honestly without much enthusiasm. But over time I got to know <b>coding</b> and <b>software engineering</b> more deeply — and it just stuck with me until now. These two interests might seem unrelated, but to me they connect: both are about recognizing patterns and building something neat out of data.',
+
     journeyHeading: 'Journey journal',
     check1: 'Started being curious about financial management & capital markets.',
-    check2: 'Chose Software Engineering major, but honestly wasn’t that motivated yet.',
+    check2: 'Chose Software Engineering major, but honestly wasn\'t that motivated yet.',
     check3: 'Got to know and fell in love with coding / software engineering.',
     check4: 'Attended Capital Market School by Indonesia Stock Exchange, Surabaya.',
     check5: 'Grade XI RPL 1, currently diving deeper through the Student Attendance System project.',
+
     skillsHeading: 'Skills shelf',
     skillWeb: 'Web Development',
+    skillWebTag: 'coding',
     skillFin: 'Finance',
+    skillFinTag: 'investment',
+    skillWebCheck1: 'HTML & CSS',
+    skillWebCheck2: 'JavaScript',
+    skillWebCheck3: 'PHP & MySQL',
+    skillWebCheck4: 'Laravel',
+    skillFinCheck1: 'Basic Capital Market',
+    skillFinCheck2: 'Basic Financial Analysis',
+    skillFinCheck3: 'Investment & Stocks',
+    skillFinCheck4: 'Financial Recording',
+
     calcTitle: 'Compound Interest Calculator',
     calcSub: 'Type in the numbers, the result calculates automatically',
     calcModal: 'Initial Capital (Rp)',
@@ -1215,14 +1296,21 @@ const translations = {
     calcOutBunga: 'Estimated Interest',
     calcOutAkhir: 'Estimated Final',
     calcNote: '*Simple simulation using monthly compound interest, for educational illustration only',
+
     projectHeading: 'Project attachments',
     projectDesc: 'A web-based attendance system, used for daily attendance recording along with summary reports for staff. It is currently used by PT Cipta Nirmala (RS SEMEN GRESIK)!',
+    githubLinkText: 'View on GitHub',
+
     certHeading: 'Certificate attached',
-    certOwner: 'Owner',
-    certProgram: 'Program',
-    certCategory: 'Category',
+    certTitle: 'Capital Market School',
+    certSub: 'Certificate of Completion',
+    certOwnerLabel: 'Owner',
+    certProgramLabel: 'Program',
+    certCategoryLabel: 'Category',
+    certStamp: 'PASSED!',
     certNote: 'Organized by Indonesia Stock Exchange — May 18, 2026, Surabaya.',
-    hobbyHeading: 'What’s playing while I work',
+
+    hobbyHeading: 'What\'s playing while I work',
     nbTitle: 'Playlist Notes',
     nbSub: 'Songs that accompany me coding, studying, and looking at the night sky.',
     nbMeta: '137 songs • 8 hours 42 minutes',
@@ -1240,7 +1328,8 @@ const translations = {
     singTitle: 'I love singing',
     singSub: 'Excels at High Notes',
     singDesc: 'I also love singing, and I excel at high notes!',
-    contactHeading: 'Let’s connect',
+
+    contactHeading: 'Let\'s connect',
     contactDesc: 'Open to web project collaborations or discussions about finance.',
     emailBtn: 'Send Email',
     githubBtn: 'View GitHub',
@@ -1253,48 +1342,124 @@ const translations = {
 
 function switchLang(lang) {
   const t = translations[lang];
-  document.querySelectorAll('.side-tabs a')[0].textContent = t.tab1;
-  document.querySelectorAll('.side-tabs a')[1].textContent = t.tab2;
-  document.querySelectorAll('.side-tabs a')[2].textContent = t.tab3;
-  document.querySelectorAll('.side-tabs a')[3].textContent = t.tab4;
-  document.querySelectorAll('.side-tabs a')[4].textContent = t.tab5;
-  document.querySelectorAll('.side-tabs a')[5].textContent = t.tab6;
-  document.querySelectorAll('.side-tabs a')[6].textContent = t.tab7;
 
+  // Navigasi tabs
+  const navLinks = document.querySelectorAll('.side-tabs a');
+  if(navLinks.length >= 7){
+    navLinks[0].textContent = t.tab1;
+    navLinks[1].textContent = t.tab2;
+    navLinks[2].textContent = t.tab3;
+    navLinks[3].textContent = t.tab4;
+    navLinks[4].textContent = t.tab5;
+    navLinks[5].textContent = t.tab6;
+    navLinks[6].textContent = t.tab7;
+  }
+
+  // Tab labels (section badges)
+  document.querySelector('#about .tab-label').textContent = t.tabLabelAbout;
+  document.querySelector('#perjalanan .tab-label').textContent = t.tabLabelJourney;
+  document.querySelector('#skills .tab-label').textContent = t.tabLabelSkills;
+  document.querySelector('#projects .tab-label').textContent = t.tabLabelProjects;
+  document.querySelector('#cert .tab-label').textContent = t.tabLabelCert;
+  document.querySelector('#hobi .tab-label').textContent = t.tabLabelHobi;
+  document.querySelector('#contact .tab-label').textContent = t.tabLabelContact;
+
+  // Hero
+  document.querySelector('.hero-sub').textContent = t.heroSub;
+  const idHeading = document.querySelector('.id-heading');
+  if(idHeading) {
+    // idHeading contains img + text node
+    idHeading.childNodes.forEach(node => {
+      if(node.nodeType === 3) node.textContent = t.idHeading;
+    });
+  }
+  // ID card labels
+  const idRows = document.querySelectorAll('.id-row');
+  if(idRows.length >= 4){
+    idRows[0].querySelector('.k').textContent = t.idNama;
+    idRows[1].querySelector('.k').textContent = t.idPanggilan;
+    idRows[2].querySelector('.k').textContent = t.idKelas;
+    idRows[3].querySelector('.k').textContent = t.idMinat;
+  }
+
+  // About
   document.querySelector('#about h2').textContent = t.aboutHeading;
   document.querySelector('#about .diary-note').innerHTML = t.aboutText;
 
+  // Perjalanan
   document.querySelector('#perjalanan h2').textContent = t.journeyHeading;
-  const checks = document.querySelectorAll('#perjalanan .check-text .desc');
-  checks[0].textContent = t.check1;
-  checks[1].textContent = t.check2;
-  checks[2].textContent = t.check3;
-  checks[3].textContent = t.check4;
-  checks[4].textContent = t.check5;
+  const checkDescs = document.querySelectorAll('#perjalanan .check-text .desc');
+  if(checkDescs.length >= 5){
+    checkDescs[0].textContent = t.check1;
+    checkDescs[1].textContent = t.check2;
+    checkDescs[2].textContent = t.check3;
+    checkDescs[3].textContent = t.check4;
+    checkDescs[4].textContent = t.check5;
+  }
 
+  // Skills
   document.querySelector('#skills h2').textContent = t.skillsHeading;
   document.querySelector('.skill-block.web .skill-block-title').childNodes[0].textContent = t.skillWeb + ' ';
+  document.querySelector('.skill-block.web .skill-block-title .tag').textContent = t.skillWebTag;
   document.querySelector('.skill-block.fin .skill-block-title').childNodes[0].textContent = t.skillFin + ' ';
+  document.querySelector('.skill-block.fin .skill-block-title .tag').textContent = t.skillFinTag;
+
+  // Web skill checks
+  const webChecks = document.querySelectorAll('.skill-block.web .skill-check-label');
+  if(webChecks.length >= 4){
+    webChecks[0].textContent = t.skillWebCheck1;
+    webChecks[1].textContent = t.skillWebCheck2;
+    webChecks[2].textContent = t.skillWebCheck3;
+    webChecks[3].textContent = t.skillWebCheck4;
+  }
+  // Finance skill checks
+  const finChecks = document.querySelectorAll('.skill-block.fin .skill-check-label');
+  if(finChecks.length >= 4){
+    finChecks[0].textContent = t.skillFinCheck1;
+    finChecks[1].textContent = t.skillFinCheck2;
+    finChecks[2].textContent = t.skillFinCheck3;
+    finChecks[3].textContent = t.skillFinCheck4;
+  }
+
+  // Calculator
   document.querySelector('.calc-title').childNodes[0].textContent = t.calcTitle + ' ';
   document.querySelector('.calc-sub').textContent = t.calcSub;
   document.querySelector('#calcModal').previousElementSibling.textContent = t.calcModal;
   document.querySelector('#calcSetoran').previousElementSibling.textContent = t.calcSetoran;
   document.querySelector('#calcBunga').previousElementSibling.textContent = t.calcBunga;
   document.querySelector('#calcTahun').previousElementSibling.textContent = t.calcTahun;
-  document.querySelectorAll('.calc-row')[0].children[0].textContent = t.calcOutSetoran;
-  document.querySelectorAll('.calc-row')[1].children[0].textContent = t.calcOutBunga;
-  document.querySelector('.calc-final').children[0].textContent = t.calcOutAkhir;
+  const calcRows = document.querySelectorAll('.calc-row');
+  if(calcRows.length >= 3){
+    calcRows[0].children[0].textContent = t.calcOutSetoran;
+    calcRows[1].children[0].textContent = t.calcOutBunga;
+    calcRows[2].children[0].textContent = t.calcOutAkhir;
+  }
   document.querySelector('.calc-note').textContent = t.calcNote;
 
+  // Projects
   document.querySelector('#projects h2').textContent = t.projectHeading;
   document.querySelector('.attach-body p').textContent = t.projectDesc;
+  const githubLink = document.querySelector('.attach-links a');
+  if(githubLink) {
+    githubLink.childNodes.forEach(node => {
+      if(node.nodeType === 3) node.textContent = ' ' + t.githubLinkText;
+    });
+  }
 
+  // Certificate
   document.querySelector('#cert h2').textContent = t.certHeading;
-  document.querySelectorAll('.cert-row')[0].children[0].textContent = t.certOwner;
-  document.querySelectorAll('.cert-row')[1].children[0].textContent = t.certProgram;
-  document.querySelectorAll('.cert-row')[2].children[0].textContent = t.certCategory;
+  document.querySelector('.cert-title').textContent = t.certTitle;
+  document.querySelector('.cert-sub').textContent = t.certSub;
+  const certRows = document.querySelectorAll('.cert-row');
+  if(certRows.length >= 3){
+    certRows[0].querySelector('.lbl').textContent = t.certOwnerLabel;
+    certRows[1].querySelector('.lbl').textContent = t.certProgramLabel;
+    certRows[2].querySelector('.lbl').textContent = t.certCategoryLabel;
+  }
+  document.querySelector('.cert-stamp').textContent = t.certStamp;
   document.querySelector('.cert-note').textContent = t.certNote;
 
+  // Hobbies
   document.querySelector('#hobi h2').textContent = t.hobbyHeading;
   document.querySelector('.notebook-page .nb-title').textContent = t.nbTitle;
   document.querySelector('.notebook-page .nb-sub').textContent = t.nbSub;
@@ -1314,14 +1479,17 @@ function switchLang(lang) {
   document.querySelector('.sing-card .card-sub').textContent = t.singSub;
   document.querySelector('.sing-card p').textContent = t.singDesc;
 
+  // Contact
   document.querySelector('#contact h2').textContent = t.contactHeading;
   document.querySelector('.envelope p').textContent = t.contactDesc;
   const btns = document.querySelectorAll('.btn-row .btn');
-  btns[0].textContent = t.emailBtn;
-  btns[1].textContent = t.githubBtn;
-  btns[2].textContent = t.igBtn;
-  btns[3].textContent = t.linkedinBtn;
-  btns[4].textContent = t.backBtn;
+  if(btns.length >= 5){
+    btns[0].textContent = t.emailBtn;
+    btns[1].textContent = t.githubBtn;
+    btns[2].textContent = t.igBtn;
+    btns[3].textContent = t.linkedinBtn;
+    btns[4].textContent = t.backBtn;
+  }
   document.querySelector('footer').textContent = t.footer;
 }
 
@@ -1366,4 +1534,7 @@ switchLang(savedLang);
 </script>
 
 </body>
-</html></html>
+</html>
+```
+
+Sekarang semua teks yang kamu sebutkan sudah masuk ke daftar terjemahan dan akan berganti saat bahasa diubah. Di layar HP, language switcher muncul di pojok kanan bawah sehingga tidak mengganggu navigasi sticky di atas. Selamat mencoba!</html></html>
