@@ -174,7 +174,7 @@
   .check-item.now .check-text .desc{font-weight:700;}
   .check-item.now .period{color:var(--rose);}
 
-  /* ---------- KEAHLIAN: SKILL BAR HIGHLIGHTER ---------- */
+  /* ---------- KEAHLIAN: SKILL CHECKLIST ---------- */
   .skill-block{max-width:560px; margin-bottom:28px; position:relative;}
   .skill-block:last-child{margin-bottom:0;}
   .skill-block-title{
@@ -185,19 +185,16 @@
     font-family:var(--font-mono); font-size:10px; background:var(--ink); color:#fff;
     padding:2px 8px; border-radius:3px; text-transform:uppercase; font-weight:700;
   }
-  .skill-row{margin-bottom:13px;}
-  .skill-row:last-child{margin-bottom:0;}
-  .skill-label{
-    display:flex; justify-content:space-between; font-family:var(--font-mono);
-    font-size:11.5px; margin-bottom:6px; color:var(--ink-soft);
+  .skill-check-list{display:flex; flex-direction:column; gap:11px;}
+  .skill-check-row{display:flex; align-items:center; gap:11px;}
+  .skill-check{
+    flex-shrink:0; width:21px; height:21px; border:2.2px solid var(--ink); border-radius:6px;
+    display:flex; align-items:center; justify-content:center;
+    font-family:var(--font-hand); font-size:13px; color:#fff;
   }
-  .skill-bar{
-    height:13px; background:#fff; border:2px solid var(--ink); border-radius:20px;
-    overflow:hidden; position:relative;
-  }
-  .skill-fill{height:100%; border-radius:20px;}
-  .skill-block.web .skill-fill{background:var(--mint);}
-  .skill-block.fin .skill-fill{background:var(--peach);}
+  .skill-block.web .skill-check{background:var(--mint); border-color:var(--mint);}
+  .skill-block.fin .skill-check{background:var(--peach); border-color:var(--peach);}
+  .skill-check-label{font-family:var(--font-mono); font-size:12.5px; color:var(--ink);}
 
   /* ---------- MINI KALKULATOR (WORKSHEET) ---------- */
   .calc-card{
@@ -249,6 +246,7 @@
   }
   .taped-photo:nth-child(1){transform:rotate(-3deg);}
   .taped-photo:nth-child(2){transform:rotate(2.5deg);}
+  .taped-photo:nth-child(3){transform:rotate(-1.8deg);}
   .taped-photo .tape{
     position:absolute; top:-10px; left:50%; transform:translateX(-50%) rotate(-2deg);
     width:52px; height:20px; background:rgba(46,127,199,0.35);
@@ -531,41 +529,21 @@
 
     <div class="skill-block web">
       <div class="skill-block-title">Web Development <span class="tag">ngoding</span></div>
-      <div class="skill-row">
-        <div class="skill-label"><span>HTML &amp; CSS</span><span>80%</span></div>
-        <div class="skill-bar"><div class="skill-fill" style="width:80%;"></div></div>
-      </div>
-      <div class="skill-row">
-        <div class="skill-label"><span>JavaScript</span><span>60%</span></div>
-        <div class="skill-bar"><div class="skill-fill" style="width:60%;"></div></div>
-      </div>
-      <div class="skill-row">
-        <div class="skill-label"><span>PHP &amp; MySQL</span><span>80%</span></div>
-        <div class="skill-bar"><div class="skill-fill" style="width:80%;"></div></div>
-      </div>
-      <div class="skill-row">
-        <div class="skill-label"><span>Desain Responsif</span><span>60%</span></div>
-        <div class="skill-bar"><div class="skill-fill" style="width:60%;"></div></div>
+      <div class="skill-check-list">
+        <div class="skill-check-row"><div class="skill-check">✓</div><div class="skill-check-label">HTML &amp; CSS</div></div>
+        <div class="skill-check-row"><div class="skill-check">✓</div><div class="skill-check-label">JavaScript</div></div>
+        <div class="skill-check-row"><div class="skill-check">✓</div><div class="skill-check-label">PHP &amp; MySQL</div></div>
+        <div class="skill-check-row"><div class="skill-check">✓</div><div class="skill-check-label">Desain Responsif</div></div>
       </div>
     </div>
 
     <div class="skill-block fin">
       <div class="skill-block-title">Finance <span class="tag">investasi</span></div>
-      <div class="skill-row">
-        <div class="skill-label"><span>Dasar Pasar Modal</span><span>80%</span></div>
-        <div class="skill-bar"><div class="skill-fill" style="width:80%;"></div></div>
-      </div>
-      <div class="skill-row">
-        <div class="skill-label"><span>Analisis Keuangan Dasar</span><span>60%</span></div>
-        <div class="skill-bar"><div class="skill-fill" style="width:60%;"></div></div>
-      </div>
-      <div class="skill-row">
-        <div class="skill-label"><span>Investasi &amp; Saham</span><span>60%</span></div>
-        <div class="skill-bar"><div class="skill-fill" style="width:60%;"></div></div>
-      </div>
-      <div class="skill-row">
-        <div class="skill-label"><span>Pencatatan Keuangan</span><span>80%</span></div>
-        <div class="skill-bar"><div class="skill-fill" style="width:80%;"></div></div>
+      <div class="skill-check-list">
+        <div class="skill-check-row"><div class="skill-check">✓</div><div class="skill-check-label">Dasar Pasar Modal</div></div>
+        <div class="skill-check-row"><div class="skill-check">✓</div><div class="skill-check-label">Analisis Keuangan Dasar</div></div>
+        <div class="skill-check-row"><div class="skill-check">✓</div><div class="skill-check-label">Investasi &amp; Saham</div></div>
+        <div class="skill-check-row"><div class="skill-check">✓</div><div class="skill-check-label">Pencatatan Keuangan</div></div>
       </div>
 
       <div class="calc-card">
@@ -608,6 +586,11 @@
           <div class="tape"></div>
           <div class="frame" style="border-style:solid; padding:0;"><img src="images/tampilan-2.jpg" alt="Halaman Absensi" style="width:100%;height:100%;object-fit:cover;"></div>
           <div class="caption">absensi.jpg</div>
+        </div>
+        <div class="taped-photo">
+          <div class="tape"></div>
+          <div class="frame" style="border-style:solid; padding:0;"><img src="images/tampilan-3.png" alt="Halaman Izin/Sakit SiAbsen" style="width:100%;height:100%;object-fit:cover;"></div>
+          <div class="caption">izin-sakit.png</div>
         </div>
       </div>
       <div class="attach-body">
@@ -702,6 +685,7 @@
         <a class="btn primary" href="mailto:nongzel52@gmail.com">Kirim Email</a>
         <a class="btn ghost" href="https://github.com/Nozella-Alexiee" target="_blank" rel="noopener">Lihat GitHub</a>
         <a class="btn ghost" href="https://instagram.com/ale.xiee._" target="_blank" rel="noopener">Instagram</a>
+        <a class="btn ghost" href="https://www.linkedin.com/in/nozella-alexander-b5044a413" target="_blank" rel="noopener">LinkedIn</a>
         <a class="btn ghost" href="#top">Kembali ke atas</a>
       </div>
     </div>
@@ -945,5 +929,5 @@
 })();
 </script>
 
-</body></html>
+</body>
 </html>
