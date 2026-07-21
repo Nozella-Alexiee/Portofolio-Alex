@@ -501,7 +501,7 @@
 
   /* ---------- LANGUAGE SWITCHER (Notebook Sticky Note) ---------- */
   .lang-switch{
-    position:fixed; top:160px; right:20px; z-index:38;
+    position:fixed; top:160px; left:60px; z-index:38;
     background:#FBF8F1;
     background-image:repeating-linear-gradient(to bottom, transparent 0 22px, rgba(46,127,199,0.12) 22px 23px);
     border:2px dashed var(--ring);
@@ -543,7 +543,7 @@
   }
   .lang-text{ font-weight:700; white-space:nowrap; }
   @media (max-width:780px){
-    .lang-switch{ top:60px; right:8px; padding:12px 10px 8px; gap:4px; max-width:110px; }
+    .lang-switch{ top:auto; bottom:auto; top:16px; left:8px; padding:12px 10px 8px; gap:4px; max-width:110px; }
     .lang-switch .lang-washi{ width:44px; height:16px; top:-8px; left:10px; }
   }
 
@@ -559,7 +559,7 @@
 </head>
 <body>
 
-<!-- Language switcher: fixed di bawah navigasi samping -->
+<!-- Language switcher: fixed di kiri -->
 <div class="lang-switch" id="langSwitch">
   <div class="lang-washi" aria-hidden="true"></div>
   <span class="lang-label">Language</span>
@@ -733,7 +733,7 @@
         </div>
       </div>
       <div class="attach-body">
-        <p>Sistem absensi berbasis web, dipakai buat pencatatan kehadiran harian lengkap sama rekap laporan buat staff. Sekarang dipakai sama PT Cipta Nirmala (RS SEMEN GRESIK) lho!</p>
+        <p>Sistem absensi berbasis web, dipakai buat pencatatan kehadiran harian lengkap sama rekap laporan buat staff. Sekarang dipakai sama PT Cipta Nirmala(RS SEMEN GRESIK) lho!</p>
       </div>
       <div class="tech-tags">
         <span class="tech-tag">PHP</span>
@@ -1133,11 +1133,10 @@
 })();
 </script>
 
-<!-- ===== LANGUAGE SWITCHER SCRIPT (FINAL, TERMASUK "Dengarkan di Spotify/Apple Music") ===== -->
+<!-- ===== LANGUAGE SWITCHER SCRIPT ===== -->
 <script>
 const translations = {
   id: {
-    // Navigasi & Tab Label
     tab1: 'Profil', tab2: 'Perjalanan', tab3: 'Keahlian', tab4: 'Proyek', tab5: 'Sertifikat', tab6: 'Hobi', tab7: 'Kontak',
     tabLabelAbout: 'Profil',
     tabLabelJourney: 'Perjalanan',
@@ -1147,7 +1146,6 @@ const translations = {
     tabLabelHobi: 'Hobi',
     tabLabelContact: 'Kontak',
 
-    // Hero
     heroSub: 'Siswa RPL yang belajar bikin web sekaligus baca laporan keuangan',
     idHeading: 'Kartu Identitas',
     idNama: 'Nama',
@@ -1155,11 +1153,9 @@ const translations = {
     idKelas: 'Kelas',
     idMinat: 'Minat',
 
-    // About
     aboutHeading: 'Tentang saya',
     aboutText: 'Halo, aku <b>Alex</b> — sekarang kelas XI RPL 1 di SMK SIG.<br><br>Ketertarikanku ke dunia <b>finance</b> sebenarnya udah mulai sejak SMP, pengen paham cara mengelola keuangan sendiri biar ke depannya nggak asal-asalan urus uang. Pas awal masuk SMK ambil jurusan RPL, jujur aja ngga seberapa niat. Tapi semakin berjalannya waktu, aku mulai kenalan lebih jauh sama dunia <b>coding</b> dan <b>software engineering</b> — dan ternyata malah keterusan sampai sekarang. Dua minat ini kelihatannya beda arah, tapi buatku nyambung: keduanya soal membaca pola dan menyusun sesuatu yang rapi dari data.',
 
-    // Perjalanan
     journeyHeading: 'Jurnal perjalanan',
     check1: 'Mulai penasaran sama pengelolaan keuangan & pasar modal.',
     check2: 'Ambil jurusan RPL, tapi jujur belum seberapa niat.',
@@ -1172,7 +1168,6 @@ const translations = {
     journeyPeriod4: '18 Mei 2026',
     journeyPeriod5: 'Sekarang',
 
-    // Skills
     skillsHeading: 'Rak keahlian',
     skillWeb: 'Web Development',
     skillWebTag: 'ngoding',
@@ -1187,7 +1182,6 @@ const translations = {
     skillFinCheck3: 'Investasi & Saham',
     skillFinCheck4: 'Pencatatan Keuangan',
 
-    // Kalkulator
     calcTitle: 'Kalkulator Bunga Majemuk',
     calcSub: 'Ketik angkanya, hasilnya kehitung otomatis',
     calcTag: 'coba-coba',
@@ -1200,13 +1194,11 @@ const translations = {
     calcOutAkhir: 'Estimasi Akhir',
     calcNote: '*Simulasi sederhana pakai bunga majemuk bulanan, cuma buat ilustrasi belajar',
 
-    // Proyek
     projectHeading: 'Lampiran karya',
     projectFilename: 'Sistem Absensi',
-    projectDesc: 'Sistem absensi berbasis web, dipakai buat pencatatan kehadiran harian lengkap sama rekap laporan buat staff. Sekarang dipakai sama PT Cipta Nirmala (RS SEMEN GRESIK) lho!',
+    projectDesc: 'Sistem absensi berbasis web, dipakai buat pencatatan kehadiran harian lengkap sama rekap laporan buat staff. Sekarang dipakai sama PT Cipta Nirmala(RS SEMEN GRESIK) lho!',
     githubLinkText: 'Lihat di GitHub',
 
-    // Sertifikat
     certHeading: 'Sertifikat ditempel',
     certTitle: 'Sekolah Pasar Modal',
     certSub: 'Sertifikat Kelulusan',
@@ -1216,7 +1208,6 @@ const translations = {
     certStamp: 'LULUS!',
     certNote: 'Diselenggarakan oleh PT Bursa Efek Indonesia — 18 Mei 2026, Surabaya.',
 
-    // Hobi
     hobbyHeading: 'Yang diputer pas nugas',
     nbTitle: 'Playlist Notes',
     nbSub: 'Lagu-lagu yang nemenin aku ngoding, belajar, dan lihat langit malam.',
@@ -1238,7 +1229,6 @@ const translations = {
     singSub: 'Andalan di Nada Tinggi',
     singDesc: 'Aku juga suka bernyanyi, dan unggul di nada tinggi lho!',
 
-    // Kontak
     contactHeading: 'Mari terhubung',
     contactDesc: 'Terbuka untuk kolaborasi project web maupun diskusi seputar finance.',
     emailBtn: 'Kirim Email',
@@ -1266,7 +1256,7 @@ const translations = {
     idMinat: 'Interest',
 
     aboutHeading: 'About me',
-    aboutText: 'Hi, I\'m <b>Alex</b> — Currently an 11th-grade Software Engineering student at SIG Vocational School. <br><br>My interest in <b>finance</b> started back in middle school, wanting to understand how to manage money so I wouldn\'t just spend it carelessly later in life. When I entered vocational school I chose software engineering, honestly without much enthusiasm. But over time I got to know <b>coding</b> and <b>software engineering</b> more deeply — and it just stuck with me until now. These two interests might seem unrelated, but to me they connect: both are about recognizing patterns and building something neat out of data.',
+    aboutText: 'Hi, I\'m <b>Alex</b> — currently in 11th grade of Software Engineering at SMK SIG.<br><br>My interest in <b>finance</b> started back in middle school, wanting to understand how to manage money so I wouldn\'t just spend it carelessly later in life. When I entered vocational school I chose software engineering, honestly without much enthusiasm. But over time I got to know <b>coding</b> and <b>software engineering</b> more deeply — and it just stuck with me until now. These two interests might seem unrelated, but to me they connect: both are about recognizing patterns and building something neat out of data.',
 
     journeyHeading: 'Journey journal',
     check1: 'Started being curious about financial management & capital markets.',
@@ -1352,14 +1342,12 @@ const translations = {
   }
 };
 
-// SVG templates untuk Spotify & Apple Music
 const spotifySVG = '<svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.6 0 12 0zm5.52 17.34c-.24.36-.66.48-1.02.24-2.82-1.74-6.36-2.1-10.56-1.14-.42.12-.78-.18-.9-.54-.12-.42.18-.78.54-.9 4.56-1.02 8.52-.6 11.64 1.32.42.18.48.66.3 1.02zm1.44-3.3c-.3.42-.84.6-1.26.3-3.24-1.98-8.16-2.58-11.94-1.38-.48.12-1.02-.12-1.14-.6-.12-.48.12-1.02.6-1.14 4.32-1.32 9.72-.66 13.44 1.62.36.18.54.78.3 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.3c-.6.18-1.2-.18-1.38-.72-.18-.6.18-1.2.72-1.38 4.26-1.26 11.28-1.02 15.72 1.62.54.3.72 1.02.42 1.56-.3.42-1.02.6-1.56.3z"/></svg> ';
 const appleSVG = '<svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M23.997 6.124c0-.738-.065-1.47-.24-2.19-.317-1.31-1.062-2.31-2.18-3.043a5.022 5.022 0 0 0-1.877-.726A10.5 10.5 0 0 0 18.136.014C18.096.012 18.053.005 18.012.002H5.988c-.152.01-.303.017-.455.026-.747.043-1.49.123-2.193.4C2.004.978 1.04 1.9.475 3.228c-.192.448-.292.925-.363 1.408-.056.392-.088.785-.1 1.18 0 .032-.007.062-.01.093v12.223c.01.14.017.283.027.424.05.815.154 1.624.485 2.383.65 1.478 1.75 2.494 3.315 2.94.42.12.856.171 1.293.207.548.043 1.095.056 1.643.056h11.343c.166 0 .333-.005.5-.017.51-.037 1.02-.09 1.512-.24.9-.275 1.667-.752 2.284-1.462.65-.75 1.005-1.63 1.16-2.6.05-.315.077-.633.09-.95.005-.106.01-.213.014-.32.003-.048.01-.096.01-.144V6.263c0-.046-.006-.093-.01-.14zm-6.712 2.865v6.79c0 .453-.09.883-.34 1.27-.315.487-.78.74-1.32.85-.32.065-.64.062-.955-.02-.63-.164-1.037-.63-1.093-1.28-.05-.598.24-1.11.79-1.42.36-.203.76-.29 1.157-.365.19-.036.383-.062.57-.11.174-.045.245-.14.256-.32.004-.056.004-.113.004-.17V8.24c0-.075-.005-.15-.017-.223-.033-.194-.15-.31-.343-.31-.05 0-.1.008-.15.02l-6.36 1.28c-.06.012-.12.028-.176.052-.14.06-.213.17-.222.32-.004.056-.004.113-.004.17v7.53c0 .45-.083.878-.323 1.263-.312.5-.78.75-1.33.86-.32.066-.64.062-.955-.02-.63-.163-1.036-.63-1.093-1.28-.05-.598.24-1.11.79-1.42.36-.203.76-.29 1.158-.364.19-.037.383-.063.57-.11.174-.046.245-.14.256-.32.005-.057.005-.114.005-.17V6.83c0-.146.02-.29.08-.427.1-.234.28-.377.52-.44l7.63-1.535c.126-.025.256-.033.383-.008.31.06.51.28.545.6.007.058.008.116.008.174z"/></svg> ';
 
 function switchLang(lang) {
   const t = translations[lang];
 
-  // Navigasi tabs
   const navLinks = document.querySelectorAll('.side-tabs a');
   if(navLinks.length >= 7){
     navLinks[0].textContent = t.tab1;
@@ -1371,7 +1359,6 @@ function switchLang(lang) {
     navLinks[6].textContent = t.tab7;
   }
 
-  // Tab labels
   document.querySelector('#about .tab-label').textContent = t.tabLabelAbout;
   document.querySelector('#perjalanan .tab-label').textContent = t.tabLabelJourney;
   document.querySelector('#skills .tab-label').textContent = t.tabLabelSkills;
@@ -1380,7 +1367,6 @@ function switchLang(lang) {
   document.querySelector('#hobi .tab-label').textContent = t.tabLabelHobi;
   document.querySelector('#contact .tab-label').textContent = t.tabLabelContact;
 
-  // Hero
   document.querySelector('.hero-sub').textContent = t.heroSub;
   const idHeading = document.querySelector('.id-heading');
   if(idHeading) {
@@ -1396,11 +1382,9 @@ function switchLang(lang) {
     idRows[3].querySelector('.k').textContent = t.idMinat;
   }
 
-  // About
   document.querySelector('#about h2').textContent = t.aboutHeading;
   document.querySelector('#about .diary-note').innerHTML = t.aboutText;
 
-  // Perjalanan
   document.querySelector('#perjalanan h2').textContent = t.journeyHeading;
   const checkDescs = document.querySelectorAll('#perjalanan .check-text .desc');
   if(checkDescs.length >= 5){
@@ -1419,7 +1403,6 @@ function switchLang(lang) {
     periods[4].textContent = t.journeyPeriod5;
   }
 
-  // Skills
   document.querySelector('#skills h2').textContent = t.skillsHeading;
   document.querySelector('.skill-block.web .skill-block-title').childNodes[0].textContent = t.skillWeb + ' ';
   document.querySelector('.skill-block.web .skill-block-title .tag').textContent = t.skillWebTag;
@@ -1441,7 +1424,6 @@ function switchLang(lang) {
     finChecks[3].textContent = t.skillFinCheck4;
   }
 
-  // Kalkulator
   document.querySelector('.calc-title').childNodes[0].textContent = t.calcTitle + ' ';
   document.querySelector('.calc-tag').textContent = t.calcTag;
   document.querySelector('.calc-sub').textContent = t.calcSub;
@@ -1457,7 +1439,6 @@ function switchLang(lang) {
   }
   document.querySelector('.calc-note').textContent = t.calcNote;
 
-  // Proyek
   document.querySelector('#projects h2').textContent = t.projectHeading;
   document.querySelector('.filename').textContent = t.projectFilename;
   document.querySelector('.attach-body p').textContent = t.projectDesc;
@@ -1466,7 +1447,6 @@ function switchLang(lang) {
     githubLink.innerHTML = '<svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5C5.37.5 0 5.87 0 12.5c0 5.3 3.44 9.8 8.2 11.4.6.1.82-.26.82-.58v-2.02c-3.34.73-4.04-1.6-4.04-1.6-.55-1.4-1.34-1.76-1.34-1.76-1.1-.75.08-.74.08-.74 1.2.09 1.84 1.24 1.84 1.24 1.08 1.84 2.83 1.31 3.52 1 .1-.78.42-1.31.76-1.62-2.67-.3-5.47-1.33-5.47-5.93 0-1.31.47-2.38 1.24-3.22-.13-.3-.54-1.52.12-3.18 0 0 1-.32 3.3 1.23a11.5 11.5 0 0 1 6 0c2.3-1.55 3.3-1.23 3.3-1.23.66 1.66.25 2.88.12 3.18.77.84 1.24 1.91 1.24 3.22 0 4.61-2.8 5.63-5.48 5.92.43.37.81 1.1.81 2.22v3.29c0 .32.22.69.83.58A12 12 0 0 0 24 12.5C24 5.87 18.63.5 12 .5Z"/></svg> ' + t.githubLinkText;
   }
 
-  // Sertifikat
   document.querySelector('#cert h2').textContent = t.certHeading;
   document.querySelector('.cert-title').textContent = t.certTitle;
   document.querySelector('.cert-sub').textContent = t.certSub;
@@ -1479,7 +1459,6 @@ function switchLang(lang) {
   document.querySelector('.cert-stamp').textContent = t.certStamp;
   document.querySelector('.cert-note').textContent = t.certNote;
 
-  // Hobi
   document.querySelector('#hobi h2').textContent = t.hobbyHeading;
   document.querySelector('.notebook-page .nb-title').textContent = t.nbTitle;
   document.querySelector('.notebook-page .nb-sub').textContent = t.nbSub;
@@ -1491,13 +1470,11 @@ function switchLang(lang) {
   document.querySelector('.reveal-song').textContent = t.revealSong;
   document.querySelector('.reveal-close-text').textContent = t.revealClose;
 
-  // Spotify & Apple Music links
   const spotifyLink = document.querySelector('.spotify-link');
   const appleLink = document.querySelector('.apple-link');
   if(spotifyLink) spotifyLink.innerHTML = spotifySVG + t.spotifyText;
   if(appleLink) appleLink.innerHTML = appleSVG + t.appleText;
 
-  // Night card, photo card, sing card
   document.querySelector('.night-card .card-title').textContent = t.nightTitle;
   document.querySelector('.night-card .card-sub').textContent = t.nightSub;
   document.querySelector('.night-card p').textContent = t.nightDesc;
@@ -1507,7 +1484,6 @@ function switchLang(lang) {
   document.querySelector('.sing-card .card-sub').textContent = t.singSub;
   document.querySelector('.sing-card p').textContent = t.singDesc;
 
-  // Kontak
   document.querySelector('#contact h2').textContent = t.contactHeading;
   document.querySelector('.envelope p').textContent = t.contactDesc;
   const btns = document.querySelectorAll('.btn-row .btn');
@@ -1521,7 +1497,6 @@ function switchLang(lang) {
   document.querySelector('footer').textContent = t.footer;
 }
 
-// Ganti bahasa tanpa flip
 const langInputs = document.querySelectorAll('.lang-option input');
 langInputs.forEach(input => {
   input.addEventListener('change', function() {
@@ -1538,5 +1513,4 @@ switchLang(savedLang);
 </script>
 
 </body>
-</html></body>
 </html>
