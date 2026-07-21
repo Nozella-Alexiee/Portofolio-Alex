@@ -365,58 +365,37 @@
   .sing-card p{font-size:12.5px; line-height:1.75; color:var(--ink-soft);}
   .sing-card .mic-doodle{position:absolute; top:-14px; right:14px; width:30px; height:30px; color:var(--lilac);}
 
-  /* ---------- HOBI: AMPLOP RAHASIA BAND FAVORIT ---------- */
-  .reveal-envelope{
-    position:relative; width:100%; max-width:300px; min-height:235px;
-    border-radius:16px; overflow:hidden; cursor:pointer; user-select:none;
-    border:2px solid var(--lilac);
-    background:#fff;
-    box-shadow:0 10px 18px -10px rgba(44,39,64,0.25);
-    transform:rotate(-0.8deg);
+  /* ---------- HOBI: KARTU BAND FAVORIT ---------- */
+  .reveal-card{
+    background:#fff; border:2px solid var(--lilac); border-radius:16px;
+    padding:22px; max-width:280px; width:100%; position:relative;
+    box-shadow:0 10px 18px -10px rgba(44,39,64,0.25); transform:rotate(-1deg);
   }
-  .reveal-closed, .reveal-open{
-    position:absolute; inset:0;
-    transition:opacity .35s ease, transform .35s ease;
+  .reveal-card .closed-view{text-align:center; cursor:pointer;}
+  .reveal-card .vinyl-doodle{width:52px; height:52px; margin:0 auto 14px; color:var(--lilac); display:block;}
+  .reveal-card .reveal-question{font-family:var(--font-hand); font-weight:400; font-size:17px; color:var(--ink); margin-bottom:6px; line-height:1.3;}
+  .reveal-card .reveal-hint{font-family:var(--font-mono); font-size:10.5px; color:var(--ink-soft);}
+  .reveal-card .open-view{display:none; flex-direction:column; gap:13px;}
+  .reveal-card.open .closed-view{display:none;}
+  .reveal-card.open .open-view{display:flex;}
+  .reveal-head{display:flex; align-items:center; gap:12px;}
+  .reveal-head img{width:58px; height:58px; border-radius:10px; object-fit:cover; border:1px solid var(--ring); flex-shrink:0;}
+  .reveal-band{font-family:var(--font-hand); font-weight:400; font-size:18px; color:var(--ink); line-height:1.2;}
+  .reveal-song{font-family:var(--font-mono); font-size:10.5px; color:var(--ink-soft); margin-top:3px;}
+  .reveal-cover{width:100%; border-radius:10px; border:1px solid var(--ring); display:block;}
+  .reveal-links{display:flex; flex-direction:column; gap:9px;}
+  .reveal-links a{
+    display:block; text-align:center;
+    font-family:var(--font-mono); font-weight:700; font-size:12px;
+    padding:11px 14px; border-radius:20px; text-decoration:none; color:#fff;
   }
-  .reveal-closed{
-    display:flex; flex-direction:column; align-items:center; justify-content:center;
-    text-align:center; padding:26px 22px; z-index:2;
+  .spotify-link{background:#1DB954;}
+  .apple-link{background:#FA233B;}
+  .reveal-close-text{
+    text-align:center; font-family:var(--font-mono); font-size:10.5px; color:var(--ink-soft);
+    cursor:pointer; text-decoration:underline; margin-top:-2px;
   }
-  .reveal-closed .flap{
-    position:absolute; top:0; left:0; right:0; height:0; opacity:0.9; z-index:0;
-    border-left:150px solid transparent; border-right:150px solid transparent; border-top:64px solid var(--lilac);
-  }
-  .reveal-closed .seal{
-    position:relative; z-index:1; width:36px; height:36px; border-radius:50%;
-    background:var(--rose); color:#fff; display:flex; align-items:center; justify-content:center;
-    font-family:var(--font-hand); font-size:19px; margin:26px auto 16px;
-    box-shadow:0 4px 8px -2px rgba(44,39,64,0.4);
-  }
-  .reveal-question{position:relative; z-index:1; font-family:var(--font-hand); font-size:17px; color:var(--ink); margin-bottom:8px; line-height:1.3;}
-  .reveal-hint{position:relative; z-index:1; font-family:var(--font-mono); font-size:10px; color:var(--ink-soft); letter-spacing:0.03em;}
-  .reveal-envelope:hover .reveal-closed{transform:scale(1.02);}
-
-  .reveal-open{
-    display:flex; flex-direction:column; gap:11px; padding:18px;
-    opacity:0; pointer-events:none; transform:scale(0.95); cursor:default; z-index:1;
-  }
-  .reveal-envelope.is-open .reveal-closed{opacity:0; pointer-events:none; transform:scale(0.95);}
-  .reveal-envelope.is-open .reveal-open{opacity:1; pointer-events:auto; transform:scale(1);}
-  .reveal-head{display:flex; align-items:center; gap:10px;}
-  .reveal-head img{width:52px; height:52px; border-radius:8px; object-fit:cover; border:1px solid var(--ring); flex-shrink:0;}
-  .reveal-band{font-family:var(--font-hand); font-size:16px; color:var(--ink); line-height:1.1;}
-  .reveal-song{font-family:var(--font-mono); font-size:11px; color:var(--ink-soft); margin-top:2px;}
-  .reveal-cover{width:100%; aspect-ratio:16/10; object-fit:cover; border-radius:8px; border:1px solid var(--ring);}
-  .reveal-links{display:flex; flex-direction:column; gap:8px;}
-  .reveal-links .btn{text-align:center; transform:none; font-size:11px; padding:9px 14px;}
-  .btn.spotify{background:#1DB954; color:#fff; border-color:#1DB954;}
-  .btn.apple{background:#FA233B; color:#fff; border-color:#FA233B;}
-  .reveal-close{
-    position:absolute; top:8px; right:10px; z-index:3;
-    font-family:var(--font-mono); font-size:10px; color:var(--ink-soft);
-    background:none; border:none; cursor:pointer; padding:4px;
-  }
-  .reveal-close:hover{color:var(--rose);}
+  .reveal-close-text:hover{color:var(--rose);}
 
   /* ---------- KONTAK: SURAT LIPAT ---------- */
   .envelope{
@@ -586,7 +565,7 @@
         <div class="skill-check-row"><div class="skill-check">✓</div><div class="skill-check-label">HTML &amp; CSS</div></div>
         <div class="skill-check-row"><div class="skill-check">✓</div><div class="skill-check-label">JavaScript</div></div>
         <div class="skill-check-row"><div class="skill-check">✓</div><div class="skill-check-label">PHP &amp; MySQL</div></div>
-        <div class="skill-check-row"><div class="skill-check">✓</div><div class="skill-check-label">Laravel</div></div>
+        <div class="skill-check-row"><div class="skill-check">✓</div><div class="skill-check-label">Desain Responsif</div></div>
       </div>
     </div>
 
@@ -694,15 +673,18 @@
         <div class="tape-artists">Sering muter: Justin Bieber, Djo, Rihanna, Ariana Grande, SZA, Arctic Monkeys, Tommy Richman, dan banyak lagi.</div>
         <a class="btn blue" href="https://music.apple.com/id/playlist/musik-in/pl.u-38oWXBgTY0YdybE?l=id" target="_blank" rel="noopener">Dengar di Apple Music</a>
       </div>
-      <div class="reveal-envelope" id="bandReveal">
-        <button class="reveal-close" id="bandRevealClose" aria-label="Tutup" style="display:none;">✕ tutup</button>
-        <div class="reveal-closed">
-          <div class="flap" aria-hidden="true"></div>
-          <div class="seal" aria-hidden="true">?</div>
+      <div class="reveal-card" id="bandReveal">
+        <div class="closed-view" id="bandRevealTrigger">
+          <svg class="vinyl-doodle" viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+            <circle cx="20" cy="20" r="16"/>
+            <circle cx="20" cy="20" r="5.5"/>
+            <circle cx="20" cy="20" r="1.6" fill="currentColor" stroke="none"/>
+            <circle cx="20" cy="20" r="11" opacity="0.4"/>
+          </svg>
           <p class="reveal-question">Mau tau band favoritku nggak?...</p>
-          <span class="reveal-hint">(klik buat buka)</span>
+          <span class="reveal-hint">(ketuk buat lihat)</span>
         </div>
-        <div class="reveal-open">
+        <div class="open-view">
           <div class="reveal-head">
             <img src="images/westlife-band.webp" alt="Westlife">
             <div>
@@ -712,9 +694,10 @@
           </div>
           <img class="reveal-cover" src="images/if-i-let-you-go-cover.jpg" alt="Sampul If I Let You Go - Westlife">
           <div class="reveal-links">
-            <a class="btn spotify" href="https://open.spotify.com/intl-id/track/3St0RlsL0Z0klK1mqWakQm?si=6595a19fc918413d" target="_blank" rel="noopener">Dengarkan di Spotify</a>
-            <a class="btn apple" href="https://music.apple.com/us/song/if-i-let-you-go-radio-edit/266441693" target="_blank" rel="noopener">Dengarkan di Apple Music</a>
+            <a class="spotify-link" href="https://open.spotify.com/intl-id/track/3St0RlsL0Z0klK1mqWakQm?si=6595a19fc918413d" target="_blank" rel="noopener">Dengarkan di Spotify</a>
+            <a class="apple-link" href="https://music.apple.com/us/song/if-i-let-you-go-radio-edit/266441693" target="_blank" rel="noopener">Dengarkan di Apple Music</a>
           </div>
+          <div class="reveal-close-text" id="bandRevealClose">✕ tutup</div>
         </div>
       </div>
       <div class="night-card">
@@ -1005,30 +988,19 @@
 })();
 </script>
 <script>
-// ===== 5) Amplop rahasia band favorit: klik buat buka/tutup =====
+// ===== 5) Kartu band favorit: klik buat buka/tutup =====
 (function(){
   var card = document.getElementById('bandReveal');
-  var closeBtn = document.getElementById('bandRevealClose');
-  if(!card) return;
+  var trigger = document.getElementById('bandRevealTrigger');
+  var closeText = document.getElementById('bandRevealClose');
+  if(!card || !trigger) return;
 
-  function openCard(){
-    card.classList.add('is-open');
-    if(closeBtn) closeBtn.style.display = 'block';
-  }
-  function closeCard(){
-    card.classList.remove('is-open');
-    if(closeBtn) closeBtn.style.display = 'none';
-  }
-
-  card.addEventListener('click', function(e){
-    if(card.classList.contains('is-open')) return;
-    if(e.target.closest('a')) return;
-    openCard();
+  trigger.addEventListener('click', function(){
+    card.classList.add('open');
   });
-  if(closeBtn){
-    closeBtn.addEventListener('click', function(e){
-      e.stopPropagation();
-      closeCard();
+  if(closeText){
+    closeText.addEventListener('click', function(){
+      card.classList.remove('open');
     });
   }
 })();
