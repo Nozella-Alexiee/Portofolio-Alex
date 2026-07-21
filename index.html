@@ -512,6 +512,7 @@
     flex-direction:column;
     gap:8px;
     font-family:var(--font-mono);
+    /* penting: posisi fixed membuatnya tidak ikut scroll */
   }
   .lang-switch .lang-washi{
     position:absolute; top:-10px; left:12px; width:62px; height:20px;
@@ -557,7 +558,7 @@
 </head>
 <body>
 
-<!-- Language switcher: tempelan notebook di pojok kanan atas, di mobile pojok kanan bawah -->
+<!-- Language switcher: tempelan notebook fixed, tidak ikut scroll -->
 <div class="lang-switch" id="langSwitch">
   <div class="lang-washi" aria-hidden="true"></div>
   <span class="lang-label">Language</span>
@@ -1131,7 +1132,7 @@
 })();
 </script>
 
-<!-- ===== LANGUAGE SWITCHER SCRIPT (LENGKAP) ===== -->
+<!-- ===== LANGUAGE SWITCHER SCRIPT (LENGKAP DENGAN PERIODE) ===== -->
 <script>
 const translations = {
   id: {
@@ -1164,6 +1165,11 @@ const translations = {
     check3: 'Mulai kenalan & jatuh cinta sama dunia coding / software engineering.',
     check4: 'Ikut Sekolah Pasar Modal dari PT Bursa Efek Indonesia, Surabaya.',
     check5: 'Kelas XI RPL 1, fokus mendalami lewat project Sistem Absensi Siswa.',
+    journeyPeriod1: 'SMP',
+    journeyPeriod2: 'Awal SMK',
+    journeyPeriod3: 'Berjalan waktu',
+    journeyPeriod4: '18 Mei 2026',
+    journeyPeriod5: 'Sekarang',
 
     // Skills
     skillsHeading: 'Rak keahlian',
@@ -1263,6 +1269,11 @@ const translations = {
     check3: 'Got to know and fell in love with coding / software engineering.',
     check4: 'Attended Capital Market School by Indonesia Stock Exchange, Surabaya.',
     check5: 'Grade XI RPL 1, currently diving deeper through the Student Attendance System project.',
+    journeyPeriod1: 'Middle School',
+    journeyPeriod2: 'Early Vocational',
+    journeyPeriod3: 'Over time',
+    journeyPeriod4: '18 May 2026',
+    journeyPeriod5: 'Now',
 
     skillsHeading: 'Skills shelf',
     skillWeb: 'Web Development',
@@ -1360,12 +1371,10 @@ function switchLang(lang) {
   document.querySelector('.hero-sub').textContent = t.heroSub;
   const idHeading = document.querySelector('.id-heading');
   if(idHeading) {
-    // idHeading contains img + text node
     idHeading.childNodes.forEach(node => {
       if(node.nodeType === 3) node.textContent = t.idHeading;
     });
   }
-  // ID card labels
   const idRows = document.querySelectorAll('.id-row');
   if(idRows.length >= 4){
     idRows[0].querySelector('.k').textContent = t.idNama;
@@ -1388,6 +1397,15 @@ function switchLang(lang) {
     checkDescs[3].textContent = t.check4;
     checkDescs[4].textContent = t.check5;
   }
+  // Periode label
+  const periods = document.querySelectorAll('#perjalanan .check-text .period');
+  if(periods.length >= 5){
+    periods[0].textContent = t.journeyPeriod1;
+    periods[1].textContent = t.journeyPeriod2;
+    periods[2].textContent = t.journeyPeriod3;
+    periods[3].textContent = t.journeyPeriod4;
+    periods[4].textContent = t.journeyPeriod5;
+  }
 
   // Skills
   document.querySelector('#skills h2').textContent = t.skillsHeading;
@@ -1396,7 +1414,6 @@ function switchLang(lang) {
   document.querySelector('.skill-block.fin .skill-block-title').childNodes[0].textContent = t.skillFin + ' ';
   document.querySelector('.skill-block.fin .skill-block-title .tag').textContent = t.skillFinTag;
 
-  // Web skill checks
   const webChecks = document.querySelectorAll('.skill-block.web .skill-check-label');
   if(webChecks.length >= 4){
     webChecks[0].textContent = t.skillWebCheck1;
@@ -1404,7 +1421,6 @@ function switchLang(lang) {
     webChecks[2].textContent = t.skillWebCheck3;
     webChecks[3].textContent = t.skillWebCheck4;
   }
-  // Finance skill checks
   const finChecks = document.querySelectorAll('.skill-block.fin .skill-check-label');
   if(finChecks.length >= 4){
     finChecks[0].textContent = t.skillFinCheck1;
@@ -1413,7 +1429,7 @@ function switchLang(lang) {
     finChecks[3].textContent = t.skillFinCheck4;
   }
 
-  // Calculator
+  // Kalkulator
   document.querySelector('.calc-title').childNodes[0].textContent = t.calcTitle + ' ';
   document.querySelector('.calc-sub').textContent = t.calcSub;
   document.querySelector('#calcModal').previousElementSibling.textContent = t.calcModal;
@@ -1428,17 +1444,13 @@ function switchLang(lang) {
   }
   document.querySelector('.calc-note').textContent = t.calcNote;
 
-  // Projects
+  // Proyek
   document.querySelector('#projects h2').textContent = t.projectHeading;
   document.querySelector('.attach-body p').textContent = t.projectDesc;
   const githubLink = document.querySelector('.attach-links a');
-  if(githubLink) {
-    githubLink.childNodes.forEach(node => {
-      if(node.nodeType === 3) node.textContent = ' ' + t.githubLinkText;
-    });
-  }
+  if(githubLink) githubLink.textContent = t.githubLinkText; // langsung ganti tanpa duplikasi
 
-  // Certificate
+  // Sertifikat
   document.querySelector('#cert h2').textContent = t.certHeading;
   document.querySelector('.cert-title').textContent = t.certTitle;
   document.querySelector('.cert-sub').textContent = t.certSub;
@@ -1451,7 +1463,7 @@ function switchLang(lang) {
   document.querySelector('.cert-stamp').textContent = t.certStamp;
   document.querySelector('.cert-note').textContent = t.certNote;
 
-  // Hobbies
+  // Hobi
   document.querySelector('#hobi h2').textContent = t.hobbyHeading;
   document.querySelector('.notebook-page .nb-title').textContent = t.nbTitle;
   document.querySelector('.notebook-page .nb-sub').textContent = t.nbSub;
@@ -1471,7 +1483,7 @@ function switchLang(lang) {
   document.querySelector('.sing-card .card-sub').textContent = t.singSub;
   document.querySelector('.sing-card p').textContent = t.singDesc;
 
-  // Contact
+  // Kontak
   document.querySelector('#contact h2').textContent = t.contactHeading;
   document.querySelector('.envelope p').textContent = t.contactDesc;
   const btns = document.querySelectorAll('.btn-row .btn');
@@ -1507,7 +1519,6 @@ function flipPage(callback) {
   }, 550);
 }
 
-// Language switch handler
 const langInputs = document.querySelectorAll('.lang-option input');
 langInputs.forEach(input => {
   input.addEventListener('change', function() {
@@ -1519,11 +1530,10 @@ langInputs.forEach(input => {
   });
 });
 
-// Load saved language
 const savedLang = localStorage.getItem('lang') || 'id';
 document.querySelector(`.lang-option input[value="${savedLang}"]`).checked = true;
 switchLang(savedLang);
 </script>
 
 </body>
-</html>
+</html></html>
