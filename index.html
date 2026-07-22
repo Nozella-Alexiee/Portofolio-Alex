@@ -501,7 +501,7 @@
 
   /* ---------- LANGUAGE SWITCHER (Notebook Sticky Note) ---------- */
   .lang-switch{
-    position:fixed; top:14px; right:14px; z-index:60;
+    position:fixed; top:160px; left:60px; z-index:38;
     background:#FBF8F1;
     background-image:repeating-linear-gradient(to bottom, transparent 0 22px, rgba(46,127,199,0.12) 22px 23px);
     border:2px dashed var(--ring);
@@ -543,7 +543,7 @@
   }
   .lang-text{ font-weight:700; white-space:nowrap; }
   @media (max-width:780px){
-    .lang-switch{ top:8px; right:8px; padding:14px 10px 8px; gap:5px; max-width:104px; }
+    .lang-switch{ top:auto; bottom:auto; top:16px; left:8px; padding:12px 10px 8px; gap:4px; max-width:110px; }
     .lang-switch .lang-washi{ width:44px; height:16px; top:-8px; left:10px; }
   }
 
@@ -559,7 +559,7 @@
 </head>
 <body>
 
-<!-- Language switcher: fixed di kanan atas, selalu di atas semua elemen lain (z-index tertinggi) -->
+<!-- Language switcher: fixed di kiri -->
 <div class="lang-switch" id="langSwitch">
   <div class="lang-washi" aria-hidden="true"></div>
   <span class="lang-label">Language</span>
@@ -1196,7 +1196,6 @@ const translations = {
 
     projectHeading: 'Lampiran karya',
     projectFilename: 'Sistem Absensi',
-    projectStamp: 'SELESAI',
     projectDesc: 'Sistem absensi berbasis web, dipakai buat pencatatan kehadiran harian lengkap sama rekap laporan buat staff. Sekarang dipakai sama PT Cipta Nirmala(RS SEMEN GRESIK) lho!',
     githubLinkText: 'Lihat di GitHub',
 
@@ -1299,7 +1298,6 @@ const translations = {
 
     projectHeading: 'Project attachments',
     projectFilename: 'Attendance System',
-    projectStamp: 'DONE',
     projectDesc: 'A web-based attendance system, used for daily attendance recording along with summary reports for staff. It is currently used by PT Cipta Nirmala (RS SEMEN GRESIK)!',
     githubLinkText: 'View on GitHub',
 
@@ -1443,7 +1441,6 @@ function switchLang(lang) {
 
   document.querySelector('#projects h2').textContent = t.projectHeading;
   document.querySelector('.filename').textContent = t.projectFilename;
-  document.querySelector('.attach-head .stamp').textContent = t.projectStamp;
   document.querySelector('.attach-body p').textContent = t.projectDesc;
   const githubLink = document.querySelector('.attach-links a');
   if(githubLink) {
