@@ -422,23 +422,85 @@
   .reveal-band{font-family:var(--font-hand); font-weight:400; font-size:19px; color:var(--ink); line-height:1.2;}
   .reveal-song{font-family:var(--font-cursive); font-weight:700; font-size:14px; color:var(--sky); margin-top:2px;}
   .reveal-cover{width:100%; border-radius:8px; border:1px solid var(--ring); display:block;}
-  .reveal-links{display:flex; flex-direction:column; gap:9px;}
-  .reveal-links a{
-    display:flex; align-items:center; justify-content:center; gap:8px;
-    font-family:var(--font-mono); font-weight:700; font-size:11.5px; color:#fff;
-    padding:10px 14px; border-radius:20px; text-decoration:none;
-    border:2px solid transparent; transform:rotate(-1deg);
-    box-shadow:0 4px 8px -3px rgba(44,39,64,0.35);
-  }
-  .reveal-links a svg{flex-shrink:0;}
-  .reveal-links a:nth-child(even){transform:rotate(1deg);}
-  .spotify-link{background:#1DB954;}
-  .apple-link{background:#FA233B;}
   .reveal-close-text{
     text-align:center; font-family:var(--font-mono); font-size:10.5px; color:var(--ink-soft);
     cursor:pointer; text-decoration:underline; margin-top:-2px;
   }
   .reveal-close-text:hover{color:var(--rose);}
+
+  /* ---------- STICKER BUTTONS (SPOTIFY & APPLE MUSIC) ---------- */
+  .sticker-btn {
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    text-decoration: none;
+    box-shadow: 3px 3px 8px rgba(44,39,64,0.2);
+    border: 2px dashed;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    color: var(--color);
+    position: relative;
+    margin: 5px;
+  }
+  .sticker-btn:hover {
+    transform: translateY(-4px) scale(1.06);
+    box-shadow: 5px 5px 12px rgba(44,39,64,0.35);
+  }
+  .sticker-icon {
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .sticker-icon svg {
+    width: 100%;
+    height: 100%;
+  }
+  .sticker-label {
+    font-family: var(--font-mono);
+    font-size: 10.5px;
+    font-weight: 700;
+    margin-top: 3px;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+  }
+
+  .spotify-sticker {
+    --bg: rgba(29,185,84,0.2);
+    --color: #1DB954;
+    background: var(--bg);
+    transform: rotate(-4deg);
+  }
+  .spotify-sticker:hover {
+    transform: rotate(-4deg) translateY(-4px) scale(1.06);
+  }
+  .apple-sticker {
+    --bg: rgba(250,35,59,0.18);
+    --color: #FA233B;
+    background: var(--bg);
+    transform: rotate(3deg);
+  }
+  .apple-sticker:hover {
+    transform: rotate(3deg) translateY(-4px) scale(1.06);
+  }
+
+  @media (max-width: 480px) {
+    .sticker-btn {
+      width: 68px;
+      height: 68px;
+    }
+    .sticker-icon {
+      width: 26px;
+      height: 26px;
+    }
+    .sticker-label {
+      font-size: 9.5px;
+    }
+  }
 
   /* ---------- KONTAK: SURAT LIPAT ---------- */
   .envelope{
@@ -815,13 +877,17 @@
           </div>
           <img class="reveal-cover" src="images/if-i-let-you-go-cover.jpg" alt="Sampul If I Let You Go - Westlife">
           <div class="reveal-links">
-            <a class="spotify-link" href="https://open.spotify.com/intl-id/track/3St0RlsL0Z0klK1mqWakQm?si=6595a19fc918413d" target="_blank" rel="noopener">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.6 0 12 0zm5.52 17.34c-.24.36-.66.48-1.02.24-2.82-1.74-6.36-2.1-10.56-1.14-.42.12-.78-.18-.9-.54-.12-.42.18-.78.54-.9 4.56-1.02 8.52-.6 11.64 1.32.42.18.48.66.3 1.02zm1.44-3.3c-.3.42-.84.6-1.26.3-3.24-1.98-8.16-2.58-11.94-1.38-.48.12-1.02-.12-1.14-.6-.12-.48.12-1.02.6-1.14 4.32-1.32 9.72-.66 13.44 1.62.36.18.54.78.3 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.3c-.6.18-1.2-.18-1.38-.72-.18-.6.18-1.2.72-1.38 4.26-1.26 11.28-1.02 15.72 1.62.54.3.72 1.02.42 1.56-.3.42-1.02.6-1.56.3z"/></svg>
-              Dengarkan di Spotify
+            <a class="sticker-btn spotify-sticker" href="https://open.spotify.com/intl-id/track/3St0RlsL0Z0klK1mqWakQm?si=6595a19fc918413d" target="_blank" rel="noopener" aria-label="Spotify">
+              <span class="sticker-icon">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.6 0 12 0zm5.52 17.34c-.24.36-.66.48-1.02.24-2.82-1.74-6.36-2.1-10.56-1.14-.42.12-.78-.18-.9-.54-.12-.42.18-.78.54-.9 4.56-1.02 8.52-.6 11.64 1.32.42.18.48.66.3 1.02zm1.44-3.3c-.3.42-.84.6-1.26.3-3.24-1.98-8.16-2.58-11.94-1.38-.48.12-1.02-.12-1.14-.6-.12-.48.12-1.02.6-1.14 4.32-1.32 9.72-.66 13.44 1.62.36.18.54.78.3 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.3c-.6.18-1.2-.18-1.38-.72-.18-.6.18-1.2.72-1.38 4.26-1.26 11.28-1.02 15.72 1.62.54.3.72 1.02.42 1.56-.3.42-1.02.6-1.56.3z"/></svg>
+              </span>
+              <span class="sticker-label">Spotify</span>
             </a>
-            <a class="apple-link" href="https://music.apple.com/us/song/if-i-let-you-go-radio-edit/266441693" target="_blank" rel="noopener">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M23.997 6.124c0-.738-.065-1.47-.24-2.19-.317-1.31-1.062-2.31-2.18-3.043a5.022 5.022 0 0 0-1.877-.726A10.5 10.5 0 0 0 18.136.014C18.096.012 18.053.005 18.012.002H5.988c-.152.01-.303.017-.455.026-.747.043-1.49.123-2.193.4C2.004.978 1.04 1.9.475 3.228c-.192.448-.292.925-.363 1.408-.056.392-.088.785-.1 1.18 0 .032-.007.062-.01.093v12.223c.01.14.017.283.027.424.05.815.154 1.624.485 2.383.65 1.478 1.75 2.494 3.315 2.94.42.12.856.171 1.293.207.548.043 1.095.056 1.643.056h11.343c.166 0 .333-.005.5-.017.51-.037 1.02-.09 1.512-.24.9-.275 1.667-.752 2.284-1.462.65-.75 1.005-1.63 1.16-2.6.05-.315.077-.633.09-.95.005-.106.01-.213.014-.32.003-.048.01-.096.01-.144V6.263c0-.046-.006-.093-.01-.14zm-6.712 2.865v6.79c0 .453-.09.883-.34 1.27-.315.487-.78.74-1.32.85-.32.065-.64.062-.955-.02-.63-.164-1.037-.63-1.093-1.28-.05-.598.24-1.11.79-1.42.36-.203.76-.29 1.157-.365.19-.036.383-.062.57-.11.174-.045.245-.14.256-.32.004-.056.004-.113.004-.17V8.24c0-.075-.005-.15-.017-.223-.033-.194-.15-.31-.343-.31-.05 0-.1.008-.15.02l-6.36 1.28c-.06.012-.12.028-.176.052-.14.06-.213.17-.222.32-.004.056-.004.113-.004.17v7.53c0 .45-.083.878-.323 1.263-.312.5-.78.75-1.33.86-.32.066-.64.062-.955-.02-.63-.163-1.036-.63-1.093-1.28-.05-.598.24-1.11.79-1.42.36-.203.76-.29 1.158-.364.19-.037.383-.063.57-.11.174-.046.245-.14.256-.32.005-.057.005-.114.005-.17V6.83c0-.146.02-.29.08-.427.1-.234.28-.377.52-.44l7.63-1.535c.126-.025.256-.033.383-.008.31.06.51.28.545.6.007.058.008.116.008.174z"/></svg>
-              Dengarkan di Apple Music
+            <a class="sticker-btn apple-sticker" href="https://music.apple.com/us/song/if-i-let-you-go-radio-edit/266441693" target="_blank" rel="noopener" aria-label="Apple Music">
+              <span class="sticker-icon">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M23.997 6.124c0-.738-.065-1.47-.24-2.19-.317-1.31-1.062-2.31-2.18-3.043a5.022 5.022 0 0 0-1.877-.726A10.5 10.5 0 0 0 18.136.014C18.096.012 18.053.005 18.012.002H5.988c-.152.01-.303.017-.455.026-.747.043-1.49.123-2.193.4C2.004.978 1.04 1.9.475 3.228c-.192.448-.292.925-.363 1.408-.056.392-.088.785-.1 1.18 0 .032-.007.062-.01.093v12.223c.01.14.017.283.027.424.05.815.154 1.624.485 2.383.65 1.478 1.75 2.494 3.315 2.94.42.12.856.171 1.293.207.548.043 1.095.056 1.643.056h11.343c.166 0 .333-.005.5-.017.51-.037 1.02-.09 1.512-.24.9-.275 1.667-.752 2.284-1.462.65-.75 1.005-1.63 1.16-2.6.05-.315.077-.633.09-.95.005-.106.01-.213.014-.32.003-.048.01-.096.01-.144V6.263c0-.046-.006-.093-.01-.14zm-6.712 2.865v6.79c0 .453-.09.883-.34 1.27-.315.487-.78.74-1.32.85-.32.065-.64.062-.955-.02-.63-.164-1.037-.63-1.093-1.28-.05-.598.24-1.11.79-1.42.36-.203.76-.29 1.157-.365.19-.036.383-.062.57-.11.174-.045.245-.14.256-.32.004-.056.004-.113.004-.17V8.24c0-.075-.005-.15-.017-.223-.033-.194-.15-.31-.343-.31-.05 0-.1.008-.15.02l-6.36 1.28c-.06.012-.12.028-.176.052-.14.06-.213.17-.222.32-.004.056-.004.113-.004.17v7.53c0 .45-.083.878-.323 1.263-.312.5-.78.75-1.33.86-.32.066-.64.062-.955-.02-.63-.163-1.036-.63-1.093-1.28-.05-.598.24-1.11.79-1.42.36-.203.76-.29 1.158-.364.19-.037.383-.063.57-.11.174-.046.245-.14.256-.32.005-.057.005-.114.005-.17V6.83c0-.146.02-.29.08-.427.1-.234.28-.377.52-.44l7.63-1.535c.126-.025.256-.033.383-.008.31.06.51.28.545.6.007.058.008.116.008.174z"/></svg>
+              </span>
+              <span class="sticker-label">Apple Music</span>
             </a>
           </div>
           <div class="reveal-close-text" id="bandRevealClose">✕ tutup</div>
@@ -1026,9 +1092,9 @@
   var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   if(reduce) return;
 
-  var maxOffset = 10;      // pergeseran maksimum (px)
-  var maxRotate = 14;      // rotasi maksimum (deg)
-  var maxDist = 260;       // jarak (px) di mana efek mulai memudar habis
+  var maxOffset = 10;
+  var maxRotate = 14;
+  var maxDist = 260;
   var target = {x:0, y:0, r:0};
   var current = {x:0, y:0, r:0};
   var ticking = false;
@@ -1045,7 +1111,7 @@
       target.x = 0; target.y = 0; target.r = 0;
       return;
     }
-    var strength = 1 - (dist / maxDist); // 1 = dekat sekali, 0 = jauh
+    var strength = 1 - (dist / maxDist);
     var norm = dist === 0 ? {x:0, y:0} : {x: dx/dist, y: dy/dist};
 
     target.x = norm.x * maxOffset * strength;
@@ -1196,8 +1262,8 @@ const translations = {
 
     projectHeading: 'Lampiran karya',
     projectFilename: 'Sistem Absensi',
-    projectStamp: 'SELESAI',                // <-- TAMBAHAN
-    projectDesc: 'Sistem absensi berbasis web, dipakai buat pencatatan kehadiran harian lengkap sama rekap laporan buat staff. Sekarang dipakai sama PT Cipta Nirmala(RS SEMEN GRESIK) lho!',
+    projectStamp: 'SELESAI',
+    projectDesc: 'Sistem absensi berbasis web, dipakai buat pencatatan kehadiran harian lengkap sama rekap laporan buat staff. Sekarang dipakai sama PT Cipta Nirmala (RS SEMEN GRESIK) lho!',
     githubLinkText: 'Lihat di GitHub',
 
     certHeading: 'Sertifikat ditempel',
@@ -1219,8 +1285,8 @@ const translations = {
     revealBand: 'Westlife',
     revealSong: 'Lagu favorit: If I Let You Go',
     revealClose: '✕ tutup',
-    spotifyText: 'Dengarkan di Spotify',
-    appleText: 'Dengarkan di Apple Music',
+    spotifyLabel: 'Spotify',
+    appleLabel: 'Apple Music',
     nightTitle: 'Melihat Bintang',
     nightSub: 'Ritual Malam Favorit',
     nightDesc: 'Salah satu momen favoritku itu duduk sebentar sambil lihat langit malam — kelihatan bintang-bintang di antara kesibukan sekolah & ngoding.',
@@ -1299,7 +1365,7 @@ const translations = {
 
     projectHeading: 'Project attachments',
     projectFilename: 'Attendance System',
-    projectStamp: 'DONE',                   // <-- TAMBAHAN
+    projectStamp: 'DONE',
     projectDesc: 'A web-based attendance system, used for daily attendance recording along with summary reports for staff. It is currently used by PT Cipta Nirmala (RS SEMEN GRESIK)!',
     githubLinkText: 'View on GitHub',
 
@@ -1322,8 +1388,8 @@ const translations = {
     revealBand: 'Westlife',
     revealSong: 'Favorite song: If I Let You Go',
     revealClose: '✕ close',
-    spotifyText: 'Listen on Spotify',
-    appleText: 'Listen on Apple Music',
+    spotifyLabel: 'Spotify',
+    appleLabel: 'Apple Music',
     nightTitle: 'Stargazing',
     nightSub: 'Favorite Night Ritual',
     nightDesc: 'One of my favorite moments is sitting for a while and looking at the night sky — spotting stars between schoolwork and coding.',
@@ -1343,9 +1409,6 @@ const translations = {
     footer: '© 2026 Ahmad Zulfikri Alexander Disyin — XI RPL 1'
   }
 };
-
-const spotifySVG = '<svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.6 0 12 0zm5.52 17.34c-.24.36-.66.48-1.02.24-2.82-1.74-6.36-2.1-10.56-1.14-.42.12-.78-.18-.9-.54-.12-.42.18-.78.54-.9 4.56-1.02 8.52-.6 11.64 1.32.42.18.48.66.3 1.02zm1.44-3.3c-.3.42-.84.6-1.26.3-3.24-1.98-8.16-2.58-11.94-1.38-.48.12-1.02-.12-1.14-.6-.12-.48.12-1.02.6-1.14 4.32-1.32 9.72-.66 13.44 1.62.36.18.54.78.3 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.3c-.6.18-1.2-.18-1.38-.72-.18-.6.18-1.2.72-1.38 4.26-1.26 11.28-1.02 15.72 1.62.54.3.72 1.02.42 1.56-.3.42-1.02.6-1.56.3z"/></svg> ';
-const appleSVG = '<svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M23.997 6.124c0-.738-.065-1.47-.24-2.19-.317-1.31-1.062-2.31-2.18-3.043a5.022 5.022 0 0 0-1.877-.726A10.5 10.5 0 0 0 18.136.014C18.096.012 18.053.005 18.012.002H5.988c-.152.01-.303.017-.455.026-.747.043-1.49.123-2.193.4C2.004.978 1.04 1.9.475 3.228c-.192.448-.292.925-.363 1.408-.056.392-.088.785-.1 1.18 0 .032-.007.062-.01.093v12.223c.01.14.017.283.027.424.05.815.154 1.624.485 2.383.65 1.478 1.75 2.494 3.315 2.94.42.12.856.171 1.293.207.548.043 1.095.056 1.643.056h11.343c.166 0 .333-.005.5-.017.51-.037 1.02-.09 1.512-.24.9-.275 1.667-.752 2.284-1.462.65-.75 1.005-1.63 1.16-2.6.05-.315.077-.633.09-.95.005-.106.01-.213.014-.32.003-.048.01-.096.01-.144V6.263c0-.046-.006-.093-.01-.14zm-6.712 2.865v6.79c0 .453-.09.883-.34 1.27-.315.487-.78.74-1.32.85-.32.065-.64.062-.955-.02-.63-.164-1.037-.63-1.093-1.28-.05-.598.24-1.11.79-1.42.36-.203.76-.29 1.157-.365.19-.036.383-.062.57-.11.174-.045.245-.14.256-.32.004-.056.004-.113.004-.17V8.24c0-.075-.005-.15-.017-.223-.033-.194-.15-.31-.343-.31-.05 0-.1.008-.15.02l-6.36 1.28c-.06.012-.12.028-.176.052-.14.06-.213.17-.222.32-.004.056-.004.113-.004.17v7.53c0 .45-.083.878-.323 1.263-.312.5-.78.75-1.33.86-.32.066-.64.062-.955-.02-.63-.163-1.036-.63-1.093-1.28-.05-.598.24-1.11.79-1.42.36-.203.76-.29 1.158-.364.19-.037.383-.063.57-.11.174-.046.245-.14.256-.32.005-.057.005-.114.005-.17V6.83c0-.146.02-.29.08-.427.1-.234.28-.377.52-.44l7.63-1.535c.126-.025.256-.033.383-.008.31.06.51.28.545.6.007.058.008.116.008.174z"/></svg> ';
 
 function switchLang(lang) {
   const t = translations[lang];
@@ -1443,7 +1506,7 @@ function switchLang(lang) {
 
   document.querySelector('#projects h2').textContent = t.projectHeading;
   document.querySelector('.filename').textContent = t.projectFilename;
-  document.querySelector('.attach-head .stamp').textContent = t.projectStamp;  // <-- TAMBAHAN
+  document.querySelector('.attach-head .stamp').textContent = t.projectStamp;
   document.querySelector('.attach-body p').textContent = t.projectDesc;
   const githubLink = document.querySelector('.attach-links a');
   if(githubLink) {
@@ -1473,10 +1536,10 @@ function switchLang(lang) {
   document.querySelector('.reveal-song').textContent = t.revealSong;
   document.querySelector('.reveal-close-text').textContent = t.revealClose;
 
-  const spotifyLink = document.querySelector('.spotify-link');
-  const appleLink = document.querySelector('.apple-link');
-  if(spotifyLink) spotifyLink.innerHTML = spotifySVG + t.spotifyText;
-  if(appleLink) appleLink.innerHTML = appleSVG + t.appleText;
+  const spotifySticker = document.querySelector('.spotify-sticker .sticker-label');
+  const appleSticker = document.querySelector('.apple-sticker .sticker-label');
+  if(spotifySticker) spotifySticker.textContent = t.spotifyLabel;
+  if(appleSticker) appleSticker.textContent = t.appleLabel;
 
   document.querySelector('.night-card .card-title').textContent = t.nightTitle;
   document.querySelector('.night-card .card-sub').textContent = t.nightSub;
@@ -1516,4 +1579,4 @@ switchLang(savedLang);
 </script>
 
 </body>
-</html>
+</html></html>
