@@ -1196,6 +1196,7 @@ const translations = {
 
     projectHeading: 'Lampiran karya',
     projectFilename: 'Sistem Absensi',
+    projectStamp: 'SELESAI',                // <-- TAMBAHAN
     projectDesc: 'Sistem absensi berbasis web, dipakai buat pencatatan kehadiran harian lengkap sama rekap laporan buat staff. Sekarang dipakai sama PT Cipta Nirmala(RS SEMEN GRESIK) lho!',
     githubLinkText: 'Lihat di GitHub',
 
@@ -1298,6 +1299,7 @@ const translations = {
 
     projectHeading: 'Project attachments',
     projectFilename: 'Attendance System',
+    projectStamp: 'DONE',                   // <-- TAMBAHAN
     projectDesc: 'A web-based attendance system, used for daily attendance recording along with summary reports for staff. It is currently used by PT Cipta Nirmala (RS SEMEN GRESIK)!',
     githubLinkText: 'View on GitHub',
 
@@ -1441,6 +1443,7 @@ function switchLang(lang) {
 
   document.querySelector('#projects h2').textContent = t.projectHeading;
   document.querySelector('.filename').textContent = t.projectFilename;
+  document.querySelector('.attach-head .stamp').textContent = t.projectStamp;  // <-- TAMBAHAN
   document.querySelector('.attach-body p').textContent = t.projectDesc;
   const githubLink = document.querySelector('.attach-links a');
   if(githubLink) {
