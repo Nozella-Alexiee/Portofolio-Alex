@@ -923,11 +923,15 @@
     </div>
   </section>
 
+  <!-- ===== SERTIFIKAT (DIPISAH IDX & ASEAN) ===== -->
   <section id="cert">
     <span class="tab-label">Sertifikat</span>
     <div class="doodle doodle-star" style="top:8px; right:-4px; width:20px; height:20px; color:var(--rose); transform:rotate(13deg);" aria-hidden="true"><svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M20 4 L23 16 L34 14 L25 22 L28 34 L20 26 L11 34 L15 22 L5 14 L17 16 Z"/><path d="M19 5 L22 17 L33 15" opacity="0.55"/><path d="M5 9 L9 12" opacity="0.4"/></svg></div>
     <h2>Sertifikat ditempel</h2>
-    <div class="cert-card">
+
+    <!-- BAGIAN 1: IDX -->
+    <h3 class="cert-divider" style="font-family:var(--font-hand); font-weight:400; font-size:16px; color:var(--ink-soft); text-align:center; margin:10px 0 20px 0; letter-spacing:2px;">— IDX —</h3>
+    <div class="cert-card" style="margin-bottom: 32px;">
       <div class="washi-top"></div>
       <img src="images/logo-idx.jpg" alt="Logo IDX - Indonesia Stock Exchange" style="width:34px;height:34px;object-fit:contain;margin:0 auto 6px;display:block;">
       <div class="cert-title">Sekolah Pasar Modal</div>
@@ -938,6 +942,43 @@
       <img class="cert-photo" src="images/sertifikat-pasar-modal.jpg" alt="Sertifikat Sekolah Pasar Modal">
       <div class="cert-stamp">LULUS!</div>
       <div class="cert-note">Diselenggarakan oleh PT Bursa Efek Indonesia — 18 Mei 2026, Surabaya.</div>
+    </div>
+
+    <!-- BAGIAN 2: ASEAN FOUNDATION -->
+    <h3 class="cert-divider" style="font-family:var(--font-hand); font-weight:400; font-size:16px; color:var(--sky); text-align:center; margin:10px 0 20px 0; letter-spacing:2px;">— ASEAN Foundation —</h3>
+    
+    <!-- Lembar 1 ASEAN (Module / Tabel) -->
+    <div class="cert-card" style="margin-bottom: 24px;" id="cert-asean-module">
+      <div class="washi-top"></div>
+      <div style="display:flex; justify-content:center; align-items:center; gap:12px; margin:0 auto 8px;">
+        <img src="images/logo-ai-ready-asean.png" alt="AI Ready ASEAN" style="height:32px; object-fit:contain;">
+        <img src="images/asian-foundation.png" alt="ASEAN Foundation" style="height:32px; object-fit:contain;">
+      </div>
+      <div class="cert-title">AI Ready ASEAN Module</div>
+      <div class="cert-sub">Sertifikat Kelulusan</div>
+      <div class="cert-row"><span class="lbl">Pemilik</span><span>Ahmad Zulfikri Alexander Disyin</span></div>
+      <div class="cert-row"><span class="lbl">Program</span><span>15 AI Learning Modules</span></div>
+      <div class="cert-row"><span class="lbl">Tanggal</span><span>July 26, 2026</span></div>
+      <img class="cert-photo" src="images/sertifikat-ai-module.jpg" alt="Sertifikat AI Module">
+      <div class="cert-stamp" style="border-color:var(--sky); color:var(--sky);">COMPLETED!</div>
+      <div class="cert-note">Diselenggarakan oleh ASEAN Foundation — 26 Juli 2026.</div>
+    </div>
+
+    <!-- Lembar 2 ASEAN (Certificate / Piagam) -->
+    <div class="cert-card" id="cert-asean-cert">
+      <div class="washi-top"></div>
+      <div style="display:flex; justify-content:center; align-items:center; gap:12px; margin:0 auto 8px;">
+        <img src="images/logo-ai-ready-asean.png" alt="AI Ready ASEAN" style="height:32px; object-fit:contain;">
+        <img src="images/asian-foundation.png" alt="ASEAN Foundation" style="height:32px; object-fit:contain;">
+      </div>
+      <div class="cert-title">AI Ready ASEAN Certificate</div>
+      <div class="cert-sub">Certificate of Completion</div>
+      <div class="cert-row"><span class="lbl">Pemilik</span><span>Ahmad Zulfikri Alexander Disyin</span></div>
+      <div class="cert-row"><span class="lbl">Program</span><span>AI Learning Modules (12 Hours)</span></div>
+      <div class="cert-row"><span class="lbl">Tanggal</span><span>July 26, 2026</span></div>
+      <img class="cert-photo" src="images/sertifikat-ai-cert.jpg" alt="Sertifikat AI Ready ASEAN">
+      <div class="cert-stamp" style="border-color:var(--mint); color:var(--mint);">CERTIFIED!</div>
+      <div class="cert-note">Diselenggarakan oleh ASEAN Foundation — 26 Juli 2026.</div>
     </div>
   </section>
 
@@ -1386,6 +1427,10 @@ const translations = {
     githubLinkText: 'Lihat di GitHub',
 
     certHeading: 'Sertifikat ditempel',
+    certDividerIdx: '— IDX —',
+    certDividerAsean: '— ASEAN Foundation —',
+    
+    // IDX
     certTitle: 'Sekolah Pasar Modal',
     certSub: 'Sertifikat Kelulusan',
     certOwnerLabel: 'Pemilik',
@@ -1393,6 +1438,24 @@ const translations = {
     certCategoryLabel: 'Kategori',
     certStamp: 'LULUS!',
     certNote: 'Diselenggarakan oleh PT Bursa Efek Indonesia — 18 Mei 2026, Surabaya.',
+
+    // ASEAN Module
+    certAseanModTitle: 'AI Ready ASEAN Module',
+    certAseanModSub: 'Sertifikat Kelulusan',
+    certAseanModProgramLabel: 'Program',
+    certAseanModDateLabel: 'Tanggal',
+    certAseanModStamp: 'COMPLETED!',
+    certAseanModNote: 'Diselenggarakan oleh ASEAN Foundation — 26 Juli 2026.',
+    certAseanModProgram: '15 AI Learning Modules',
+
+    // ASEAN Certificate
+    certAseanCertTitle: 'AI Ready ASEAN Certificate',
+    certAseanCertSub: 'Certificate of Completion',
+    certAseanCertProgramLabel: 'Program',
+    certAseanCertDateLabel: 'Tanggal',
+    certAseanCertStamp: 'CERTIFIED!',
+    certAseanCertNote: 'Diselenggarakan oleh ASEAN Foundation — 26 Juli 2026.',
+    certAseanCertProgram: 'AI Learning Modules (12 Hours)',
 
     hobbyHeading: 'Yang diputer pas nugas',
     nbTitle: 'Playlist Notes',
@@ -1501,6 +1564,10 @@ const translations = {
     githubLinkText: 'View on GitHub',
 
     certHeading: 'Certificate attached',
+    certDividerIdx: '— IDX —',
+    certDividerAsean: '— ASEAN Foundation —',
+
+    // IDX
     certTitle: 'Capital Market School',
     certSub: 'Certificate of Completion',
     certOwnerLabel: 'Owner',
@@ -1508,6 +1575,24 @@ const translations = {
     certCategoryLabel: 'Category',
     certStamp: 'PASSED!',
     certNote: 'Organized by Indonesia Stock Exchange — May 18, 2026, Surabaya.',
+
+    // ASEAN Module
+    certAseanModTitle: 'AI Ready ASEAN Module',
+    certAseanModSub: 'Certificate of Completion',
+    certAseanModProgramLabel: 'Program',
+    certAseanModDateLabel: 'Date',
+    certAseanModStamp: 'COMPLETED!',
+    certAseanModNote: 'Organized by ASEAN Foundation — July 26, 2026.',
+    certAseanModProgram: '15 AI Learning Modules',
+
+    // ASEAN Certificate
+    certAseanCertTitle: 'AI Ready ASEAN Certificate',
+    certAseanCertSub: 'Certificate of Completion',
+    certAseanCertProgramLabel: 'Program',
+    certAseanCertDateLabel: 'Date',
+    certAseanCertStamp: 'CERTIFIED!',
+    certAseanCertNote: 'Organized by ASEAN Foundation — July 26, 2026.',
+    certAseanCertProgram: 'AI Learning Modules (12 Hours)',
 
     hobbyHeading: 'What\'s playing while I work',
     nbTitle: 'Playlist Notes',
@@ -1661,16 +1746,52 @@ function switchLang(lang) {
   }
 
   document.querySelector('#cert h2').textContent = t.certHeading;
-  document.querySelector('.cert-title').textContent = t.certTitle;
-  document.querySelector('.cert-sub').textContent = t.certSub;
-  const certRows = document.querySelectorAll('.cert-row');
-  if(certRows.length >= 3){
-    certRows[0].querySelector('.lbl').textContent = t.certOwnerLabel;
-    certRows[1].querySelector('.lbl').textContent = t.certProgramLabel;
-    certRows[2].querySelector('.lbl').textContent = t.certCategoryLabel;
+  const dividers = document.querySelectorAll('#cert .cert-divider');
+  if(dividers.length >= 2){
+    dividers[0].textContent = t.certDividerIdx;
+    dividers[1].textContent = t.certDividerAsean;
   }
-  document.querySelector('.cert-stamp').textContent = t.certStamp;
-  document.querySelector('.cert-note').textContent = t.certNote;
+
+  // Update IDX
+  const certIdxTitle = document.querySelector('#cert .cert-card:first-child .cert-title');
+  if(certIdxTitle) certIdxTitle.textContent = t.certTitle;
+  document.querySelector('#cert .cert-card:first-child .cert-sub').textContent = t.certSub;
+  const certRows1 = document.querySelectorAll('#cert .cert-card:first-child .cert-row');
+  if(certRows1.length >= 3){
+    certRows1[0].querySelector('.lbl').textContent = t.certOwnerLabel;
+    certRows1[1].querySelector('.lbl').textContent = t.certProgramLabel;
+    certRows1[2].querySelector('.lbl').textContent = t.certCategoryLabel;
+  }
+  document.querySelector('#cert .cert-card:first-child .cert-stamp').textContent = t.certStamp;
+  document.querySelector('#cert .cert-card:first-child .cert-note').textContent = t.certNote;
+
+  // Update ASEAN MODULE
+  if(document.getElementById('cert-asean-module')){
+    document.querySelector('#cert-asean-module .cert-title').textContent = t.certAseanModTitle;
+    document.querySelector('#cert-asean-module .cert-sub').textContent = t.certAseanModSub;
+    const aseanModRows = document.querySelectorAll('#cert-asean-module .cert-row');
+    if(aseanModRows.length >= 3){
+      aseanModRows[1].querySelector('.lbl').textContent = t.certAseanModProgramLabel;
+      aseanModRows[1].querySelector('span:last-child').textContent = t.certAseanModProgram;
+      aseanModRows[2].querySelector('.lbl').textContent = t.certAseanModDateLabel;
+    }
+    document.querySelector('#cert-asean-module .cert-stamp').textContent = t.certAseanModStamp;
+    document.querySelector('#cert-asean-module .cert-note').textContent = t.certAseanModNote;
+  }
+
+  // Update ASEAN CERTIFICATE
+  if(document.getElementById('cert-asean-cert')){
+    document.querySelector('#cert-asean-cert .cert-title').textContent = t.certAseanCertTitle;
+    document.querySelector('#cert-asean-cert .cert-sub').textContent = t.certAseanCertSub;
+    const aseanCertRows = document.querySelectorAll('#cert-asean-cert .cert-row');
+    if(aseanCertRows.length >= 3){
+      aseanCertRows[1].querySelector('.lbl').textContent = t.certAseanCertProgramLabel;
+      aseanCertRows[1].querySelector('span:last-child').textContent = t.certAseanCertProgram;
+      aseanCertRows[2].querySelector('.lbl').textContent = t.certAseanCertDateLabel;
+    }
+    document.querySelector('#cert-asean-cert .cert-stamp').textContent = t.certAseanCertStamp;
+    document.querySelector('#cert-asean-cert .cert-note').textContent = t.certAseanCertNote;
+  }
 
   document.querySelector('#hobi h2').textContent = t.hobbyHeading;
   document.querySelector('.notebook-page .nb-title').textContent = t.nbTitle;
