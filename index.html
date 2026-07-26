@@ -87,6 +87,7 @@
   .side-tabs a:nth-child(5){background:var(--rose);}
   .side-tabs a:nth-child(6){background:var(--mint);}
   .side-tabs a:nth-child(7){background:var(--sky);}
+  .side-tabs a:nth-child(8){background:var(--peach);}
   @media (max-width:780px){
     .side-tabs{
       position:sticky; top:0; flex-direction:row; right:auto; left:0;
@@ -109,6 +110,7 @@
   #about .tab-label{background:var(--mint);}
   #perjalanan .tab-label{background:var(--sky);}
   #skills .tab-label{background:var(--peach);}
+  #dev-env .tab-label{background:var(--lilac);}
   #projects .tab-label{background:var(--lilac);}
   #cert .tab-label{background:var(--rose);}
   #hobi .tab-label{background:var(--mint);}
@@ -442,7 +444,7 @@
     box-shadow: 3px 3px 8px rgba(44,39,64,0.2);
     border: 2px dashed;
     transition: transform 0.2s ease, box-shadow 0.2s ease;
-    background: #FBF8F1;  /* WARNA KERTAS BINDER */
+    background: #FBF8F1;
     color: var(--color);
     position: relative;
     margin: 5px;
@@ -622,6 +624,59 @@
     .paperclip{transition:none !important;}
     .side-tabs a{transition:none !important;}
   }
+
+  /* ---------- LINGKUNGAN DEVELOPMENT (LEDGER) ---------- */
+  .ledger-card {
+    background:#fff;
+    border:2px dashed var(--ink-soft);
+    border-radius:12px;
+    padding:22px 24px;
+    max-width:560px;
+    position:relative;
+    box-shadow:0 8px 18px -8px rgba(44,39,64,0.15);
+    transform:rotate(-0.3deg);
+  }
+  .ledger-item {
+    display:flex;
+    align-items:flex-start;
+    gap:14px;
+    padding:13px 0;
+    border-bottom:1px dotted var(--ring);
+  }
+  .ledger-item:last-child { border-bottom:none; }
+  .ledger-icon {
+    flex-shrink:0;
+    width:28px;
+    height:28px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    color:var(--sky);
+  }
+  .ledger-detail { flex:1; }
+  .ledger-label {
+    font-family:var(--font-mono);
+    font-size:10.5px;
+    font-weight:700;
+    text-transform:uppercase;
+    letter-spacing:0.06em;
+    color:var(--ink-soft);
+    margin-bottom:2px;
+  }
+  .ledger-value {
+    font-family:var(--font-mono);
+    font-size:13px;
+    font-weight:500;
+    color:var(--ink);
+    line-height:1.5;
+  }
+  .ledger-desc {
+    margin-top:18px;
+    font-family:var(--font-body);
+    font-size:13.5px;
+    color:var(--ink-soft);
+    line-height:1.7;
+  }
 </style>
 </head>
 <body>
@@ -648,6 +703,7 @@
   <a href="#about">Profil</a>
   <a href="#perjalanan">Perjalanan</a>
   <a href="#skills">Keahlian</a>
+  <a href="#dev-env">Lingkungan</a>
   <a href="#projects">Proyek</a>
   <a href="#cert">Sertifikat</a>
   <a href="#hobi">Hobi</a>
@@ -768,6 +824,56 @@
           <div class="calc-row calc-final"><span>Estimasi Akhir</span><span id="calcOutAkhir">Rp0</span></div>
         </div>
         <div class="calc-note">*Simulasi sederhana pakai bunga majemuk bulanan, cuma buat ilustrasi belajar</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== LINGKUNGAN DEVELOPMENT ===== -->
+  <section id="dev-env">
+    <span class="tab-label">Lingkungan</span>
+    <div style="position:relative;">
+      <div class="doodle doodle-star" style="top:-28px; right:10px; color:var(--lilac); transform:rotate(5deg);" aria-hidden="true"><svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M20 4 L24 15 L36 14 L26 22 L30 34 L20 26 L10 34 L14 22 L4 14 L16 15 Z"/></svg></div>
+      <h2>Lingkungan Development</h2>
+    </div>
+    <div class="ledger-card">
+      <div class="ledger-item">
+        <div class="ledger-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+        </div>
+        <div class="ledger-detail">
+          <div class="ledger-label">Perangkat</div>
+          <div class="ledger-value">RedmiBook 15</div>
+        </div>
+      </div>
+      <div class="ledger-item">
+        <div class="ledger-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10"/><path d="M12 2a15.3 15.3 0 0 0-4 10 15.3 15.3 0 0 0 4 10"/></svg>
+        </div>
+        <div class="ledger-detail">
+          <div class="ledger-label">Sistem Operasi</div>
+          <div class="ledger-value">Arch Linux + Hyprland</div>
+        </div>
+      </div>
+      <div class="ledger-item">
+        <div class="ledger-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+        </div>
+        <div class="ledger-detail">
+          <div class="ledger-label">Tools Development</div>
+          <div class="ledger-value">VS Code, Git, Terminal (Kitty)</div>
+        </div>
+      </div>
+      <div class="ledger-item">
+        <div class="ledger-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/></svg>
+        </div>
+        <div class="ledger-detail">
+          <div class="ledger-label">Backend Stack</div>
+          <div class="ledger-value">Apache, PHP, MariaDB, Laravel</div>
+        </div>
+      </div>
+      <div class="ledger-desc">
+        Saya menggunakan Arch Linux sebagai lingkungan development sehari-hari.
       </div>
     </div>
   </section>
@@ -1204,10 +1310,11 @@
 <script>
 const translations = {
   id: {
-    tab1: 'Profil', tab2: 'Perjalanan', tab3: 'Keahlian', tab4: 'Proyek', tab5: 'Sertifikat', tab6: 'Hobi', tab7: 'Kontak',
+    tab1: 'Profil', tab2: 'Perjalanan', tab3: 'Keahlian', tab4: 'Lingkungan', tab5: 'Proyek', tab6: 'Sertifikat', tab7: 'Hobi', tab8: 'Kontak',
     tabLabelAbout: 'Profil',
     tabLabelJourney: 'Perjalanan',
     tabLabelSkills: 'Keahlian',
+    tabLabelDevEnv: 'Lingkungan',
     tabLabelProjects: 'Proyek',
     tabLabelCert: 'Sertifikat',
     tabLabelHobi: 'Hobi',
@@ -1261,6 +1368,17 @@ const translations = {
     calcOutAkhir: 'Estimasi Akhir',
     calcNote: '*Simulasi sederhana pakai bunga majemuk bulanan, cuma buat ilustrasi belajar',
 
+    devEnvHeading: 'Lingkungan Development',
+    devEnvDesc: 'Saya menggunakan Arch Linux sebagai lingkungan development sehari-hari.',
+    devMachineLabel: 'Perangkat',
+    devMachineValue: 'RedmiBook 15',
+    devOsLabel: 'Sistem Operasi',
+    devOsValue: 'Arch Linux + Hyprland',
+    devToolsLabel: 'Tools Development',
+    devToolsValue: 'VS Code, Git, Terminal (Kitty)',
+    devBackendLabel: 'Backend Stack',
+    devBackendValue: 'Apache, PHP, MariaDB, Laravel',
+
     projectHeading: 'Lampiran karya',
     projectFilename: 'Sistem Absensi',
     projectStamp: 'SELESAI',
@@ -1307,10 +1425,11 @@ const translations = {
     footer: '© 2026 Ahmad Zulfikri Alexander Disyin — XI RPL 1'
   },
   en: {
-    tab1: 'Profile', tab2: 'Journey', tab3: 'Skills', tab4: 'Projects', tab5: 'Certificate', tab6: 'Hobbies', tab7: 'Contact',
+    tab1: 'Profile', tab2: 'Journey', tab3: 'Skills', tab4: 'Environment', tab5: 'Projects', tab6: 'Certificate', tab7: 'Hobbies', tab8: 'Contact',
     tabLabelAbout: 'Profile',
     tabLabelJourney: 'Journey',
     tabLabelSkills: 'Skills',
+    tabLabelDevEnv: 'Environment',
     tabLabelProjects: 'Projects',
     tabLabelCert: 'Certificate',
     tabLabelHobi: 'Hobbies',
@@ -1364,6 +1483,17 @@ const translations = {
     calcOutAkhir: 'Estimated Final',
     calcNote: '*Simple simulation using monthly compound interest, for educational illustration only',
 
+    devEnvHeading: 'Development Environment',
+    devEnvDesc: 'I use Arch Linux as my daily development environment.',
+    devMachineLabel: 'Machine',
+    devMachineValue: 'RedmiBook 15',
+    devOsLabel: 'Operating System',
+    devOsValue: 'Arch Linux + Hyprland',
+    devToolsLabel: 'Development Tools',
+    devToolsValue: 'VS Code, Git, Terminal (Kitty)',
+    devBackendLabel: 'Backend Stack',
+    devBackendValue: 'Apache, PHP, MariaDB, Laravel',
+
     projectHeading: 'Project attachments',
     projectFilename: 'Attendance System',
     projectStamp: 'DONE',
@@ -1415,7 +1545,7 @@ function switchLang(lang) {
   const t = translations[lang];
 
   const navLinks = document.querySelectorAll('.side-tabs a');
-  if(navLinks.length >= 7){
+  if(navLinks.length >= 8){
     navLinks[0].textContent = t.tab1;
     navLinks[1].textContent = t.tab2;
     navLinks[2].textContent = t.tab3;
@@ -1423,11 +1553,13 @@ function switchLang(lang) {
     navLinks[4].textContent = t.tab5;
     navLinks[5].textContent = t.tab6;
     navLinks[6].textContent = t.tab7;
+    navLinks[7].textContent = t.tab8;
   }
 
   document.querySelector('#about .tab-label').textContent = t.tabLabelAbout;
   document.querySelector('#perjalanan .tab-label').textContent = t.tabLabelJourney;
   document.querySelector('#skills .tab-label').textContent = t.tabLabelSkills;
+  document.querySelector('#dev-env .tab-label').textContent = t.tabLabelDevEnv;
   document.querySelector('#projects .tab-label').textContent = t.tabLabelProjects;
   document.querySelector('#cert .tab-label').textContent = t.tabLabelCert;
   document.querySelector('#hobi .tab-label').textContent = t.tabLabelHobi;
@@ -1504,6 +1636,20 @@ function switchLang(lang) {
     calcRows[2].children[0].textContent = t.calcOutAkhir;
   }
   document.querySelector('.calc-note').textContent = t.calcNote;
+
+  document.querySelector('#dev-env h2').textContent = t.devEnvHeading;
+  document.querySelector('#dev-env .ledger-desc').textContent = t.devEnvDesc;
+  const ledgerItems = document.querySelectorAll('#dev-env .ledger-item');
+  if(ledgerItems.length >= 4){
+    ledgerItems[0].querySelector('.ledger-label').textContent = t.devMachineLabel;
+    ledgerItems[0].querySelector('.ledger-value').textContent = t.devMachineValue;
+    ledgerItems[1].querySelector('.ledger-label').textContent = t.devOsLabel;
+    ledgerItems[1].querySelector('.ledger-value').textContent = t.devOsValue;
+    ledgerItems[2].querySelector('.ledger-label').textContent = t.devToolsLabel;
+    ledgerItems[2].querySelector('.ledger-value').textContent = t.devToolsValue;
+    ledgerItems[3].querySelector('.ledger-label').textContent = t.devBackendLabel;
+    ledgerItems[3].querySelector('.ledger-value').textContent = t.devBackendValue;
+  }
 
   document.querySelector('#projects h2').textContent = t.projectHeading;
   document.querySelector('.filename').textContent = t.projectFilename;
