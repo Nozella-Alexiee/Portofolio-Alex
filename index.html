@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="id">
 <head>
@@ -923,7 +924,7 @@
     </div>
   </section>
 
-  <!-- ===== SERTIFIKAT (URUTAN: IDX -> ASEAN -> PKL) ===== -->
+  <!-- ===== SERTIFIKAT ===== -->
   <section id="cert">
     <span class="tab-label">Sertifikat</span>
     <div class="doodle doodle-star" style="top:8px; right:-4px; width:20px; height:20px; color:var(--rose); transform:rotate(13deg);" aria-hidden="true"><svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M20 4 L23 16 L34 14 L25 22 L28 34 L20 26 L11 34 L15 22 L5 14 L17 16 Z"/><path d="M19 5 L22 17 L33 15" opacity="0.55"/><path d="M5 9 L9 12" opacity="0.4"/></svg></div>
@@ -957,7 +958,7 @@
       <div class="cert-row"><span class="lbl">Pemilik</span><span>Ahmad Zulfikri Alexander Disyin</span></div>
       <div class="cert-row"><span class="lbl">Program</span><span>15 AI Learning Modules (12 Hours)</span></div>
       <div class="cert-row"><span class="lbl">Tanggal</span><span>July 26, 2026</span></div>
-      <img class="cert-photo" src="images/sertifikat-ai-ready-asean.jpg" alt="Sertifikat AI Ready ASEAN">
+      <img class="cert-photo" src="images/sertifikat-ai-cert.jpg" alt="Sertifikat AI Ready ASEAN">
       <div class="cert-stamp" style="border-color:var(--mint); color:var(--mint);">LULUS!</div>
       <div class="cert-note">Menuntaskan 15 modul pembelajaran AI. Diselenggarakan oleh ASEAN Foundation, 26 Juli 2026.</div>
     </div>
@@ -966,13 +967,13 @@
     <h3 class="cert-divider" style="font-family:var(--font-hand); font-weight:400; font-size:16px; color:var(--mint); text-align:center; margin:10px 0 20px 0; letter-spacing:2px;" id="cert-divider-pkl">— PKL —</h3>
     <div class="cert-card" id="cert-pkl">
       <div class="washi-top"></div>
-      <img src="images/logo-nale.png" alt="PT Nale System Integrator" style="height:32px; object-fit:contain; margin:0 auto 8px; display:block;">
+      <img src="images/IMG_9751_webp" alt="PT Nale System Integrator" style="height:32px; object-fit:contain; margin:0 auto 8px; display:block;">
       <div class="cert-title">Sertifikat Praktek Kerja Lapangan (PKL)</div>
       <div class="cert-sub">Sertifikat Kelulusan</div>
       <div class="cert-row"><span class="lbl">Pemilik</span><span>A. Zulfikri Alexander D</span></div>
       <div class="cert-row"><span class="lbl">Perusahaan</span><span>PT Nale System Integrator</span></div>
       <div class="cert-row"><span class="lbl">Periode</span><span>01 Jan 2026 - 30 Jun 2026</span></div>
-      <img class="cert-photo" src="images/sertifikat-pkl.jpg" alt="Sertifikat PKL Nale">
+      <img class="cert-photo" src="images/IMG_9750.webp" alt="Sertifikat PKL Nale">
       <div class="cert-stamp" style="border-color:var(--sky); color:var(--sky);">BAIK</div>
       <div class="cert-note">Menjalankan Praktik Kerja Lapangan dengan hasil BAIK. Malang, 30 Juni 2026.</div>
     </div>
@@ -1441,6 +1442,7 @@ const translations = {
     certAseanSub: 'Program Belajar AI',
     certAseanProgram: '15 AI Learning Modules (12 Hours)',
     certAseanDate: 'July 26, 2026',
+    certAseanDateLabel: 'Tanggal',
     certAseanStamp: 'LULUS!',
     certAseanNote: 'Menuntaskan 15 modul pembelajaran AI. Diselenggarakan oleh ASEAN Foundation, 26 Juli 2026.',
 
@@ -1449,7 +1451,9 @@ const translations = {
     certPklSub: 'Sertifikat Kelulusan',
     certPklOwner: 'A. Zulfikri Alexander D',
     certPklCompany: 'PT Nale System Integrator',
+    certPklCompanyLabel: 'Perusahaan',
     certPklPeriod: '01 Jan 2026 - 30 Jun 2026',
+    certPklPeriodLabel: 'Periode',
     certPklStamp: 'BAIK',
     certPklNote: 'Menjalankan Praktik Kerja Lapangan dengan hasil BAIK. Malang, 30 Juni 2026.',
 
@@ -1578,6 +1582,7 @@ const translations = {
     certAseanSub: 'AI Learning Program',
     certAseanProgram: '15 AI Learning Modules (12 Hours)',
     certAseanDate: 'July 26, 2026',
+    certAseanDateLabel: 'Date',
     certAseanStamp: 'COMPLETED!',
     certAseanNote: 'Completed 15 AI learning modules. Organized by ASEAN Foundation, July 26, 2026.',
 
@@ -1586,7 +1591,9 @@ const translations = {
     certPklSub: 'Certificate of Completion',
     certPklOwner: 'A. Zulfikri Alexander D',
     certPklCompany: 'PT Nale System Integrator',
+    certPklCompanyLabel: 'Company',
     certPklPeriod: 'Jan 1, 2026 - Jun 30, 2026',
+    certPklPeriodLabel: 'Period',
     certPklStamp: 'GOOD',
     certPklNote: 'Completed Industrial Work Practice with GOOD results. Malang, June 30, 2026.',
 
@@ -1765,14 +1772,20 @@ function switchLang(lang) {
     document.querySelector('#cert-idx .cert-note').textContent = t.certNote;
   }
 
-  // Update ASEAN (Sudah digabung jadi 1 kartu)
+  // Update ASEAN
   if(document.getElementById('cert-asean')){
     document.querySelector('#cert-asean .cert-title').textContent = t.certAseanTitle;
     document.querySelector('#cert-asean .cert-sub').textContent = t.certAseanSub;
     const aseanRows = document.querySelectorAll('#cert-asean .cert-row');
     if(aseanRows.length >= 3){
-      aseanRows[1].querySelector('.lbl').textContent = t.certAseanProgram;
-      aseanRows[2].querySelector('.lbl').textContent = t.certAseanDate;
+      aseanRows[0].querySelector('.lbl').textContent = t.certOwnerLabel;
+      aseanRows[0].querySelector('span:last-child').textContent = 'Ahmad Zulfikri Alexander Disyin';
+
+      aseanRows[1].querySelector('.lbl').textContent = t.certProgramLabel;
+      aseanRows[1].querySelector('span:last-child').textContent = t.certAseanProgram;
+
+      aseanRows[2].querySelector('.lbl').textContent = t.certAseanDateLabel;
+      aseanRows[2].querySelector('span:last-child').textContent = t.certAseanDate;
     }
     document.querySelector('#cert-asean .cert-stamp').textContent = t.certAseanStamp;
     document.querySelector('#cert-asean .cert-note').textContent = t.certAseanNote;
@@ -1784,9 +1797,14 @@ function switchLang(lang) {
     document.querySelector('#cert-pkl .cert-sub').textContent = t.certPklSub;
     const pklRows = document.querySelectorAll('#cert-pkl .cert-row');
     if(pklRows.length >= 3){
-      pklRows[0].querySelector('.lbl').textContent = t.certPklOwner;
-      pklRows[1].querySelector('.lbl').textContent = t.certPklCompany;
-      pklRows[2].querySelector('.lbl').textContent = t.certPklPeriod;
+      pklRows[0].querySelector('.lbl').textContent = t.certOwnerLabel;
+      pklRows[0].querySelector('span:last-child').textContent = t.certPklOwner;
+
+      pklRows[1].querySelector('.lbl').textContent = t.certPklCompanyLabel;
+      pklRows[1].querySelector('span:last-child').textContent = t.certPklCompany;
+
+      pklRows[2].querySelector('.lbl').textContent = t.certPklPeriodLabel;
+      pklRows[2].querySelector('span:last-child').textContent = t.certPklPeriod;
     }
     document.querySelector('#cert-pkl .cert-stamp').textContent = t.certPklStamp;
     document.querySelector('#cert-pkl .cert-note').textContent = t.certPklNote;
@@ -1843,10 +1861,6 @@ langInputs.forEach(input => {
 const savedLang = localStorage.getItem('lang') || 'id';
 document.querySelector(`.lang-option input[value="${savedLang}"]`).checked = true;
 switchLang(savedLang);
-</script>
-
-</body>
-</html>switchLang(savedLang);
 </script>
 
 </body>
