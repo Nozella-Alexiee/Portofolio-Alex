@@ -493,7 +493,6 @@
   .taped-photo.snap img{width:100%; height:100%; object-fit:cover; object-position:top; display:block;}
   .taped-photo.snap .caption{display:block; margin-top:6px;}
   .taped-photo:nth-child(4){transform:rotate(2deg);}
-  .taped-photo.soon .frame{aspect-ratio:16/10; background:repeating-linear-gradient(45deg, transparent 0 6px, rgba(183,178,206,.14) 6px 12px);}
   @media (max-width:460px){ .taped-photo.snap{width:calc(50% - 11px);} .taped-photo.snap.tall{width:calc(33% - 15px);} }
 
   /* ---------- PROYEK: ORVELLA ---------- */
@@ -1331,8 +1330,9 @@
       <svg class="paperclip" viewBox="0 0 26 44" fill="none" stroke="#736C8A" stroke-width="2.5" aria-hidden="true"><path d="M6 12v20a7 7 0 0 0 14 0V9a4.5 4.5 0 0 0-9 0v20a2 2 0 0 0 4 0V13"/></svg>
       <div class="attach-head"><span class="filename">E-Pilketos</span><span class="stamp sky">v2.0</span></div>
       <div class="photo-row">
-        <div class="taped-photo soon"><div class="tape"></div><div class="frame" data-i18n="pilSoon1">screenshot bilik suara menyusul</div><div class="caption">bilik.png</div></div>
-        <div class="taped-photo soon"><div class="tape"></div><div class="frame" data-i18n="pilSoon2">screenshot quick count menyusul</div><div class="caption">hasil.png</div></div>
+        <button type="button" class="taped-photo snap" data-full="images/proyek/epilketos-bilik.webp"><span class="tape"></span><span class="frame"><img src="images/proyek/epilketos-bilik.webp" alt="Bilik identifikasi wajah E-Pilketos (data contoh)" loading="lazy"></span><span class="caption">bilik.png</span></button>
+        <button type="button" class="taped-photo snap" data-full="images/proyek/epilketos-surat-suara.webp"><span class="tape"></span><span class="frame"><img src="images/proyek/epilketos-surat-suara.webp" alt="Surat suara digital E-Pilketos dengan kandidat contoh" loading="lazy"></span><span class="caption">surat-suara.png</span></button>
+        <button type="button" class="taped-photo snap" data-full="images/proyek/epilketos-hasil.webp"><span class="tape"></span><span class="frame"><img src="images/proyek/epilketos-hasil.webp" alt="Quick count perolehan suara E-Pilketos (data contoh)" loading="lazy"></span><span class="caption">hasil.png</span></button>
       </div>
       <div class="attach-body"><p data-i18n="pilDesc">Pemilihan ketua OSIS digital di SMK Semen Gresik. Pemilih diverifikasi lewat pengenalan wajah langsung di browser, suara disimpan tanpa jejak siapa yang memilih, dan hasil quick count langsung jadi berita acara siap cetak. Jalan sebagai PWA mode kiosk di tablet.</p></div>
       <div class="tech-tags"><span class="tech-tag">PHP 8.1</span><span class="tech-tag">MariaDB</span><span class="tech-tag">face-api.js</span><span class="tech-tag">PWA</span></div>
@@ -2327,7 +2327,6 @@ const translations = {
     orvSticky: 'kodenya jalan beneran, bukan cuma dicocokkan',
     pjOthers: 'Lampiran lainnya',
     pilDesc: 'Pemilihan ketua OSIS digital di SMK Semen Gresik. Pemilih diverifikasi lewat pengenalan wajah langsung di browser, suara disimpan tanpa jejak siapa yang memilih, dan hasil quick count langsung jadi berita acara siap cetak. Jalan sebagai PWA mode kiosk di tablet.',
-    pilSoon1: 'screenshot bilik suara menyusul', pilSoon2: 'screenshot quick count menyusul',
     absName: 'Sistem Absensi', absStamp: 'DIPAKAI',
     absDesc: 'Sistem absensi berbasis web, dipakai buat pencatatan kehadiran harian lengkap sama rekap laporan buat staff. Sekarang dipakai sama PT Cipta Nirmala (RS SEMEN GRESIK) lho!',
     githubLinkText: 'Lihat di GitHub',
@@ -2496,7 +2495,6 @@ const translations = {
     orvSticky: 'your code actually runs, it is not just pattern-matched',
     pjOthers: 'More attachments',
     pilDesc: 'Digital student council elections at SMK Semen Gresik. Voters are verified by face recognition right in the browser, ballots are stored with no trace of who cast them, and the quick count turns straight into a printable official report. Runs as a kiosk-mode PWA on tablets.',
-    pilSoon1: 'voting booth screenshot coming', pilSoon2: 'quick count screenshot coming',
     absName: 'Attendance System', absStamp: 'IN USE',
     absDesc: 'A web-based attendance system, used for daily attendance recording along with summary reports for staff. It is currently used by PT Cipta Nirmala (RS SEMEN GRESIK)!',
     githubLinkText: 'View on GitHub',
