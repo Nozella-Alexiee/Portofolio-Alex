@@ -363,6 +363,15 @@
   .orv-photos .taped-photo:nth-child(1){grid-column:1 / -1; transform:rotate(1.2deg);}
   .orv-photos .taped-photo:nth-child(2){transform:rotate(-2deg);}
   .orv-photos .taped-photo:nth-child(3){transform:rotate(2.2deg);}
+  .orv.alx{margin-top:26px;}
+  .orv.alx .washi.l{background:rgba(74,144,226,.3); border-color:rgba(74,144,226,.42);}
+  .orv.alx .washi.r{background:rgba(108,196,255,.32); border-color:rgba(108,196,255,.45);}
+  .alx-logo{width:40px; height:40px; border-radius:10px; align-self:center;}
+  .orv.alx .orv-head .stamp{color:#2f6fbf; border-color:#2f6fbf;}
+  .orv.alx .orv-tag{color:#2f6fbf;}
+  .alx-feats{list-style:none; margin:0 0 14px; padding:0; font-size:14px; line-height:1.6;}
+  .alx-feats li{position:relative; padding-left:18px; margin-bottom:4px;}
+  .alx-feats li::before{content:'✓'; position:absolute; left:0; color:#2f6fbf; font-weight:700;}
 
   /* ---------- PROYEK: LAMPIRAN LAIN ---------- */
   .proj-others{font-family:var(--font-cursive); font-weight:700; font-size:27px; margin:60px 0 26px;}
@@ -989,7 +998,36 @@
     <span class="tab-label">Proyek</span>
     <div class="doodle doodle-star" style="top:6px; left:-30px; width:19px; height:19px; color:var(--lilac); transform:rotate(-11deg);" aria-hidden="true"><svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M20 4 L24 15 L36 14 L26 22 L30 34 L20 26 L10 34 L14 22 L4 14 L16 15 Z"/><path d="M19 5 L23 16 L35 15" opacity="0.55"/></svg></div>
     <h2>Lampiran karya</h2>
-    <p class="proj-lede" data-i18n="pjLede">Yang paling besar aku taruh di depan: tiga aplikasi sekolah yang saling nyambung. Sisanya aku jepit di belakang.</p>
+    <p class="proj-lede" data-i18n="pjLede">Paling depan: Alexel Studio, editor kode buatanku sendiri. Setelah itu tiga aplikasi sekolah yang saling nyambung, dan sisanya aku jepit di belakang.</p>
+
+    <article class="orv alx" id="alexel" aria-labelledby="alx-name">
+      <span class="washi l" aria-hidden="true"></span><span class="washi r" aria-hidden="true"></span>
+      <div class="orv-head"><img class="alx-logo" src="images/alexel-icon.png" alt="" width="40" height="40"><h3 class="orv-name" id="alx-name">Alexel Studio</h3><span class="stamp">v0.9 · OPEN SOURCE</span></div>
+      <p class="orv-tag" data-i18n="alxTag">Editor kode yang bekerja bersama AI.</p>
+      <div class="orv-grid">
+        <div class="orv-text">
+          <p data-i18n="alxDesc">Editor kode desktop buatanku sendiri, gratis dan open source. Agen AI seperti Claude Code, Codex, dan Gemini bisa ikut ngoding, tapi setiap perubahan tetap harus aku setujui dulu dan bisa dibatalkan lewat checkpoint. Alat yang biasanya dibuka terpisah sudah ada di dalamnya: klien database, klien API, Docker, notebook, browser, sampai Remote SSH.</p>
+          <ul class="alx-feats">
+            <li data-i18n="alxF1">Agen AI dengan peninjauan per perubahan, checkpoint, dan undo</li>
+            <li data-i18n="alxF2">Database: PostgreSQL, MySQL, SQLite, MongoDB, Redis + diagram ER &amp; Tanya Data</li>
+            <li data-i18n="alxF3">Klien HTTP lewat berkas .http, dengan rahasia terenkripsi</li>
+            <li data-i18n="alxF5">Notebook Jupyter, tab browser, dan Remote SSH</li>
+          </ul>
+          <p class="orv-langs">macOS · Windows · Linux</p>
+          <p class="proj-sticky" data-i18n="alxSticky">dibuat dengan editornya sendiri — Nozi si pinguin ikut nemenin</p>
+          <div class="tech-tags"><span class="tech-tag">Electron</span><span class="tech-tag">React 19</span><span class="tech-tag">TypeScript</span><span class="tech-tag">CodeMirror 6</span><span class="tech-tag">Node.js</span><span class="tech-tag">Vite</span></div>
+          <div class="attach-links">
+            <a href="https://alexel-stdio.netlify.app/" target="_blank" rel="noopener"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.7 3.8 5.7 3.8 9s-1.3 6.3-3.8 9c-2.5-2.7-3.8-5.7-3.8-9S9.5 5.7 12 3Z"/></svg><span data-i18n="alxSite">Website &amp; unduh</span></a>
+            <a href="https://github.com/Nozella-Alexiee/alexel-studio" target="_blank" rel="noopener"><svg aria-hidden="true" width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5C5.37.5 0 5.87 0 12.5c0 5.3 3.44 9.8 8.2 11.4.6.1.82-.26.82-.58v-2.02c-3.34.73-4.04-1.6-4.04-1.6-.55-1.4-1.34-1.76-1.34-1.76-1.1-.75.08-.74.08-.74 1.2.09 1.84 1.24 1.84 1.24 1.08 1.84 2.83 1.31 3.52 1 .1-.78.42-1.31.76-1.62-2.67-.3-5.47-1.33-5.47-5.93 0-1.31.47-2.38 1.24-3.22-.13-.3-.54-1.52.12-3.18 0 0 1-.32 3.3 1.23a11.5 11.5 0 0 1 6 0c2.3-1.55 3.3-1.23 3.3-1.23.66 1.66.25 2.88.12 3.18.77.84 1.24 1.91 1.24 3.22 0 4.61-2.8 5.63-5.48 5.92.43.37.81 1.1.81 2.22v3.29c0 .32.22.69.83.58A12 12 0 0 0 24 12.5C24 5.87 18.63.5 12 .5Z"/></svg><span class="gh-label">Lihat di GitHub</span></a>
+          </div>
+        </div>
+        <div class="orv-photos">
+          <button type="button" class="taped-photo snap" data-full="images/proyek/alexel-antartika.webp"><span class="tape"></span><span class="frame"><img src="images/proyek/alexel-antartika.webp" alt="Alexel Studio dengan desain tampilan Antartika" loading="lazy"></span><span class="caption">antartika.png</span></button>
+          <button type="button" class="taped-photo snap" data-full="images/proyek/alexel-database.webp"><span class="tape"></span><span class="frame"><img src="images/proyek/alexel-database.webp" alt="Klien database di Alexel Studio" loading="lazy"></span><span class="caption">database.png</span></button>
+          <button type="button" class="taped-photo snap" data-full="images/proyek/alexel-api.webp"><span class="tape"></span><span class="frame"><img src="images/proyek/alexel-api.webp" alt="Klien API di Alexel Studio" loading="lazy"></span><span class="caption">api.png</span></button>
+        </div>
+      </div>
+    </article>
 
     <div class="eco-sketch">
       <span class="washi" aria-hidden="true"></span><span class="washi r" aria-hidden="true"></span>
@@ -1677,7 +1715,15 @@ const translations = {
     devBackendValue: 'Apache, PHP, MariaDB, Laravel, Node.js, Express, PostgreSQL, Docker',
 
     projectHeading: 'Lampiran karya',
-    pjLede: 'Yang paling besar aku taruh di depan: tiga aplikasi sekolah yang saling nyambung. Sisanya aku jepit di belakang.',
+    pjLede: 'Paling depan: Alexel Studio, editor kode buatanku sendiri. Setelah itu tiga aplikasi sekolah yang saling nyambung, dan sisanya aku jepit di belakang.',
+    alxTag: 'Editor kode yang bekerja bersama AI.',
+    alxDesc: 'Editor kode desktop buatanku sendiri, gratis dan open source. Agen AI seperti Claude Code, Codex, dan Gemini bisa ikut ngoding, tapi setiap perubahan tetap harus aku setujui dulu dan bisa dibatalkan lewat checkpoint. Alat yang biasanya dibuka terpisah sudah ada di dalamnya: klien database, klien API, Docker, notebook, browser, sampai Remote SSH.',
+    alxF1: 'Agen AI dengan peninjauan per perubahan, checkpoint, dan undo',
+    alxF2: 'Database: PostgreSQL, MySQL, SQLite, MongoDB, Redis + diagram ER & Tanya Data',
+    alxF3: 'Klien HTTP lewat berkas .http, dengan rahasia terenkripsi',
+    alxF5: 'Notebook Jupyter, tab browser, dan Remote SSH',
+    alxSticky: 'dibuat dengan editornya sendiri — Nozi si pinguin ikut nemenin',
+    alxSite: 'Website & unduh',
     pjEcoTitle: 'Ekosistem SIG', pjEcoSub: 'satu akun sekolah, tiga aplikasi yang saling nyambung', pjEcoHint: 'pencet lingkarannya buat lihat isinya ↓',
     ecoTA: 'buku induk sekolah', ecoTC: 'chat sekolah', ecoTB: 'ruang belajar',
     ecoL1: 'kode + OTP', ecoL2: 'token sekali pakai', ecoL3: 'nilai kuis',
@@ -1833,7 +1879,15 @@ const translations = {
     devBackendValue: 'Apache, PHP, MariaDB, Laravel, Node.js, Express, PostgreSQL, Docker',
 
     projectHeading: 'Project attachments',
-    pjLede: 'The biggest piece goes first: three school apps that work as one. The rest are clipped in behind it.',
+    pjLede: 'Up front: Alexel Studio, a code editor I built myself. Then three school apps that work as one, with the rest clipped in behind.',
+    alxTag: 'The code editor that works with AI.',
+    alxDesc: 'A desktop code editor I built myself, free and open source. AI agents such as Claude Code, Codex, and Gemini can code alongside me, but every change still waits for my approval and can be undone with checkpoints. Tools you usually open separately are built in: a database client, an API client, Docker, notebooks, a browser, and Remote SSH.',
+    alxF1: 'AI agents with per-change review, checkpoints, and undo',
+    alxF2: 'Databases: PostgreSQL, MySQL, SQLite, MongoDB, Redis + ER diagrams & Ask Your Data',
+    alxF3: 'An HTTP client built on .http files, with encrypted secrets',
+    alxF5: 'Jupyter notebooks, a browser tab, and Remote SSH',
+    alxSticky: 'built with its own editor — Nozi the penguin keeps me company',
+    alxSite: 'Website & download',
     pjEcoTitle: 'The SIG ecosystem', pjEcoSub: 'one school account, three apps that work together', pjEcoHint: 'tap a circle to see what it does ↓',
     ecoTA: 'the school record book', ecoTC: 'school chat', ecoTB: 'learning space',
     ecoL1: 'code + OTP', ecoL2: 'one-time token', ecoL3: 'quiz scores',
