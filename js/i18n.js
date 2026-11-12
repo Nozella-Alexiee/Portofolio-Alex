@@ -38,8 +38,7 @@
     'Absensi, pemilihan digital, kasir, dan pencatatan. Sudah digunakan nyata, bukan sekadar contoh.':'Attendance, digital voting, cashier, and record keeping. Already in real use, not just samples.',
     'Bantu naik ke hosting dan atur domain, supaya aplikasinya benar-benar bisa dipakai.':'Help putting it on hosting and setting up the domain, so the app is actually usable.',
     'Absensi':'Attendance','Pemilihan':'Voting','Kasir QR':'QR cashier','Diskusi proyek':'Discuss a project',
-    'Kirim email ↗':'Send email ↗','Salin':'Copy','Tersalin ✓':'Copied ✓',
-    'CV belum diunggah. Kirim filenya, nanti dipasang di tombol ini.':'CV not uploaded yet. Send the file and it will be attached to this button.'
+    'Kirim email ↗':'Send email ↗','Salin':'Copy','Tersalin ✓':'Copied ✓'
   };
   var DESC='Alexander, a 12th-grade Software Engineering student at SMK SIG. A web developer who is also learning to read financial reports.';
 

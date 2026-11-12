@@ -40,8 +40,8 @@ $('#theme').addEventListener('click',function(){
 });
 $('#menu').addEventListener('click',function(){var o=$('#links').classList.toggle('open');this.setAttribute('aria-expanded',o)});
 $('#links').addEventListener('click',function(e){if(e.target.tagName==='A'){this.classList.remove('open');$('#menu').setAttribute('aria-expanded',false)}});
-/* tombol CV: file CV belum ada, jadi mockup cuma kasih tahu */
-document.querySelectorAll('[data-cv]').forEach(function(b){b.addEventListener('click',function(){toast(tr('CV belum diunggah. Kirim filenya, nanti dipasang di tombol ini.'))})});
+/* tombol Unduh CV: file CV ikut bahasa yang dipilih */
+document.querySelectorAll('[data-cv]').forEach(function(a){var l=LANG==='en'?'EN':'ID';a.href='cv/CV-Alexander-'+l+'.pdf';a.setAttribute('download','CV-Ahmad-Zulfikri-Alexander-Disyin-'+l+'.pdf')});
 
 /* hero */
 $('#avatar').src=I+'alex-avatar.webp';$('#cut').src=I+'alex-cutout.webp';
