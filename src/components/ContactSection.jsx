@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Mail, Copy, Check, Github, Instagram, Linkedin, ArrowUpRight } from 'lucide-react';
+import { Mail, Copy, Check, ArrowUpRight } from 'lucide-react';
 import { PORTFOLIO_DATA } from '../data/portfolioData';
 
 export default function ContactSection() {
@@ -46,7 +46,7 @@ export default function ContactSection() {
 
         <div className="flex flex-wrap items-center gap-3 pt-4 border-t border-slate-800/80 text-xs text-slate-400">
           <span className="font-mono">Media Sosial:</span>
-          {contact.links.map((link, idx) => (
+          {contact.links?.map((link, idx) => (
             <a
               key={idx}
               href={link.url}
@@ -54,7 +54,7 @@ export default function ContactSection() {
               rel="noreferrer"
               className="inline-flex items-center gap-1 text-slate-300 hover:text-white transition-colors underline underline-offset-4 decoration-slate-700 hover:decoration-blue-500"
             >
-              <span>{link.label}</span>
+              <span>{link.name || link.label}</span>
               <ArrowUpRight className="w-3 h-3 text-slate-500" />
             </a>
           ))}
