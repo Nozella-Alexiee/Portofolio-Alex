@@ -18,7 +18,7 @@
     'Karya, sertifikat,':'Work, certificates,','dan tools.':'and tools.',
     'Paling depan Alexel Studio, editor kode buatanku sendiri. Setelah itu tiga aplikasi sekolah yang saling nyambung, lalu proyek lainnya.':'Up front is Alexel Studio, the code editor I built myself. Then three connected school apps, and the rest of my projects.',
     'Jasa pembuatan':'Web development','website.':'services.',
-    'Terbuka untuk proyek freelance. Ceritakan kebutuhannya, nanti kita bahas bareng mana yang paling masuk akal.':"Open to freelance projects. Tell me what you need and we'll work out together what makes the most sense.",
+    'Butuh website atau sistem untuk sekolah, usaha, atau organisasi? Ceritakan kebutuhannya, nanti aku bilang apa yang bisa aku kerjakan.':"Need a website or system for a school, business, or organization? Tell me what you need and I'll say what I can build.",
     'Bunga majemuk,':'Compound interest,','dihitung langsung.':'calculated live.',
     'Modal awal':'Initial capital','Setoran per bulan':'Monthly deposit','Bunga per tahun':'Annual interest','Jangka waktu':'Time period',
     'Estimasi akhir':'Final estimate','Total setoran':'Total deposits','Estimasi bunga':'Estimated interest',
@@ -33,10 +33,10 @@
     'Foto Alex':'Photo of Alex','Grafik saldo per tahun':'Balance chart per year',
     'Sistem digunakan':'Systems in use','Lingkungan':'Environment','Dipakai di proyek-proyekku':'Used across my projects',
     'Semua':'All','Ekosistem SIG':'SIG Ecosystem','Sekolah dan kerja':'School & work','Lihat detail →':'View details →',
-    'Tampilan':'Preview of','Aplikasi web custom':'Custom web apps','Sistem informasi':'Information systems','Pasang di server':'Server deployment',
-    'Aplikasi web dari kebutuhan sampai jalan: backend, database, dan antarmuka yang rapi.':'Web apps from requirements to running: backend, database, and a clean interface.',
-    'Absensi, pemilihan digital, kasir, dan pencatatan. Sudah digunakan nyata, bukan sekadar contoh.':'Attendance, digital voting, cashier, and record keeping. Already in real use, not just samples.',
-    'Bantu naik ke hosting dan atur domain, supaya aplikasinya benar-benar bisa dipakai.':'Help putting it on hosting and setting up the domain, so the app is actually usable.',
+    'Tampilan':'Preview of','Aplikasi web':'Web apps','Sistem informasi':'Information systems','Pasang di server':'Server deployment',
+    'Aplikasi web lengkap, dari tampilan sampai backend dan database.':'Full web apps, from the interface to the backend and database.',
+    'Absensi, pemilihan digital, kasir, dan pencatatan. Sistem absensi buatanku sudah dipakai nyata.':'Attendance, digital voting, cashier, and record keeping. The attendance system I built is in real use.',
+    'Bantu memasang aplikasi ke server atau hosting, plus panduan pemakaiannya.':'Help putting an app on a server or hosting, plus a usage guide.',
     'Absensi':'Attendance','Pemilihan':'Voting','Kasir QR':'QR cashier','Diskusi proyek':'Discuss a project',
     'Kirim email ↗':'Send email ↗','Salin':'Copy','Tersalin ✓':'Copied ✓'
   };

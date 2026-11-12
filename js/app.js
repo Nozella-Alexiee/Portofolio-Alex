@@ -110,9 +110,9 @@ $('#p-stack').innerHTML='<div class="card"><h3>Web Development</h3><div class="t
   +'<div class="card" style="grid-column:1/-1"><h3>'+tr('Dipakai di proyek-proyekku')+'</h3><div class="tags">'+chips(all,0)+'</div></div>';
 
 /* layanan (draf teks, isi dari proyek nyata) */
-[['01','Aplikasi web custom','Aplikasi web dari kebutuhan sampai jalan: backend, database, dan antarmuka yang rapi.',['PHP','Laravel','React','Node.js']],
- ['02','Sistem informasi','Absensi, pemilihan digital, kasir, dan pencatatan. Sudah digunakan nyata, bukan sekadar contoh.',['Absensi','Pemilihan','Kasir QR']],
- ['03','Pasang di server','Bantu naik ke hosting dan atur domain, supaya aplikasinya benar-benar bisa dipakai.',['Hosting','Domain','Docker']]]
+[['01','Aplikasi web','Aplikasi web lengkap, dari tampilan sampai backend dan database.',['PHP','React','TypeScript','FastAPI','Node.js']],
+ ['02','Sistem informasi','Absensi, pemilihan digital, kasir, dan pencatatan. Sistem absensi buatanku sudah dipakai nyata.',['Absensi','Pemilihan','Kasir QR']],
+ ['03','Pasang di server','Bantu memasang aplikasi ke server atau hosting, plus panduan pemakaiannya.',['Docker','Linux']]]
  .forEach(function(s){var c=h('article','card');c.innerHTML='<span class="n">'+s[0]+'</span><h3>'+tr(s[1])+'</h3><p>'+tr(s[2])+'</p><div class="tags">'+chips(s[3].map(tr),0)+'</div><a class="btn sm" href="#kontak" style="align-self:flex-start;margin-top:14px">'+tr('Diskusi proyek')+'</a>';$('#svc').appendChild(c);rv(c,$('#svc').children.length-1)});
 
 /* kalkulator */
