@@ -13,15 +13,10 @@ import Footer from './components/Footer';
 
 export default function App() {
   return (
-    <div className="min-h-screen bg-[#060913] text-slate-100 bg-grid-pattern relative selection:bg-blue-600 selection:text-white">
-      {/* Top subtle blue radial glow */}
-      <div className="fixed top-0 left-1/2 -translate-x-1/2 w-full max-w-7xl h-96 blue-glow-radial pointer-events-none -z-0 opacity-70" />
-
-      {/* Navigation */}
+    <div className="min-h-screen bg-[#080c16] text-slate-100 selection:bg-blue-600 selection:text-white antialiased">
       <Navbar />
 
-      {/* Main Content Sections */}
-      <main className="relative z-10 flex flex-col space-y-0">
+      <main className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 space-y-24 py-12">
         <Hero />
         <BentoAbout />
         <ProjectsSection />
@@ -33,7 +28,6 @@ export default function App() {
         <ContactSection />
       </main>
 
-      {/* Footer */}
       <Footer />
     </div>
   );
