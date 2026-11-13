@@ -119,7 +119,7 @@ export default function FinanceSimulator() {
               </div>
 
               <div className="pt-2 text-[11px] text-slate-400 leading-relaxed">
-                *Simulasi menggunakan rumus bunga majemuk bulanan standard: \( A = P(1 + r/n)^{nt} \).
+                *Simulasi menggunakan kalkulasi bunga majemuk bulanan standard: A = P(1 + r/n)^(nt).
               </div>
             </div>
 
