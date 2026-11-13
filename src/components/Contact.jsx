@@ -1,79 +1,30 @@
-import { useUI } from '../ui'
-import { useClock } from '../lib/hooks'
-import { Reveal } from './Reveal'
-import LiquidGlass from './LiquidGlass'
-import { ArrowUpRight, Copy, Download } from './Icons'
+import { useState } from 'react'
+import { motion } from 'motion/react'
+import { useLang } from '../i18n'
+import { goTo, useClock } from '../hooks'
+import { Fade, Magnetic, Rise } from './Reveal'
 
 export default function Contact() {
-  const { content, copyEmail } = useUI()
-  const contact = content.contact
-  const time = useClock()
-
+  const { t, P } = useLang()
+  const c = P.contact, [copied, setCopied] = useState(false), time = useClock()
+  const copy = () => { const done = () => { setCopied(true); setTimeout(() => setCopied(false), 1700) }; navigator.clipboard?.writeText(c.email).then(done, done) || done() }
   return (
     <>
-      <section id="contact" className="sec wrap ctSec" aria-labelledby="contact-title">
-        <Reveal>
-          <LiquidGlass className="ct" radius={48} blur={16} saturation={175} strength={42} band={48} tint="var(--glass-sky)">
-            <span className="ctKicker mono">{contact.availability}</span>
-
-            <h2 id="contact-title" className="h ctBig">
-              {contact.title} <span>{contact.titleItalic}</span>
-            </h2>
-
-            <p className="ctNote">{contact.note}</p>
-
-            <a className="ctMail h" href={`mailto:${content.profile.email}`}>
-              {content.profile.email}
-              <ArrowUpRight size={28} />
-            </a>
-
-            <div className="ctRow">
-              <a className="btn ctPrimary" href={`mailto:${content.profile.email}`}>
-                {contact.email}
-                <span className="arrow">↗</span>
-              </a>
-              <button type="button" className="btn soft ctSecondary" onClick={copyEmail}>
-                <Copy size={16} /> {contact.copy}
-              </button>
-            </div>
-
-            <div className="ctBottom">
-              <div>
-                <span className="mono ctSocialLabel">{contact.socials}</span>
-                <div className="ctSoc">
-                  {content.profile.socials.map((social) => (
-                    <a key={social.label} className="ul" href={social.href} target="_blank" rel="noreferrer">
-                      {social.label}
-                    </a>
-                  ))}
-                </div>
-              </div>
-
-              <div className="ctSide">
-                <span className="mono">{contact.localTime}</span>
-                <b>{time || '--:--:--'} WIB</b>
-                <span className="ctCv">
-                  <a href="/cv/CV-Alexander-ID.pdf" download><Download size={13} /> CV ID</a>
-                  <a href="/cv/CV-Alexander-EN.pdf" download><Download size={13} /> CV EN</a>
-                </span>
-              </div>
-            </div>
-          </LiquidGlass>
-        </Reveal>
+      <section id="contact" className="sec wrap ctSec">
+        <motion.div className="ct" initial={{ borderRadius: '80px' }} whileInView={{ borderRadius: '48px' }} viewport={{ once: true, margin: '0px 0px -20% 0px' }} transition={{ duration: 1.1, ease: [0.16, 1, 0.3, 1] }}>
+          <Rise as="h2" className="h ctBig">{t('contact.big')}</Rise>
+          <Fade as="p" className="ctNote">{c.note}</Fade>
+          <Magnetic strength={0.18} className="ctMailWrap"><a className="ctMail h" href={'mailto:' + c.email} data-cursor="">{c.email}</a></Magnetic>
+          <Fade className="ctRow">
+            <a className="btn" href={'mailto:' + c.email}>{t('contact.mail')} <span className="arrow">↗</span></a>
+            <button className="btn soft" onClick={copy}>{copied ? t('contact.copied') + ' ✓' : t('contact.copy')}</button>
+            <span className="ctSoc">{c.links.map((l) => <a key={l[0]} className="ul" href={l[1]} target="_blank" rel="noopener">{l[0]}</a>)}</span>
+          </Fade>
+        </motion.div>
       </section>
-
       <footer className="foot wrap">
-        <span>© 2026 {content.profile.short} — {contact.footerNote}</span>
-        <span className="footR">
-          <span className="tnum">Gresik · {time || '--:--:--'} WIB</span>
-          <button
-            type="button"
-            className="ul"
-            onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-          >
-            {contact.backTop} ↑
-          </button>
-        </span>
+        <span>{t('foot.copy')}</span>
+        <span className="footR"><span className="tnum">Gresik · {time} WIB</span><button className="ul" onClick={() => (window.__lenis ? window.__lenis.scrollTo(0) : scrollTo({ top: 0, behavior: 'smooth' }))}>{t('foot.top')} ↑</button></span>
       </footer>
     </>
   )

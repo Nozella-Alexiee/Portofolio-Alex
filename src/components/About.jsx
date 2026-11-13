@@ -1,42 +1,26 @@
 import { useRef } from 'react'
 import { motion, useScroll } from 'motion/react'
-import { useUI } from '../ui'
-import SectionHead from './SectionHead'
-import { Reveal } from './Reveal'
+import { useLang } from '../i18n'
+import { Fade, RevealText, Rise } from './Reveal'
 
 export default function About() {
-  const { content } = useUI()
-  const about = content.about
+  const { t, P, pkl } = useLang()
   const list = useRef(null)
-  const { scrollYProgress } = useScroll({ target: list, offset: ['start 0.72', 'end 0.6'] })
-
+  const { scrollYProgress } = useScroll({ target: list, offset: ['start 0.7', 'end 0.6'] })
+  const journey = P.journey.slice(); journey.splice(3, 0, { t: pkl.t, d: pkl.d })
   return (
-    <section id="about" className="sec wrap" aria-labelledby="about-title">
-      <SectionHead id="about" title={about.label} />
-
-      <Reveal>
-        <p className="bigText">{about.lead}</p>
-      </Reveal>
-
-      <Reveal className="aboutCols" delay={0.06}>
-        <p>{about.body[0]}</p>
-        <div>
-          <p>{about.body[1]}</p>
-          {about.body[2] && <p>{about.body[2]}</p>}
-        </div>
-      </Reveal>
-
+    <section id="about" className="sec wrap">
+      <div className="secHead"><Rise as="h2" className="h">{t('about.h')}</Rise></div>
+      <RevealText className="bigText" text={P.about[0]} />
+      <Fade className="aboutCols"><p>{P.about[1]}</p><p>{P.about[2]}</p></Fade>
       <div className="journey">
-        <Reveal as="h3" className="h jh">{about.journeyTitle}</Reveal>
+        <Fade as="h3" className="h jh">{t('about.journey')}</Fade>
         <ol className="tl" ref={list}>
-          <span className="track" aria-hidden="true">
-            <motion.i style={{ scaleY: scrollYProgress }} />
-          </span>
-          {about.journey.map((entry, index) => (
-            <Reveal as="li" key={`${entry.when}-${index}`} delay={0.03 * (index % 3)}>
-              <b>{entry.when}</b>
-              <span>{entry.what}</span>
-            </Reveal>
+          <span className="track" aria-hidden="true"><motion.i style={{ scaleY: scrollYProgress }} /></span>
+          {journey.map((j, i) => (
+            <Fade as="li" key={i} delay={0.04 * (i % 3)}>
+              <b>{j.t}</b><span>{j.d}</span>
+            </Fade>
           ))}
         </ol>
       </div>
