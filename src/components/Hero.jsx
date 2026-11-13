@@ -1,115 +1,104 @@
-import React, { useState } from 'react';
-import { ArrowDown, Github, Instagram, Linkedin, Mail, Copy, Check, TrendingUp } from 'lucide-react';
-import { PORTFOLIO_DATA } from '../data/portfolioData';
+import { useRef } from 'react'
+import { motion, useReducedMotion, useScroll, useTransform } from 'motion/react'
+import { useUI } from '../ui'
+import { scrollToId, useClock } from '../lib/hooks'
+
+const NAME = 'Alexander'.split('')
 
 export default function Hero() {
-  const [copied, setCopied] = useState(false);
-  const { profile } = PORTFOLIO_DATA;
-
-  const copyEmail = () => {
-    navigator.clipboard.writeText(PORTFOLIO_DATA.contact.email);
-    setCopied(true);
-    setTimeout(() => setCopied(false), 2000);
-  };
+  const { content } = useUI()
+  const reduce = useReducedMotion()
+  const ref = useRef(null)
+  const time = useClock()
+  const hero = content.hero
+  const { scrollYProgress } = useScroll({ target: ref, offset: ['start start', 'end start'] })
+  const nameY = useTransform(scrollYProgress, [0, 1], ['0%', '-18%'])
+  const photoY = useTransform(scrollYProgress, [0, 1], ['0%', '10%'])
+  const archY = useTransform(scrollYProgress, [0, 1], ['0%', '22%'])
+  const ease = [0.76, 0, 0.24, 1]
 
   return (
-    <section className="pt-24 pb-12 sm:pt-32 sm:pb-16">
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-        
-        {/* Left Column: Text & CTAs */}
-        <div className="lg:col-span-7 space-y-6">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-500/10 border border-blue-500/20 text-blue-400 text-xs font-mono">
-            <span>XII RPL · SMK Semen Gresik</span>
-          </div>
-
-          <h1 className="text-4xl sm:text-5xl font-bold tracking-tight text-white leading-[1.15]">
-            Siswa RPL yang ngoding web sekaligus mendalami pasar modal.
-          </h1>
-
-          <p className="text-slate-300 text-base sm:text-lg leading-relaxed max-w-xl">
-            Halo, gue <span className="text-white font-semibold">{profile.name}</span> (biasa dipanggil {profile.nick}). Fokus bikin sistem web fungsional skala nyata, desktop tool, dan punya minat mendalam di analisa laporan keuangan.
-          </p>
-
-          {/* Action buttons */}
-          <div className="flex flex-wrap items-center gap-3 pt-2">
-            <a
-              href="#proyek"
-              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg bg-blue-600 hover:bg-blue-500 text-white font-medium text-sm transition-colors shadow-sm"
+    <section id="top" className="hero" ref={ref} aria-labelledby="hero-title">
+      <motion.h1 id="hero-title" className="name h" aria-label="Alexander" style={reduce ? undefined : { y: nameY }}>
+        {NAME.map((letter, index) => (
+          <span className="ch" key={`${letter}-${index}`} aria-hidden="true">
+            <motion.span
+              initial={reduce ? false : { y: '115%' }}
+              animate={reduce ? undefined : { y: 0 }}
+              transition={{ duration: 1.05, ease, delay: 0.18 + index * 0.05 }}
             >
-              <span>Eksplor 7 Proyek</span>
-              <ArrowDown className="w-4 h-4" />
-            </a>
+              {letter}
+            </motion.span>
+          </span>
+        ))}
+      </motion.h1>
 
-            <a
-              href="#simulasi"
-              className="inline-flex items-center gap-2 px-4 py-2.5 rounded-lg bg-slate-900 hover:bg-slate-800 border border-slate-800 hover:border-slate-700 text-slate-200 text-sm font-medium transition-colors"
-            >
-              <TrendingUp className="w-4 h-4 text-blue-400" />
-              <span>Simulasi Bunga</span>
-            </a>
+      <div className="stage" aria-hidden="true">
+        <motion.div
+          className="arch"
+          style={reduce ? undefined : { y: archY }}
+          initial={reduce ? false : { scaleY: 0 }}
+          animate={reduce ? undefined : { scaleY: 1 }}
+          transition={{ duration: 1.2, ease, delay: 0.1 }}
+        />
+        <motion.div
+          className="photo"
+          style={reduce ? undefined : { y: photoY }}
+          initial={reduce ? false : { opacity: 0, scale: 1.05 }}
+          animate={reduce ? undefined : { opacity: 1, scale: 1 }}
+          transition={{ duration: 1.25, ease: [0.16, 1, 0.3, 1], delay: 0.5 }}
+        >
+          <img src="/images/alex-cutout.webp" alt="" width="1100" height="1057" fetchpriority="high" />
+        </motion.div>
 
-            <button
-              onClick={copyEmail}
-              className="inline-flex items-center gap-2 px-4 py-2.5 rounded-lg bg-slate-900/60 hover:bg-slate-800/80 border border-slate-800 text-slate-300 text-sm font-mono transition-colors"
-            >
-              {copied ? <Check className="w-4 h-4 text-emerald-400" /> : <Copy className="w-4 h-4 text-slate-400" />}
-              <span>{copied ? 'Email Tersalin!' : 'Salin Email'}</span>
-            </button>
-          </div>
-
-          {/* Socials */}
-          <div className="flex items-center gap-3 pt-4 border-t border-slate-800/60 text-slate-400 text-sm">
-            <span className="font-mono text-xs">Tautan:</span>
-            <a
-              href="https://github.com/Nozella-Alexiee"
-              target="_blank"
-              rel="noreferrer"
-              className="p-1.5 rounded-md hover:text-white hover:bg-slate-800 transition-colors"
-              aria-label="GitHub"
-            >
-              <Github className="w-4 h-4" />
-            </a>
-            <a
-              href="https://instagram.com/ale.xiee._"
-              target="_blank"
-              rel="noreferrer"
-              className="p-1.5 rounded-md hover:text-white hover:bg-slate-800 transition-colors"
-              aria-label="Instagram"
-            >
-              <Instagram className="w-4 h-4" />
-            </a>
-            <a
-              href="https://www.linkedin.com/in/nozella-alexander-b5044a413"
-              target="_blank"
-              rel="noreferrer"
-              className="p-1.5 rounded-md hover:text-white hover:bg-slate-800 transition-colors"
-              aria-label="LinkedIn"
-            >
-              <Linkedin className="w-4 h-4" />
-            </a>
-            <span className="text-slate-600">·</span>
-            <span className="text-xs text-slate-400">Gresik, Jawa Timur</span>
-          </div>
-        </div>
-
-        {/* Right Column: Clean Profile Photo Card */}
-        <div className="lg:col-span-5 flex justify-center lg:justify-end">
-          <div className="relative w-full max-w-sm rounded-2xl overflow-hidden border border-slate-800 bg-slate-900/40 p-3 shadow-xl">
-            <div className="aspect-[4/5] rounded-xl overflow-hidden bg-slate-950">
-              <img
-                src="/images/profil.jpg"
-                alt="Ahmad Zulfikri Alexander"
-                className="w-full h-full object-cover object-top hover:scale-[1.02] transition-transform duration-500"
-              />
-            </div>
-            <div className="mt-3 flex items-center justify-between px-1 text-xs text-slate-400">
-              <span className="font-medium text-slate-200">Ahmad Zulfikri Alexander</span>
-              <span className="font-mono text-[11px] text-blue-400">SMK SIG RPL</span>
-            </div>
-          </div>
-        </div>
-
+        <motion.button
+          type="button"
+          className="badge"
+          onClick={() => scrollToId('about')}
+          aria-label={hero.scroll}
+          initial={reduce ? false : { opacity: 0, scale: 0.6, rotate: -40 }}
+          animate={reduce ? undefined : { opacity: 1, scale: 1, rotate: 0 }}
+          transition={{ duration: 1, ease: [0.16, 1, 0.3, 1], delay: 1.05 }}
+        >
+          <svg viewBox="0 0 200 200" className="spin" aria-hidden="true">
+            <defs>
+              <path id="heroCircle" d="M100,100 m-76,0 a76,76 0 1,1 152,0 a76,76 0 1,1 -152,0" />
+            </defs>
+            <text>
+              <textPath href="#heroCircle" textLength="468" lengthAdjust="spacing">
+                Web Developer • Finance • Web Developer • Finance •
+              </textPath>
+            </text>
+          </svg>
+          <span className="dn">↓</span>
+        </motion.button>
       </div>
+
+      <motion.div
+        className="heroTxt"
+        initial={reduce ? false : { opacity: 0, y: 28 }}
+        animate={reduce ? undefined : { opacity: 1, y: 0 }}
+        transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1], delay: 0.85 }}
+      >
+        <span className="heroAlias">aka {content.profile.alias}</span>
+        <p className="st">{hero.statement}</p>
+        <p className="heroLede">{hero.lede}</p>
+        <div className="ctas">
+          <button type="button" className="btn" onClick={() => scrollToId('work')}>
+            {hero.ctaWork} <span className="arrow">↓</span>
+          </button>
+          <button type="button" className="btn soft" onClick={() => scrollToId('contact')}>
+            {hero.ctaContact}
+          </button>
+        </div>
+        <p className="where">
+          <span className="liveLine"><i />{hero.available}</span>
+          <span className="whereDivider" aria-hidden="true">·</span>
+          {content.profile.location}
+          <span className="whereDivider" aria-hidden="true">·</span>
+          <span>{time || '--:--:--'} WIB</span>
+        </p>
+      </motion.div>
     </section>
-  );
+  )
 }

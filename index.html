@@ -1,33 +1,72 @@
 <!doctype html>
-<html lang="id" class="dark scroll-smooth">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/png" href="/images/logo-smksig.png" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-    <title>Alex — Web Developer & Finance Enthusiast</title>
-    <meta name="description" content="Portofolio Ahmad Zulfikri Alexander Disyin (Alex), siswa XII RPL SMK SIG. Fokus pada Web Development, Sistem Terdistribusi, dan Analisis Keuangan." />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
-    <script>
-      window.addEventListener('error', function(e) {
-        var d = document.createElement('div');
-        d.id = 'debug-error-box';
-        d.style = "position:fixed;top:0;left:0;right:0;background:#dc2626;color:white;padding:24px;z-index:999999;font-family:monospace;white-space:pre-wrap;font-size:14px;box-shadow:0 10px 30px rgba(0,0,0,0.5);";
-        d.textContent = 'JAVASCRIPT RUNTIME ERROR:\n' + e.message + '\nat ' + e.filename + ':' + e.lineno + ':' + e.colno + '\n' + (e.error ? e.error.stack : '');
-        document.body.appendChild(d);
-      });
-      window.addEventListener('unhandledrejection', function(e) {
-        var d = document.createElement('div');
-        d.id = 'debug-error-box';
-        d.style = "position:fixed;top:0;left:0;right:0;background:#dc2626;color:white;padding:24px;z-index:999999;font-family:monospace;white-space:pre-wrap;font-size:14px;box-shadow:0 10px 30px rgba(0,0,0,0.5);";
-        d.textContent = 'PROMISE REJECTION:\n' + (e.reason && e.reason.stack ? e.reason.stack : e.reason);
-        document.body.appendChild(d);
-      });
-    </script>
-  </head>
-  <body class="bg-[#070b14] text-slate-100 font-['Plus_Jakarta_Sans',sans-serif] selection:bg-blue-500 selection:text-white antialiased min-h-screen">
-    <div id="root"></div>
-    <script type="module" src="/src/main.jsx"></script>
-  </body>
+<html lang="id">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Alexander — Web Developer & Finance Learner</title>
+  <meta name="description" content="Ahmad Zulfikri Alexander Disyin — siswa XII RPL SMK SIG, Gresik. Membangun aplikasi web dan belajar membaca pasar.">
+  <link rel="canonical" href="https://nozel.my.id/">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Alexander — Web Developer & Finance Learner">
+  <meta property="og:description" content="Siswa XII RPL SMK SIG, Gresik. Membangun web, membaca pasar. Lihat karya dan lab finansialnya.">
+  <meta property="og:url" content="https://nozel.my.id/">
+  <meta property="og:image" content="https://nozel.my.id/og-image.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:locale" content="id_ID">
+  <meta property="og:locale:alternate" content="en_US">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Alexander — Web Developer & Finance Learner">
+  <meta name="twitter:description" content="Siswa XII RPL SMK SIG, Gresik. Membangun web, membaca pasar.">
+  <meta name="twitter:image" content="https://nozel.my.id/og-image.jpg">
+
+  <meta name="theme-color" media="(prefers-color-scheme: light)" content="#ffffff">
+  <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#050505">
+
+  <link rel="preload" href="/fonts/nunito-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/images/alex-cutout.webp" as="image" fetchpriority="high">
+
+  <script>
+    (function () {
+      try {
+        var q = /[?&]theme=(dark|light)/.exec(location.search);
+        var ql = /[?&]lang=(id|en)/.exec(location.search);
+        var t = q ? q[1] : localStorage.getItem('theme');
+        if (!t) t = window.matchMedia && matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+        document.documentElement.dataset.theme = t;
+        document.documentElement.style.colorScheme = t;
+        var l = ql ? ql[1] : localStorage.getItem('lang');
+        if (l === 'en') document.documentElement.lang = 'en';
+      } catch (e) {
+        document.documentElement.dataset.theme = 'light';
+      }
+    })()
+  </script>
+
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "name": "Ahmad Zulfikri Alexander Disyin",
+      "alternateName": "Alexander / Nozel",
+      "url": "https://nozel.my.id/",
+      "email": "mailto:nongzel52@gmail.com",
+      "jobTitle": "Web Developer",
+      "description": "Siswa XII RPL SMK SIG, Gresik. Web developer yang juga belajar pasar modal.",
+      "address": { "@type": "PostalAddress", "addressLocality": "Gresik", "addressRegion": "Jawa Timur", "addressCountry": "ID" },
+      "alumniOf": { "@type": "EducationalOrganization", "name": "SMK SIG" },
+      "sameAs": [
+        "https://github.com/Nozella-Alexiee",
+        "https://instagram.com/ale.xiee._",
+        "https://www.linkedin.com/in/nozella-alexander-b5044a413"
+      ]
+    }
+  </script>
+</head>
+<body>
+  <div id="root"></div>
+  <script type="module" src="/src/main.jsx"></script>
+</body>
 </html>

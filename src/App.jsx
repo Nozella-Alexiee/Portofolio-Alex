@@ -1,34 +1,62 @@
-import React from 'react';
-import Navbar from './components/Navbar';
-import Hero from './components/Hero';
-import BentoAbout from './components/BentoAbout';
-import ProjectsSection from './components/ProjectsSection';
-import SkillsSection from './components/SkillsSection';
-import FinanceSimulator from './components/FinanceSimulator';
-import JourneySection from './components/JourneySection';
-import CertificatesSection from './components/CertificatesSection';
-import HobbiesSection from './components/HobbiesSection';
-import ContactSection from './components/ContactSection';
-import Footer from './components/Footer';
+import { AnimatePresence } from 'motion/react'
+import { UIProvider, useUI } from './ui'
+import Header from './components/Header'
+import Hero from './components/Hero'
+import About from './components/About'
+import Work from './components/Work'
+import Skills from './components/Skills'
+import Lab from './components/Lab'
+import Services from './components/Services'
+import Hobbies from './components/Hobbies'
+import Contact from './components/Contact'
+import CommandPalette from './components/CommandPalette'
+import ProjectDialog from './components/ProjectDialog'
+
+function Site() {
+  const { content, activeProject, closeProject, openProject } = useUI()
+  const project = content.projects.find((item) => item.id === activeProject)
+
+  return (
+    <>
+      <a className="skipLink" href="#main">
+        {content.actions.skip}
+      </a>
+
+      <Header />
+
+      <main id="main">
+        <Hero />
+        <About />
+        <Work />
+        <Skills />
+        <Lab />
+        <Services />
+        <Hobbies />
+        <Contact />
+      </main>
+
+      <CommandPalette />
+
+      <AnimatePresence>
+        {project && (
+          <ProjectDialog
+            project={project}
+            index={content.projects.indexOf(project)}
+            projects={content.projects}
+            content={content}
+            onClose={closeProject}
+            onOpen={openProject}
+          />
+        )}
+      </AnimatePresence>
+    </>
+  )
+}
 
 export default function App() {
   return (
-    <div className="min-h-screen bg-[#080c16] text-slate-100 selection:bg-blue-600 selection:text-white antialiased">
-      <Navbar />
-
-      <main className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 space-y-24 py-12">
-        <Hero />
-        <BentoAbout />
-        <ProjectsSection />
-        <SkillsSection />
-        <FinanceSimulator />
-        <JourneySection />
-        <CertificatesSection />
-        <HobbiesSection />
-        <ContactSection />
-      </main>
-
-      <Footer />
-    </div>
-  );
+    <UIProvider>
+      <Site />
+    </UIProvider>
+  )
 }
