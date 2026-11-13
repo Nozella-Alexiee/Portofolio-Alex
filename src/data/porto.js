@@ -1,7 +1,4 @@
-/* Isi portofolio Alex. Sumber: index.html lama di GitHub (commit 493e867).
-   Semua teks di halaman diambil dari sini. */
-window.PORTO = {
-  img: 'images/',
+export const PORTO = {
   name: 'Ahmad Zulfikri Alexander Disyin',
   nick: 'Alex',
   kelas: 'XII RPL',
@@ -103,13 +100,26 @@ window.PORTO = {
   }
 };
 
-/* Bunga majemuk bulanan, sama seperti kalkulator di situs sekarang. Mengembalikan saldo per akhir tahun. */
-window.hitungMajemuk = function (modal, setoran, bungaPersen, tahun) {
-  var r = bungaPersen / 100 / 12, saldo = modal, disetor = modal, rows = [{ y: 0, saldo: modal, disetor: modal }];
-  for (var m = 1; m <= tahun * 12; m++) {
-    saldo = saldo * (1 + r) + setoran; disetor += setoran;
-    if (m % 12 === 0) rows.push({ y: m / 12, saldo: saldo, disetor: disetor });
+/* Bunga majemuk bulanan. Mengembalikan saldo per akhir tahun. */
+export function hitungMajemuk(modal, setoran, bungaPersen, tahun) {
+  const r = bungaPersen / 100 / 12
+  let saldo = modal, disetor = modal
+  const rows = [{ y: 0, saldo: modal, disetor: modal }]
+  for (let m = 1; m <= tahun * 12; m++) {
+    saldo = saldo * (1 + r) + setoran
+    disetor += setoran
+    if (m % 12 === 0) rows.push({ y: m / 12, saldo, disetor })
   }
-  return { rows: rows, akhir: saldo, disetor: disetor, bunga: saldo - disetor };
-};
-window.rupiah = function (n) { return 'Rp' + Math.round(n).toLocaleString('id-ID'); };
+  return { rows, akhir: saldo, disetor, bunga: saldo - disetor }
+}
+
+/* Saldo pada n titik yang tersebar rata sepanjang jangka waktu (untuk grafik yang halus). */
+export function titikGrafik(modal, setoran, bungaPersen, tahun, n = 48) {
+  const r = bungaPersen / 100 / 12, total = tahun * 12, out = []
+  for (let i = 0; i <= n; i++) {
+    const m = Math.round((total * i) / n)
+    const saldo = r === 0 ? modal + setoran * m : modal * Math.pow(1 + r, m) + setoran * ((Math.pow(1 + r, m) - 1) / r)
+    out.push({ saldo, disetor: modal + setoran * m })
+  }
+  return out
+}
